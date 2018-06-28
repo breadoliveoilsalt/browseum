@@ -1,3 +1,5 @@
+
+// DELETE ALL -- HANDLED IN CONFIGURE STORE
 import { combineReducers } from 'redux'
 
 // TN: make sure this doesn't cause some kind of loop b/c this file is in ./reducers
