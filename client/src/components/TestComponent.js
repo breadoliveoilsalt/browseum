@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import addWord from '../actions/addWordToTestState'
 
-class App extends Component {
+class TestComponent extends Component {
 
   constructor(props) {
     super(props)
@@ -65,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   return { addThisWord: (word) => {dispatch(addWord(word))}}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(TestComponent)
