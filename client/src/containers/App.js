@@ -4,11 +4,31 @@ import addWord from '../actions/addWordToTestState'
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      text: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.addThisWord(this.state.text)
+    this.setState({
+      text: ''})
+  }
+
   render() {
 
-    console.log(addWord)
-
-    const listOfTestWords = this.props.tester.map((word, index) => <p key={index}> {word} </p>)
+    const listOfTestWords = this.props.tester.map((word, index) => <p key={index}> {index +1}. {word} </p>)
 
     return (
       <div className="App">
@@ -20,20 +40,29 @@ class App extends Component {
         <p> Note that this requires using mapStateToProps and html portion to use
         this.props.tester </p>
 
-        {/* <form>
-          <input type="text" />
-          <button/>
-        </form> */}
+        <p> Add something to the testReducer state here: </p>
+
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" value={this.state.text} onChange={this.handleChange}/> <br/>
+          <input type="submit" value= "Add Word to testReducer!"/>
+        </form>
 
       </div>
     );
   }
 }
 
+// Below says that App.props.tester links to state.tester (ie, the store)
+// so I can then call this.props.tester.getState()
 const mapStateToProps = (state) => {
   return { tester: state.tester };
-};
+}
 
-export default connect(mapStateToProps)(App)
+// Below says that App.props.addThisWord(word) is now a function that
+// calls dispatch and so adds to the Store.  It does this relying on the
+// addWord action, which I imported above.
+const mapDispatchToProps = (dispatch) => {
+  return { addThisWord: (word) => {dispatch(addWord(word))}}
+}
 
-// export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App)

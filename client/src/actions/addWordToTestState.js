@@ -1,3 +1,6 @@
+
+console.log("Got to addWord")
+
 export default function addWordToTestState(newWord) {
   return {
     type: 'ADD_WORD',

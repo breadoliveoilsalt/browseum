@@ -1,7 +1,7 @@
 function testReducer(state = ["DEFAULT STATE"], action) {
   switch (action.type) {
     case 'ADD_WORD':
-      return Object.assign([], state, "TEST WORD ADDED")
+      return [...state, action.word]
     default:
       return state
   }
