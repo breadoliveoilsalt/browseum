@@ -10,6 +10,8 @@ class App extends Component {
 
   render() {
 
+    {console.log(this.props)}
+    
     return (
       <BrowserRouter>
         <div className="App">
@@ -19,9 +21,9 @@ class App extends Component {
               // TN: <Route/>s are basically saying: change what's here,
               // in this location where the component renders, depending
               // on what the URL is.
-            */}  
+            */}
           <Switch>
-            <Route exact path="/" component={TestComponent} />
+            <Route exact path="/" component={TestComponent}/>
             <Route exact path="/about" component={TestAbout} />
             <Route exact path="/help" component={TestHelp} />
           </Switch>
