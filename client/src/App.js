@@ -15,9 +15,11 @@ class App extends Component {
         <div className="App">
           <TestNavBar />
 
-            // TN: <Route/>s are basically saying: change what's here,
-            // in this location where the component renders, depending
-            // on what the URL is.
+            {/*
+              // TN: <Route/>s are basically saying: change what's here,
+              // in this location where the component renders, depending
+              // on what the URL is.
+            */}  
           <Switch>
             <Route exact path="/" component={TestComponent} />
             <Route exact path="/about" component={TestAbout} />
