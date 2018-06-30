@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import TestComponent from './components/TestComponent'
 import TestNavBar from './components/TestNavBar'
@@ -14,9 +14,15 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <TestNavBar />
-          <Route exact path="/" component={TestComponent} />
-          <Route exact path="/about" component={TestAbout} />
-          <Route exact path="/help" component={TestHelp} />
+
+            // TN: <Route/>s are basically saying: change what's here,
+            // in this location where the component renders, depending
+            // on what the URL is.
+          <Switch>
+            <Route exact path="/" component={TestComponent} />
+            <Route exact path="/about" component={TestAbout} />
+            <Route exact path="/help" component={TestHelp} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
