@@ -61,6 +61,7 @@ const mapStateToProps = (state) => {
 // Below says that App.props.addThisWord(word) is now a function that
 // calls dispatch and so adds to the Store.  It does this relying on the
 // addWord action, which I imported above.
+// I think in the future I'd like addWord to be addWordAC (for Action Creator)
 const mapDispatchToProps = (dispatch) => {
   return { addThisWord: (word) => {dispatch(addWord(word))}}
 }

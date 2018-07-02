@@ -9,8 +9,6 @@ import TestHelp from './components/TestHelp'
 class App extends Component {
 
   render() {
-
-    {console.log(this.props)}
     
     return (
       <BrowserRouter>
