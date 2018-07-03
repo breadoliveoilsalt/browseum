@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import addWord from '../actions/addWordToTestState'
 
 class TestComponent extends Component {
@@ -28,6 +28,7 @@ class TestComponent extends Component {
 
   render() {
 
+    // I probably could map this instead to the STATE here, and link state to the tester...that's probably better
     const listOfTestWords = this.props.tester.map((word, index) => <p key={index}> {index +1}. {word} </p>)
 
     return (

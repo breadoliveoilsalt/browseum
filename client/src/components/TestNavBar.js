@@ -4,9 +4,12 @@ import { NavLink } from 'react-router-dom'
 const NavBar = () => {
   return (
     <div>
-      <NavLink to='/' exact> Home </NavLink>
-      <NavLink to='/about' exact> About </NavLink>
-      <NavLink to='/help' exact> Help </NavLink>
+      <ul>
+        <li> <NavLink to='/' exact> Home </NavLink> </li>
+        <li> <NavLink to='/about' exact> About </NavLink> </li>
+        <li> <NavLink to='/help' exact> Help </NavLink> </li>
+        <li> <NavLink to='/testthunkclient' exact> Test Thunk </NavLink> </li>
+      </ul>
     </div>
   )
 }

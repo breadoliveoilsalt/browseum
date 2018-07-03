@@ -8,7 +8,7 @@ function testThunkReducer(
         case 'DATA_LOADED':
           return Object.assign({}, state, {isLoaded: action.bool})
         case 'ADD_DATA_TO_STATE':
-          return Object.assign({}, state, {data: state.data.concat(action.payload)})
+          return Object.assign({}, state, {data: state.data.concat(action.payload.text)})
         default:
           return state
       }

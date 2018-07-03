@@ -22,13 +22,28 @@ function addDataToState(data) {
 }
 
 export function getData(url) {
+  console.log("u made it to action creator getData")
+
   return function(dispatch) {
+    // console.log("u are w/in the thunk")
+    // debugger
 
     dispatch(dataIsRequested(true))
-
     return fetch(url)
-    .then(res => res.json)
-    .then(data => dispatch(addDatatToState(data)))
-    .then(dispatch(datatIsLoaded(true)))
+      .then(res => res.json())
+      .then(data => dispatch(addDataToState(data)))
+      .then(dispatch(dataIsLoaded(true)))
+    }
   }
-}
+      // .then(data => {
+      //   debugger
+      //   console.log("Here is the data:", data)
+      // })
+
+    // works up to here
+    // return fetch(url)
+    // .then(res => res.json)
+    // .then(data => dispatch(addDataToState(data)))
+    // .then(dispatch(dataIsLoaded(true)))
+//   }
+// }
