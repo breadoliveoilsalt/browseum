@@ -16,21 +16,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-        <LayoutGrid/>
-
-          <TestNavBar />
-
-            {/*
-              // TN: <Route/>s are basically saying: change what's here,
-              // in this location where the component renders, depending
-              // on what the URL is.
-            */}
-          <Switch>
-            <Route exact path="/" component={TestComponent}/>
-            <Route exact path="/about" component={TestAbout} />
-            <Route exact path="/help" component={TestHelp} />
-            <Route exact path="/testthunkclient" component={TestThunk} />
-          </Switch>
+          <LayoutGrid/>
         </div>
       </BrowserRouter>
     );
