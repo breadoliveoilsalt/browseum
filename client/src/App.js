@@ -7,7 +7,7 @@ import TestAbout from './components/TestAbout'
 import TestHelp from './components/TestHelp'
 import TestThunk from './components/TestThunk'
 
-import Top from './components/Top'
+import LayoutGrid from './components/LayoutGrid'
 
 class App extends Component {
 
@@ -16,9 +16,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+        <LayoutGrid/>
 
-          <Top />
-          
           <TestNavBar />
 
             {/*
