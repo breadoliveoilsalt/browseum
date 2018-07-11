@@ -7,7 +7,7 @@ import TestAbout from './components/TestAbout'
 import TestHelp from './components/TestHelp'
 import TestThunk from './components/TestThunk'
 
-import Header from './components/Header'
+import Top from './components/Top'
 
 class App extends Component {
 
@@ -17,7 +17,8 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
 
-          <Header />
+          <Top />
+          
           <TestNavBar />
 
             {/*
