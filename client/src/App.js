@@ -7,6 +7,8 @@ import TestAbout from './components/TestAbout'
 import TestHelp from './components/TestHelp'
 import TestThunk from './components/TestThunk'
 
+import Header from './components/Header'
+
 class App extends Component {
 
   render() {
@@ -14,6 +16,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+
+          <Header />
           <TestNavBar />
 
             {/*
