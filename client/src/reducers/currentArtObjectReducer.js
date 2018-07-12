@@ -35,4 +35,4 @@ function currentArtObjectReducer(
   }
 }
 
-export default testReducer
+export default currentArtObjectReducer
