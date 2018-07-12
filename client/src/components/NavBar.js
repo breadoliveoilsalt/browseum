@@ -9,18 +9,23 @@ class NavBar extends Component {
     return (
       <div>
 
-        <Button basic color={'black'} >
-          <Link to='/about' exact style={{color:'black'}}> About </Link>
-        </Button>
+        <Link to='/about' exact style={{color:'black'}}>
+          <Button basic color={'black'} >
+            About
+          </Button>
+        </Link>
 
-        <Button basic color={'black'}>
-            <Link to='/help' exact style={{color:'black'}}> Favorites </Link>
-        </Button>
+        <Link to='/help' exact style={{color:'black'}}>
+          <Button basic color={'black'}>
+             Favorites
+          </Button>
+        </Link>
 
-        <Button basic color={'black'}>
-          <Link to='/testthunkclient' exact style={{color:'black'}}> Browsing History </Link>
-        </Button>
-
+        <Link to='/testthunkclient' exact style={{color:'black'}}>
+          <Button basic color={'black'}>
+            Browsing History
+          </Button>
+        </Link>
       </div>
 
     )

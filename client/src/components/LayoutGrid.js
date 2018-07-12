@@ -13,7 +13,7 @@ class LayoutGrid extends Component {
     return (
 
       <Container>
-        <Grid celled stackable>
+        <Grid stackable>
           <Grid.Row>
             <Grid.Column width={16}>
               <Top />
