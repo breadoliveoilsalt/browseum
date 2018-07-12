@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch'
 
 const baseURL = 'https://api.harvardartmuseums.org/object'
 
-const paramsString = '?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&size=1&sort=random&classification=26|21&q=+description:*%20+labeltext:*'
+const paramsString = '?apikey=' + process.env.REACT_APP_API_KEY + '&size=1&sort=random&classification=26|21&q=+description:*%20+labeltext:*'
 
 
 export function mainRandomButtonClicked() {
@@ -14,7 +14,6 @@ export function mainRandomButtonClicked() {
   .then(response => response.json())
   .then(response => response.records[0])
   .then(record => {
-    debugger
     if (!record.primaryimageurl) {
       console.log("Retreived invalid record")
       mainRandomButtonClicked()
