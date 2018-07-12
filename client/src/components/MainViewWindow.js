@@ -7,14 +7,16 @@ import TestAbout from './TestAbout'
 import TestHelp from './TestHelp'
 import TestThunk from './TestThunk'
 
-class ViewWindow extends Component {
+import TestImage from './TestImage'
+
+class MainViewWindow extends Component {
 
   render() {
     return(
       <Switch>
         <Route exact path="/" component={TestComponent}/>
         <Route exact path="/about" component={TestAbout} />
-        <Route exact path="/help" component={TestHelp} />
+        <Route exact path="/help" component={TestImage} />
         <Route exact path="/testthunkclient" component={TestThunk} />
       </Switch>
     )
@@ -22,4 +24,4 @@ class ViewWindow extends Component {
   }
 }
 
-export default ViewWindow
+export default MainViewWindow
