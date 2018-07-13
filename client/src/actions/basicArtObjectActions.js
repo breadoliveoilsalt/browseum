@@ -22,7 +22,7 @@ export function mainRandomButtonClicked() {
         }
         else {
           console.log("Retreived valid record")
-          console.log(record)
+          // console.log(record)
           dispatch(loadCurrentArtObject(record))
         }
       })

@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   return { mainRandomButtonClicked: bindActionCreators(mainRandomButtonClicked, dispatch)}
 }
 
-export default connect(mapDispatchToProps)(MainRandomButton)
+export default connect(null, mapDispatchToProps)(MainRandomButton)
