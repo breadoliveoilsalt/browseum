@@ -18,6 +18,7 @@ export function mainRandomButtonClicked() {
       .then(record => {
         if (!record.primaryimageurl) {
           console.log("Retreived invalid record")
+          // Problem: this doesn't seem to find another record!
           mainRandomButtonClicked()
         }
         else {
