@@ -34,7 +34,6 @@ function currentArtObjectReducer(
       return Object.assign({}, state, {requestMade: true})
 
     case 'LOAD_ART_OBJECT':
-      // const todaysDate = new Date
       console.log("Here is the payload:")
       console.log(action.payload)
       return Object.assign({}, state, {
@@ -52,7 +51,7 @@ function currentArtObjectReducer(
         labeltext: action.payload.labeltext,
         description: action.payload.description,
         classificationAPIId: action.payload.classificationid,
-        dateViewed: "April",
+        dateViewed: new Date,
         favorite: false,
         requestMade: false,
         validDataRetreived: true,
