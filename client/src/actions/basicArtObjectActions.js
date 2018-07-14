@@ -12,24 +12,7 @@ const baseURL = 'https://api.harvardartmuseums.org/object'
 // Consider trying this one:
 // https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1
 
-const url = 'https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1'
-
-function fetchBasicData(dispatch) {
-  fetch(url)
-    .then(response => response.json())
-    .then(response => response.records[0])
-    .then(record => {
-      if (!record.primaryimageurl) {
-        console.log("Retreived invalid record", record)
-        fetchBasicData(dispatch)
-      }
-      else {
-        console.log("Retreived valid record", record)
-        dispatch(loadCurrentArtObject(record))
-      }
-    })
-}
-
+const url = 'https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&classification=21|26&sort=random&size=1/'
 
 
 export function mainRandomButtonClicked() {
@@ -41,30 +24,92 @@ export function mainRandomButtonClicked() {
     }
   }
 
-//Prior working function. Problem: this doesn't seem to find another record when initial record is invalid
-  // export function mainRandomButtonClicked() {
-  //
-  //   return function(dispatch){
-  //     return fetch(baseURL + paramsString)
-            // TN: WHEN YOU SEE "RETURN" IN THE LINE ABOVE, IT IS 'RETURNING'
-            // THE CULMINATION OF THIS LONG STRING THAT BEGINS WITH FETCH AND ENDS WITH THE LAST
-            // 'THEN'
-            // YOU DON'T HAVE TO START THIS PART WITH 'RETURN'
-  //       .then(response => response.json())
-  //       .then(response => response.records[0])
-  //       .then(record => {
-  //         if (!record.primaryimageurl) {
-  //           console.log("Retreived invalid record")
-  //           mainRandomButtonClicked()
-  //         }
-  //         else {
-  //           console.log("Retreived valid record")
-  //           dispatch(loadCurrentArtObject(record))
-  //         }
-  //       })
-  //     }
-  //   }
 
+function fetchBasicData(dispatch) {
+  fetch(url)
+    .then(response => response.json())
+    .then(response => response.records[0])
+    .then(function(record) {
+        // Most important data to check for is whether there is an image URL,
+        // so we do that here, and re-fetch data if this is missing. We fill
+        // in any missing data later with fillAnyMissingFields().
+      if (!record.primaryimageurl) {
+        console.log("Retreived invalid record", record)
+        fetchBasicData(dispatch)
+      }
+      else {
+        console.log("Retreived valid record", record)
+        const checkedRecord = fillAnyMissingFields(record)
+        dispatch(loadCurrentArtObject(checkedRecord))
+      }
+    })
+      // this is the new X factor here -- so it's both listening to the if statement
+      // but then jumping below too...
+      // before hand, when the dispatch was in the else statement, it was a pure if/else.
+    // .then(checkedRecord => dispatch(loadCurrentArtObject(checkedRecord)))
+}
+
+
+function fillAnyMissingFields(record) {
+
+  // Have to do all these checks due to inconsistencies in API records.  These inconsistencies
+  // were discovered in testing. Filling in any missing keys prevents errors from occuring
+  // at action controller.
+
+  console.log("Checking with fillAnyMissingFields")
+
+  // check for title
+  if (!record.hasOwnProperty("title")) {
+    record.title = null
+  }
+
+    // check for artist field or reformat
+  if (!record.hasOwnProperty("person")) {
+      record.artist = null
+      record.artistAPIId = null
+    } else {
+      record.artist = record.people[0].displayname
+      record.artistAPIId = record.people[0].personid
+    }
+
+    // check for medium field
+  if (!record.hasOwnProperty("medium")) {
+    record.medium = null
+  }
+
+    // check for date
+  if (!record.hasOwnProperty("dated")) {
+    record.date = null
+  }
+
+    // check for century
+  if (!record.hasOwnProperty("century")) {
+    record.century = null
+  }
+
+    // check for culture
+  if (!record.hasOwnProperty("culture")) {
+    record.culture = null
+  }
+
+    // check for commentary
+  if (!record.hasOwnProperty("commentary")) {
+    record.commentary = null
+  }
+
+    // check for labeltext
+  if (!record.hasOwnProperty("labeltext")) {
+    record.labeltext = null
+  }
+
+    // check for description
+  if (!record.hasOwnProperty("description")) {
+    record.description = null
+  }
+
+  return record
+
+}
 
 function loadCurrentArtObject(record) {
   return ({
