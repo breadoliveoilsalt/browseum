@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Button } from 'semantic-ui-react'
 import { Switch, Route } from 'react-router-dom'
 
+//
+
 class SecondaryViewWindow extends Component {
 
   render() {
