@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 
-import {mainRandomButtonClicked} from '../actions/basicArtObjectActions'
+import { mainRandomButtonClicked } from '../actions/basicArtObjectActions'
 
 import { Button } from 'semantic-ui-react'
 
