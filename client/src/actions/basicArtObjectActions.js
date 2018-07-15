@@ -41,6 +41,7 @@ function fetchBasicData(dispatch) {
         console.log("Retreived valid record", record)
         const checkedRecord = fillAnyMissingFields(record)
         dispatch(loadCurrentArtObject(checkedRecord))
+        dispatch(addToSessionHistory(checkedRecord))
       }
     })
       // this is the new X factor here -- so it's both listening to the if statement
@@ -62,7 +63,7 @@ function fillAnyMissingFields(record) {
   if (!record.hasOwnProperty("title")) {
     record.title = null
   }
-  
+
     // check for artist field or reformat
   if (record.hasOwnProperty("artist")) {
     record.artist = record.artist
@@ -118,6 +119,13 @@ function fillAnyMissingFields(record) {
 function loadCurrentArtObject(record) {
   return ({
     type: 'LOAD_ART_OBJECT',
+    payload: record
+  })
+}
+
+function addToSessionHistory(record){
+  return ({
+    type: 'ADD_TO_SESSION_HISTORY',
     payload: record
   })
 }
