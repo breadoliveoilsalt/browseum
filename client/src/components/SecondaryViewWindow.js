@@ -11,7 +11,7 @@ class SecondaryViewWindow extends Component {
 
         <p> <span className="bold"> Title: </span> {this.props.currentArtObject.title ?     this.props.currentArtObject.title : "Untitled"} </p>
 
-        <p> <span className="bold"> Artist: </span> {this.props.currentArtObject.author ? this.props.currentArtObject.author : "Unattributed" } </p>
+        <p> <span className="bold"> Artist: </span> {this.props.currentArtObject.artist ? this.props.currentArtObject.artist : "Unattributed" } </p>
 
         {this.props.currentArtObject.medium ? <p> <span className="bold"> Medium: </span> {this.props.currentArtObject.medium} </p> : ""}
 

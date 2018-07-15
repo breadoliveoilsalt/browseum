@@ -62,15 +62,19 @@ function fillAnyMissingFields(record) {
   if (!record.hasOwnProperty("title")) {
     record.title = null
   }
-
+  
     // check for artist field or reformat
-  if (!record.hasOwnProperty("person")) {
-      record.artist = null
-      record.artistAPIId = null
-    } else {
-      record.artist = record.people[0].displayname
-      record.artistAPIId = record.people[0].personid
-    }
+  if (record.hasOwnProperty("artist")) {
+    record.artist = record.artist
+    record.artistAPIId = record.artistid
+  }
+  else if (record.hasOwnProperty("people")) {
+    record.artist = record.people[0].displayname
+    record.artistAPIId = record.people[0].personid
+  } else {
+    record.artist = null
+    record.artistAPIId = null
+  }
 
     // check for medium field
   if (!record.hasOwnProperty("medium")) {
