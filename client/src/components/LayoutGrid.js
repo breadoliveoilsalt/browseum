@@ -24,7 +24,7 @@ class LayoutGrid extends Component {
 
       <Container>
         <Grid stackable>
-        
+
           <Grid.Row>
             <Grid.Column width={16}>
               <Top />
@@ -38,6 +38,7 @@ class LayoutGrid extends Component {
           </ Grid.Row>
 
           <Switch>
+            {/* Does not work to be able to pass match etc down: <Route path="/" component={NavBar} /> */}
             <Route exact path="/" component={Home} />
             <Route exact path="/art" component={ArtContainers} />
             <Route exact path="/favorites" component={FavoritesContainer} />
