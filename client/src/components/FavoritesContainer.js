@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { Grid } from 'semantic-ui-react'
 
 class FavoritesContainer extends Component {
 
   render() {
     return (
-      <div>
-        You made it to favorites.
-      </div>
+      <Grid.Row>
+        <Grid.Column width={16}>
+          You made it to favorites.
+        </ Grid.Column>
+      </ Grid.Row>
     )
   }
 

@@ -24,6 +24,7 @@ class LayoutGrid extends Component {
 
       <Container>
         <Grid stackable>
+        
           <Grid.Row>
             <Grid.Column width={16}>
               <Top />
@@ -36,23 +37,12 @@ class LayoutGrid extends Component {
             </ Grid.Column >
           </ Grid.Row>
 
-          <Grid.Row>
-            <Grid.Column width={16}>
-              You made it homeish.
-            </ Grid.Column >
-          </ Grid.Row>
-
-          <Grid.Row>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/art" component={ArtContainers} />
-                <Route exact path="/favorites" component={FavoritesContainer} />
-                <Route exact path="/history" component={HistoryContainer} />
-              </Switch>
-
-
-          </ Grid.Row>
-
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/art" component={ArtContainers} />
+            <Route exact path="/favorites" component={FavoritesContainer} />
+            <Route exact path="/history" component={HistoryContainer} />
+          </Switch>
 
         </ Grid>
 

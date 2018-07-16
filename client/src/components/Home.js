@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import { Container, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 class Home extends Component {
 
   render() {
     return (
-      <div>
-        <Container>
-          <Grid.Column width={16} >
+      <Grid.Row>
+        <Grid.Column width={16} >
             You made it home.
-            </ Grid.Column>
-        </ Container>
-      </div>
+        </ Grid.Column>
+      </ Grid.Row>
     )
   }
 
