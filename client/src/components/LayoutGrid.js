@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
-import { Container, Grid, Header } from 'semantic-ui-react'
+import { Switch, Route } from 'react-router-dom'
+import { Container, Grid } from 'semantic-ui-react'
+
+
+
 
 import Top from './Top'
 import NavBar from './NavBar'
-import MainRandomButton from './MainRandomButton'
-import MainViewWindow from './MainViewWindow'
-import SecondaryViewWindow from './SecondaryViewWindow'
 
+// import MainRandomButton from './MainRandomButton'
+// import MainViewWindow from './MainViewWindow'
+// import SecondaryViewWindow from './SecondaryViewWindow'
+
+import Home from './Home'
+import ArtContainers from './ArtContainers'
+import FavoritesContainer from './FavoritesContainer'
+import HistoryContainer from './HistoryContainer'
 
 class LayoutGrid extends Component {
 
@@ -14,7 +23,7 @@ class LayoutGrid extends Component {
     return (
 
       <Container>
-        <Grid stackable >
+        <Grid stackable>
           <Grid.Row>
             <Grid.Column width={16}>
               <Top />
@@ -22,26 +31,30 @@ class LayoutGrid extends Component {
           </ Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={10}>
+            <Grid.Column width={16}>
               <NavBar />
-            </ Grid.Column >
-
-            <Grid.Column width={6}>
-              <MainRandomButton />
             </ Grid.Column >
           </ Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={10}>
-              <MainViewWindow />
-            </ Grid.Column >
-
-            <Grid.Column width={6}>
-              <SecondaryViewWindow/>
+            <Grid.Column width={16}>
+              You made it homeish.
             </ Grid.Column >
           </ Grid.Row>
 
-        </Grid>
+          <Grid.Row>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/art" component={ArtContainers} />
+                <Route exact path="/favorites" component={FavoritesContainer} />
+                <Route exact path="/history" component={HistoryContainer} />
+              </Switch>
+
+
+          </ Grid.Row>
+
+
+        </ Grid>
 
       </ Container>
 

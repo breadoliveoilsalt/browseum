@@ -4,25 +4,44 @@ import { Button } from 'semantic-ui-react'
 
 class NavBar extends Component {
 
+// taking away "basic" makes it look inverted like I want
 
   render() {
     return (
       <div>
 
-        <Link to='/about' exact style={{color:'black'}}>
-          <Button basic color={'black'} >
-            About
+        <Link to='/' exact style={{color:'black'}}>
+          <Button
+            name='home'
+            basic={false}
+            color={'black'} >
+            Home
           </Button>
         </Link>
 
-        <Link to='/help' exact style={{color:'black'}}>
-          <Button basic color={'black'}>
+        <Link to='/art' exact style={{color:'black'}}>
+          <Button
+            name='art'
+            basic={true}
+            color={'black'}>
+             Browse Art
+          </Button>
+        </Link>
+
+        <Link to='/favorites' exact style={{color:'black'}}>
+          <Button
+            name='favorites'
+            basic={true}
+            color={'black'}>
              Favorites
           </Button>
         </Link>
 
-        <Link to='/testthunkclient' exact style={{color:'black'}}>
-          <Button basic color={'black'}>
+        <Link to='/history' exact style={{color:'black'}}>
+          <Button
+            name='history'
+            basic={true}
+            color={'black'}>
             Browsing History
           </Button>
         </Link>
