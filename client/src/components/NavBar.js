@@ -1,12 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Grid, Button } from 'semantic-ui-react'
 
-class NavBar extends Component {
-
-  render() {
-
-    return (
+const NavBar = () => (
       <Grid.Row>
         <Grid.Column>
           <Button as={NavLink} to='/' exact basic activeStyle={{basic: false}}> Home </Button>
@@ -16,8 +12,7 @@ class NavBar extends Component {
         </ Grid.Column>
       </ Grid.Row>
 
-    )
-  }
-}
+  )
+
 
 export default NavBar
