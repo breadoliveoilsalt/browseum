@@ -20,6 +20,9 @@ class LayoutGrid extends Component {
     return (
 
       <Container>
+        <Top />
+        <NavBar />
+
         <Grid stackable celled>
 
           <Grid.Row>

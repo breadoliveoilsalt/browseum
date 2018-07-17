@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { Header } from 'semantic-ui-react'
+import React from 'react'
+import { Header, Grid } from 'semantic-ui-react'
 
-class Top extends Component {
 
-  render() {
-    return (
+const Top = () => (
+  <Grid.Row>
+    <Grid.Column width={16}>
       <Header as='h1'> Browseum </Header>
-    )
-  }
-}
+    </ Grid.Column>
+  </Grid.Row>
+)
+
 
 export default Top

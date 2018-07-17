@@ -6,15 +6,18 @@ import { bindActionCreators } from 'redux'
 
 import { mainRandomButtonClicked } from '../actions/basicArtObjectActions'
 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Container } from 'semantic-ui-react'
 
 import MainRandomButton from './MainRandomButton'
+import ViewWindow from './ViewWindow'
 
 class ArtContainers extends Component {
 
   render() {
     return (
-      <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
+  
+        <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
+
     )
   }
 
