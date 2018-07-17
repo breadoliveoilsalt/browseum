@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { Grid, Button } from 'semantic-ui-react'
 
 const NavBar = () => (
+    <Grid >
       <Grid.Row>
         <Grid.Column>
           <Button as={NavLink} to='/' exact basic activeStyle={{basic: false}}> Home </Button>
@@ -11,6 +12,7 @@ const NavBar = () => (
           <Button as={NavLink} to='/history' exact basic activeStyle={{basic: false}}> Browsing History </Button>
         </ Grid.Column>
       </ Grid.Row>
+    </ Grid>
 
   )
 

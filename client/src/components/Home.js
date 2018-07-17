@@ -5,7 +5,7 @@ class Home extends Component {
 
   render() {
     return (
-
+      <Grid >
         <Grid.Row >
           <Grid.Column width={16} >
 
@@ -30,6 +30,7 @@ class Home extends Component {
               </Container>
           </ Grid.Column>
         </ Grid.Row>
+      </Grid>
       )
 
   }

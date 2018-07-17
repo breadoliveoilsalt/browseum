@@ -1,7 +1,8 @@
 import React from 'react'
 
-const ViewWindow = (props) => (
-  <div> Hey you made it to viewwindow </div>
-)
+const ViewWindow = () => {
+
+  return ("Someting")
+}
 
 export default ViewWindow

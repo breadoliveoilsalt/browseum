@@ -15,9 +15,7 @@ class ArtContainers extends Component {
 
   render() {
     return (
-  
         <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
-
     )
   }
 

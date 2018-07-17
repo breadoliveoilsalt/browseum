@@ -13,6 +13,7 @@ import Home from './Home'
 import ArtContainers from './ArtContainers'
 import FavoritesContainer from './FavoritesContainer'
 import HistoryContainer from './HistoryContainer'
+import ViewWindow from './ViewWindow'
 
 class LayoutGrid extends Component {
 
@@ -20,8 +21,6 @@ class LayoutGrid extends Component {
     return (
 
       <Container>
-
-        <Grid stackable celled>
 
           <Top />
 
@@ -34,8 +33,6 @@ class LayoutGrid extends Component {
             <Route exact path="/favorites" component={FavoritesContainer} />
             <Route exact path="/history" component={HistoryContainer} />
           </Switch>
-
-        </ Grid>
 
       </ Container>
 
