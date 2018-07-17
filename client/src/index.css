@@ -8,6 +8,6 @@ body {
   font-weight: bold;
 }
 
-.activeButton {
+.underlined {
   text-decoration: underline;
 }

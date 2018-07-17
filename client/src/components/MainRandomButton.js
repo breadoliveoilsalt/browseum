@@ -4,19 +4,19 @@ import { bindActionCreators } from 'redux'
 
 import { mainRandomButtonClicked } from '../actions/basicArtObjectActions'
 
-import { Button } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 
 
 
 class MainRandomButton extends Component {
 
-
   render(){
-    // debugger
     return(
-      <div>
-        <Button fluid onClick={this.props.mainRandomButtonClicked}> Browse Random Art! </Button>
-      </div>
+      <Grid.Row centered>
+        <Grid.Column width={6}>
+          <Button fluid onClick={this.props.mainRandomButtonClicked}> Browse Random Art! </Button>
+        </ Grid.Column>
+      </Grid.Row>
     )
   }
 }

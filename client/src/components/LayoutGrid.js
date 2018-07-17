@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Container, Grid } from 'semantic-ui-react'
 
-
-
-
 import Top from './Top'
 import NavBar from './NavBar'
 
@@ -23,7 +20,7 @@ class LayoutGrid extends Component {
     return (
 
       <Container>
-        <Grid stackable>
+        <Grid stackable celled>
 
           <Grid.Row>
             <Grid.Column width={16}>
