@@ -1,8 +1,10 @@
 import React from 'react'
 
-const ViewWindow = () => {
+import { Grid } from 'semantic-ui-react'
 
-  return ("Someting")
+
+const ViewWindow = () => {
+  
 }
 
 export default ViewWindow
