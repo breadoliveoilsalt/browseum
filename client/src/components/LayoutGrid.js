@@ -20,22 +20,12 @@ class LayoutGrid extends Component {
     return (
 
       <Container>
-        <Top />
-        <NavBar />
 
         <Grid stackable celled>
 
-          <Grid.Row>
-            <Grid.Column width={16}>
-              <Top />
-            </ Grid.Column >
-          </ Grid.Row>
+          <Top />
 
-          <Grid.Row>
-            <Grid.Column width={16}>
-              <NavBar />
-            </ Grid.Column >
-          </ Grid.Row>
+          <NavBar />
 
           <Switch>
             {/* Does not work to be able to pass match etc down: <Route path="/" component={NavBar} /> */}
