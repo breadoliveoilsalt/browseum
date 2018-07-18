@@ -19,3 +19,10 @@ body {
 .borderless {
   border-style: none;
 }
+
+/* To override awkward styling with Segments in ArtViewAndNavigation, where first child
+has no margin-top */
+
+.ui.segment:first-child {
+    margin-top: 1rem;
+}
