@@ -5,11 +5,9 @@ class FavoritesContainer extends Component {
 
   render() {
     return (
-      <Grid.Row>
-        <Grid.Column width={16}>
+      <div className="margin-fix">
           You made it to favorites.
-        </ Grid.Column>
-      </ Grid.Row>
+      </div>
     )
   }
 

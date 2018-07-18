@@ -11,3 +11,7 @@ body {
 .underlined {
   text-decoration: underline;
 }
+
+.margin-fix {
+  margin: 15px;
+}

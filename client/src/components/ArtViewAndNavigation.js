@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Image } from 'semantic-ui-react'
 
-const ArtViewAndNavigation = () => (
+const ArtViewAndNavigation = (props) => (
 
   <Grid.Row>
     <Grid.Column width={10}>
-      Column 1
+      <Image src={props.imageSource} size='large' centered />
     </Grid.Column>
 
     <Grid.Column width={6}>
