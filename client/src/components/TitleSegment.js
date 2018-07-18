@@ -8,9 +8,11 @@ const TitleSegment = (props) => (
       <Segment>
         <span className="bold"> Title: </span> {props.title}
       </Segment>
+
       <Segment align='center' basic>
         <Button size='tiny'> Add to Favorites </Button>
       </Segment>
+
     </div>
 
 )

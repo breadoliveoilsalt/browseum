@@ -20,9 +20,12 @@ body {
   border-style: none;
 }
 
+.ui.segment {
+  margin: 0.5rem 0.5rem;
+}
 /* To override awkward styling with Segments in ArtViewAndNavigation, where first child
 has no margin-top */
 
 .ui.segment:first-child {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
