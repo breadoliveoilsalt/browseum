@@ -12,6 +12,12 @@ import ArtViewAndNavigation from './ArtViewAndNavigation'
 
 class ArtContainers extends Component {
 
+  componentDidMount() {
+    if (!this.props.currentArtObject.objectAPIId) {
+      this.props.mainRandomButtonClicked()
+    }
+  }
+
   render() {
     return (
       <Grid celled>
