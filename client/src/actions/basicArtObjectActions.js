@@ -65,6 +65,9 @@ function fillAnyMissingFields(record) {
   }
 
     // check for artist field or reformat
+    // With some records where there is no artist, some artists are listed
+    // as "Unidentified Artist" with Harvard id 34147. Others simply have no artist.
+    // The code below attempts to even out these Harvard API difference.
   if (record.hasOwnProperty("artist")) {
     record.artist = record.artist
     record.artistAPIId = record.artistid
@@ -73,8 +76,8 @@ function fillAnyMissingFields(record) {
     record.artist = record.people[0].displayname
     record.artistAPIId = record.people[0].personid
   } else {
-    record.artist = null
-    record.artistAPIId = null
+    record.artist = "Unidentified Artist"
+    record.artistAPIId = 34147
   }
 
     // check for medium field

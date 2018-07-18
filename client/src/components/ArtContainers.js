@@ -20,7 +20,7 @@ class ArtContainers extends Component {
 
   render() {
     return (
-      <Grid >
+      <Grid stackable>
 
         <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
 
