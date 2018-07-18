@@ -20,12 +20,15 @@ class ArtContainers extends Component {
 
   render() {
     return (
-      <Grid celled>
+      <Grid >
+
         <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
 
         <ArtViewAndNavigation
             imageSource={this.props.currentArtObject.primaryimageurl}
-            currentArtObject={this.props.currentArtObject}/>
+            currentArtObject={this.props.currentArtObject}
+          />
+
       </Grid>
     )
   }
