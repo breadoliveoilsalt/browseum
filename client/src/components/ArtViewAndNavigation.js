@@ -38,7 +38,6 @@ const ArtViewAndNavigation = (props) => {
         </Grid.Column>
 
         <Grid.Column width={6}>
-          <Segment.Group>
             {titleSegment}
             {artistSegment}
             {datedSegment}
@@ -47,7 +46,6 @@ const ArtViewAndNavigation = (props) => {
             {descriptionSegment}
             {labeltextSegment}
             {commentarySegment}
-          </Segment.Group>
         </Grid.Column>
       </Grid.Row>
     )
