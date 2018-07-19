@@ -10,12 +10,12 @@ export function getArtistButtonClicked(currentArtObject){
   console.log("artist id", artistAPIId)
 
   // This is what I had as of 180719 6pm - remember to change back
-  // const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`
+  const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`
 
   // Don't forget to sort randomly!
 
-    // For the sake of testing, setting this to Picaso's id.
-  const url = ` https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=28064&hasimage=1&size=100`
+  //   // For the sake of testing, setting this to Picaso's id.
+  // const url = ` https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=28064&hasimage=1&size=100`
 
   return function(dispatch) {
     return fetch(url)
