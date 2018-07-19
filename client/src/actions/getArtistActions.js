@@ -20,15 +20,15 @@ export function getArtistButtonClicked(currentArtObject){
   return function(dispatch) {
     return fetch(url)
       .then(response => response.json())
-      .then(response => filterRecords(response.records))
+      .then(response => filterRecords(response.records, currentArtObject.objectAPIId))
       .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
   }
 }
 
-function filterRecords(records) {
+function filterRecords(records, currentObjectId) {
   console.log("You are filtering the records now.")
   console.log("Here are the records: ", records)
   return records.filter( record => {
-    return record.primaryimageurl
+    return (record.primaryimageurl) && (record.objectid !== currentObjectId)
   })
 }
