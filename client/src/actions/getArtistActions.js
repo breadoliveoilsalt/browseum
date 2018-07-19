@@ -30,5 +30,16 @@ function filterRecords(records, currentObjectId) {
   console.log("Here are the records: ", records)
   return records.filter( record => {
     return (record.primaryimageurl) && (record.objectid !== currentObjectId)
+
+    // put commonly used action creators in a helper file
+    // const something = records.filter blah blah
+    // if something.length === 0, then throw error;
+    // else return the first record;
+    // THE KEY HERE IS I'LL HAVE TO PASS THE SESSION HISTORY AND ALSO CHECK THAT THE RECORD PULLED IS NOT INCLUDED IN IT! THEN THROW AN ERROR IF THERE IS NOTHING LEFT! IN THAT CASE I
+    //DON'T EVEN NEED TO CHECK THE ID!
+    // ALWAYS CHECKING THE SESSION HISTORY WILL BE THE KEY TO ALL OF THESE!!
+    // Thing is, I'll have to add the one I look at to history too...
+
+    // And maybe just have a message state...it will be a redirect to this route...and there will be a button to return to last art...
   })
 }
