@@ -11,6 +11,7 @@ import OptionalSegment from './OptionalSegment'
 // ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}
 // searchButtonFunction={} altText={"Unattributed"}
 
+// consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used. 
 
 const ArtViewAndNavigation = (props) => {
 
@@ -26,7 +27,8 @@ const ArtViewAndNavigation = (props) => {
             <ArtistSegment
               artist={props.currentArtObject.artist}
               artistAPIId={props.currentArtObject.artistAPIId}
-              getArtistButtonClicked={props.getArtistButtonClicked} />
+              getArtistButtonClicked={props.getArtistButtonClicked}
+              currentArtObject={props.currentArtObject}/>
 
             <DatedSegment dated={props.currentArtObject.dated} />
             <CultureSegment culture={props.currentArtObject.culture} />

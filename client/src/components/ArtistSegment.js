@@ -5,11 +5,11 @@ const ArtistSegment = (props) => (
 
       <div>
         <Segment>
-          <span className="bold"> Artist: </span> {props.artist}
+          <span className="bold"> Artist: </span> {props.currentArtObject.artist}
         </ Segment>
 
         <Segment align='center' basic>
-          <Button size='tiny' onClick={props.getArtistButtonClicked(props.artistAPIId)}>
+          <Button size='tiny' onClick={props.getArtistButtonClicked(props.currentArtObject.artistAPIId)}>
             Look for more by this artist
           </Button>
         </Segment>
