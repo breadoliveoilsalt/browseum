@@ -1,51 +1,54 @@
 import React from 'react'
 
-
 import { Grid, Image, Segment, Button } from 'semantic-ui-react'
 
 import ArtistSegment from './ArtistSegment'
 import TitleSegment from './TitleSegment'
+import DatedSegment from './DatedSegment'
+import CultureSegment from './CultureSegment'
+import OptionalSegment from './MediumSegment'
+// import DescriptionSegment from './DescriptionSegment'
+// import LabeltextSegment from './LabeltextSegment'
+// import CommentarySegment from './CommentarySegment'
+
+// ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}
+// searchButtonFunction={} altText={"Unattributed"}
+
 
 const ArtViewAndNavigation = (props) => {
-
-
-
-  const datedSegment =
-    [<Segment> <span className="bold"> Dated: </span> {props.currentArtObject.dated ? props.currentArtObject.dated : "Undated" }  </Segment>]
-
-    // Maybe distinguish bw mandatory and optional segments
-
-  const mediumSegment =
-    [props.currentArtObject.medium ? <Segment> <span className="bold"> Medium: </span> {props.currentArtObject.medium} </Segment> : null]
-
-  const cultureSegment =
-    [props.currentArtObject.culture ? <Segment> <span className="bold"> Culture: </span> {props.currentArtObject.culture} </Segment> : null]
-
-  const descriptionSegment =
-    [props.currentArtObject.description ? <Segment> <span className="bold"> Short Description: </span> {props.currentArtObject.description} </Segment> : null]
-
-  const labeltextSegment =
-    [props.currentArtObject.labeltext ? <Segment> <span className="bold"> Wall Label Text: </span> {props.currentArtObject.labeltext} </Segment> : null]
-
-  const commentarySegment =
-    [props.currentArtObject.commentary ? <Segment> <span className="bold"> Commentary: </span> {props.currentArtObject.commentary} </Segment> : null]
-
 
   return (
       <Grid.Row>
         <Grid.Column width={10}>
-          <Image src={props.imageSource} size='large' centered />
+          <Image src={props.currentArtObject.primaryimageurl} size='large' centered />
         </Grid.Column>
 
         <Grid.Column width={6}>
             <TitleSegment title={props.currentArtObject.title} />
             <ArtistSegment artist={props.currentArtObject.artist} />
-            {datedSegment}
-            {mediumSegment}
-            {cultureSegment}
-            {descriptionSegment}
-            {labeltextSegment}
-            {commentarySegment}
+            <DatedSegment dated={props.currentArtObject.dated} />
+            <CultureSegment culture={props.currentArtObject.culture} />
+
+            <OptionalSegment
+              field={props.currentArtObject.medium}
+              title={"Medium"}
+              text={props.currentArtObject.medium} />
+
+            <OptionalSegment
+              field={props.currentArtObject.description}
+              title={"Short Description"}
+              text={props.currentArtObject.description} />
+
+            <OptionalSegment
+              field={props.currentArtObject.labeltext}
+              title={"Wall Label Text"}
+              text={props.currentArtObject.labeltext} />
+
+            <OptionalSegment
+              field={props.currentArtObject.commentary}
+              title={"Commentary"}
+              text={props.currentArtObject.commentary} />
+
         </Grid.Column>
       </Grid.Row>
     )

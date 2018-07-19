@@ -7,6 +7,7 @@ const ArtistSegment = (props) => (
         <Segment>
           <span className="bold"> Artist: </span> {props.artist}
         </ Segment>
+
         <Segment align='center' basic>
           <Button size='tiny'> Look for more by this artist </Button>
         </Segment>

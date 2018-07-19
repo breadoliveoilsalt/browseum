@@ -25,7 +25,6 @@ class ArtContainers extends Component {
         <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
 
         <ArtViewAndNavigation
-            imageSource={this.props.currentArtObject.primaryimageurl}
             currentArtObject={this.props.currentArtObject}
           />
 
