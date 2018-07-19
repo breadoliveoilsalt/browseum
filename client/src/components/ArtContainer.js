@@ -4,13 +4,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { mainRandomButtonClicked } from '../actions/basicArtObjectActions'
+import { getArtistButtonClicked } from '../actions/getArtistActions'
 
 import { Grid } from 'semantic-ui-react'
 
 import MainRandomButton from './MainRandomButton'
 import ArtViewAndNavigation from './ArtViewAndNavigation'
 
-class ArtContainers extends Component {
+class ArtContainer extends Component {
 
   componentDidMount() {
     if (!this.props.currentArtObject.objectAPIId) {
@@ -26,6 +27,8 @@ class ArtContainers extends Component {
 
         <ArtViewAndNavigation
             currentArtObject={this.props.currentArtObject}
+            getArtistButtonClicked={this.props.getArtistButtonClicked}
+
           />
 
       </Grid>
@@ -38,7 +41,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { mainRandomButtonClicked: bindActionCreators(mainRandomButtonClicked, dispatch)}
+  return {
+      mainRandomButtonClicked: bindActionCreators(mainRandomButtonClicked, dispatch),
+      getArtistButtonClicked: bindActionCreators(getArtistButtonClicked, dispatch)
+   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtContainers)
+export default connect(mapStateToProps, mapDispatchToProps)(ArtContainer)

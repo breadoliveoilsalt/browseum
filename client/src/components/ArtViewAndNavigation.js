@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Grid, Image, Segment, Button } from 'semantic-ui-react'
+import { Grid, Image } from 'semantic-ui-react'
 
 import ArtistSegment from './ArtistSegment'
 import TitleSegment from './TitleSegment'
@@ -22,7 +22,12 @@ const ArtViewAndNavigation = (props) => {
 
         <Grid.Column width={6}>
             <TitleSegment title={props.currentArtObject.title} />
-            <ArtistSegment artist={props.currentArtObject.artist} />
+
+            <ArtistSegment
+              artist={props.currentArtObject.artist}
+              artistAPIId={props.currentArtObject.artistAPIId}
+              getArtistButtonClicked={props.getArtistButtonClicked} />
+
             <DatedSegment dated={props.currentArtObject.dated} />
             <CultureSegment culture={props.currentArtObject.culture} />
 

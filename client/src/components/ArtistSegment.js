@@ -9,7 +9,9 @@ const ArtistSegment = (props) => (
         </ Segment>
 
         <Segment align='center' basic>
-          <Button size='tiny'> Look for more by this artist </Button>
+          <Button size='tiny' onClick={props.getArtistButtonClicked(props.artistAPIId)}>
+            Look for more by this artist
+          </Button>
         </Segment>
       </div>
   )

@@ -10,7 +10,7 @@ import NavBar from './NavBar'
 // import SecondaryViewWindow from './SecondaryViewWindow'
 
 import Home from './Home'
-import ArtContainers from './ArtContainers'
+import ArtContainer from './ArtContainer'
 import FavoritesContainer from './FavoritesContainer'
 import HistoryContainer from './HistoryContainer'
 import ViewWindow from './ViewWindow'
@@ -29,7 +29,7 @@ class LayoutGrid extends Component {
           <Switch>
             {/* Does not work to be able to pass match etc down: <Route path="/" component={NavBar} /> */}
             <Route exact path="/" component={Home} />
-            <Route exact path="/art" component={ArtContainers} />
+            <Route exact path="/art" component={ArtContainer} />
             <Route exact path="/favorites" component={FavoritesContainer} />
             <Route exact path="/history" component={HistoryContainer} />
           </Switch>
