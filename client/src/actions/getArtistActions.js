@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 export function getArtistButtonClicked(artistAPIId){
   // dispatch request made
 
-  const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`
+  console.log("artist id:", artistAPIId)
 
   return function(dispatch) {
     return fetch(`https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`)
