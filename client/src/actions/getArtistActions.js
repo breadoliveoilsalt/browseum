@@ -1,9 +1,11 @@
 import fetch from 'isomorphic-fetch'
 
-export function getArtistButtonClicked(artistAPIId){
+export function getArtistButtonClicked(currentArtObject){
   // dispatch request made
 
-  console.log("artist id:", artistAPIId)
+  console.log("currentArtObject:", currentArtObject)
+
+  const artistAPIId = 0
 
   return function(dispatch) {
     return fetch(`https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`)

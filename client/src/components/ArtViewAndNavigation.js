@@ -26,7 +26,8 @@ const ArtViewAndNavigation = (props) => {
             <ArtistSegment
               artist={props.currentArtObject.artist}
               artistAPIId={props.currentArtObject.artistAPIId}
-              getArtistButtonClicked={props.getArtistButtonClicked} />
+              getArtistButtonClicked={props.getArtistButtonClicked}
+              currentArtObject={props.currentArtObject}/>
 
             <DatedSegment dated={props.currentArtObject.dated} />
             <CultureSegment culture={props.currentArtObject.culture} />

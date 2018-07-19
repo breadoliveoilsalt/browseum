@@ -1,7 +1,11 @@
 import React from 'react'
 import {Segment, Button} from 'semantic-ui-react'
 
-const ArtistSegment = (props) => (
+const ArtistSegment = (props) => {
+
+  const getArtistArt = props.getArtistButtonClicked
+
+  return (
 
       <div>
         <Segment>
@@ -9,10 +13,12 @@ const ArtistSegment = (props) => (
         </ Segment>
 
         <Segment align='center' basic>
-          <Button size='tiny' onClick={props.getArtistButtonClicked(props.artistAPIId)}>
+          <Button size='tiny' onClick={ () => getArtistArt(props.currentArtObject) }>
             Look for more by this artist
           </Button>
         </Segment>
       </div>
   )
+
+}
 export default ArtistSegment
