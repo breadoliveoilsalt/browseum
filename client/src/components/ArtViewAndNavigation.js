@@ -6,10 +6,7 @@ import ArtistSegment from './ArtistSegment'
 import TitleSegment from './TitleSegment'
 import DatedSegment from './DatedSegment'
 import CultureSegment from './CultureSegment'
-import OptionalSegment from './MediumSegment'
-// import DescriptionSegment from './DescriptionSegment'
-// import LabeltextSegment from './LabeltextSegment'
-// import CommentarySegment from './CommentarySegment'
+import OptionalSegment from './OptionalSegment'
 
 // ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}
 // searchButtonFunction={} altText={"Unattributed"}
@@ -54,5 +51,4 @@ const ArtViewAndNavigation = (props) => {
     )
 }
 
-// Consider Segments for the buttons
 export default ArtViewAndNavigation
