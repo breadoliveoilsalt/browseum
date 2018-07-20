@@ -17,11 +17,12 @@ export function getArtistButtonClicked(currentArtObject){
   //   // For the sake of testing, setting this to Picaso's id.
   // const url = ` https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=28064&hasimage=1&size=100`
 
-  return function(dispatch) {
+  return function(dispatch, getState) {
     return fetch(url)
       .then(response => response.json())
       .then(response => filterRecords(response.records, currentArtObject.objectAPIId))
       .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
+      .then(console.log("here is the State:", getState()))
   }
 }
 
