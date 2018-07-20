@@ -41,5 +41,11 @@ function filterRecords(records, currentObjectId) {
     // Thing is, I'll have to add the one I look at to history too...
 
     // And maybe just have a message state...it will be a redirect to this route...and there will be a button to return to last art...
+
+    // -  make separate files for universal helpers in the action creator world
+    // // - Steps:
+    //     - Make API request for artist, get a 100 records
+    //     - Get an array of records where they have a primary image url and they are not in session history
+    //       - To do the latter, use .find on the array
   })
 }
