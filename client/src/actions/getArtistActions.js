@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch'
 export function getArtistButtonClicked(currentArtObject){
   // dispatch request made
 
+  // CHANGE THIS SO THAT getState() is called to get currentArt Object -- then pull ID from there!
+
   console.log("currentArtObject:", currentArtObject)
 
   const artistAPIId = currentArtObject.artistAPIId
@@ -20,17 +22,26 @@ export function getArtistButtonClicked(currentArtObject){
   return function(dispatch, getState) {
     return fetch(url)
       .then(response => response.json())
-      .then(response => filterRecords(response.records, currentArtObject.objectAPIId))
-      .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
-      .then(console.log("here is the State:", getState()))
+      .then(response => filterRecordsWithImages(response.records, currentArtObject.objectAPIId))
+      // .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
+      // .then(console.log("here is the State:", getState()))
+      // Put this back in -- .then(filteredRecords => findAnOriginalRecord(filteredRecords, getState))
+      // have those functions return an error and then jump to catch, which then sets off a dispatch
+      // to the state
   }
 }
+//  Put this back in -- IN THE MIDDLE HERE
+// function findAnOriginalRecord(records, getState) {
+//   const sessionHistory = getState(). // IN MIDDLE HERE
+// }
 
-function filterRecords(records, currentObjectId) {
+function filterRecordsWithImages(records, currentObjectId) {
   console.log("You are filtering the records now.")
   console.log("Here are the records: ", records)
   return records.filter( record => {
     return (record.primaryimageurl) && (record.objectid !== currentObjectId)
+
+    // Throw an error here if arrayLength = 0
 
     // put commonly used action creators in a helper file
     // const something = records.filter blah blah
