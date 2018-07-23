@@ -1,4 +1,23 @@
+///// ACTION CREATOR HELPER FUNCTIONS /////
 
+///// ACTION CREATORS OF GENERAL APPLICABILITY /////
+
+export function loadCurrentArtObject(record) {
+  return ({
+    type: 'LOAD_ART_OBJECT',
+    payload: record
+  })
+}
+
+export function addToSessionHistory(record){
+  return ({
+    type: 'ADD_TO_SESSION_HISTORY',
+    payload: record
+  })
+}
+
+
+///// ACTIONS FOR MANAGING RECORD DATA /////
 
 export function fillAnyMissingFields(record) {
 
@@ -68,16 +87,27 @@ export function fillAnyMissingFields(record) {
 
 }
 
-export function loadCurrentArtObject(record) {
-  return ({
-    type: 'LOAD_ART_OBJECT',
-    payload: record
-  })
-}
-
-export function addToSessionHistory(record){
-  return ({
-    type: 'ADD_TO_SESSION_HISTORY',
-    payload: record
+export function condenseRecord(record) {
+  return Object.assign({}, {
+    primaryimageurl: record.primaryimageurl,
+    objectAPIId: record.objectid,
+    title: record.title,
+    artist: record.artist,
+    artistAPIId: record.artistAPIId,
+    medium: record.medium,
+    dated: record.dated,
+    century: record.century,
+    culture: record.culture,
+    commentary: record.commentary,
+    labeltext: record.labeltext,
+    description: record.description,
+    dateViewed: new Date,
+    favorite: false,
+    requestMade: false,
+    validDataRetreived: true,
+    errorWithDataRetrieval: {
+      error: null,
+      errorMessage: null
+    }
   })
 }

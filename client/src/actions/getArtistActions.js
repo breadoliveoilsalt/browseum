@@ -22,18 +22,22 @@ export function getArtistButtonClicked(currentArtObject){
   return function(dispatch, getState) {
     return fetch(url)
       .then(response => response.json())
+        // I can problably make the next line one thing without need for an additional function call
       .then(response => filterRecordsWithImages(response.records, currentArtObject.objectAPIId))
       // .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
       // .then(console.log("here is the State:", getState()))
-      // Put this back in -- .then(filteredRecords => findAnOriginalRecord(filteredRecords, getState))
+      // Put this back in --
+      .then(filteredRecords => findAnOriginalRecord(filteredRecords, getState))
+      .then(sH => console.log("Here is the session history:", sH ))
       // have those functions return an error and then jump to catch, which then sets off a dispatch
       // to the state
   }
 }
 //  Put this back in -- IN THE MIDDLE HERE
-// function findAnOriginalRecord(records, getState) {
-//   const sessionHistory = getState(). // IN MIDDLE HERE
-// }
+function findAnOriginalRecord(records, getState) {
+  const sessionHistory = getState().sessionHistory
+  return sessionHistory // IN MIDDLE HERE
+}
 
 function filterRecordsWithImages(records, currentObjectId) {
   console.log("You are filtering the records now.")
