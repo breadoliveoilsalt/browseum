@@ -1,29 +1,25 @@
 import fetch from 'isomorphic-fetch'
 
 export function getArtistButtonClicked(currentArtObject){
-  // dispatch request made
-
-  // CHANGE THIS SO THAT getState() is called to get currentArt Object -- then pull ID from there!
-
-  console.log("currentArtObject:", currentArtObject)
-
-  const artistAPIId = currentArtObject.artistAPIId
-
-  console.log("artist id", artistAPIId)
-
-  // This is what I had as of 180719 6pm - remember to change back
-  const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`
-
-  // Don't forget to sort randomly!
-
-  //   // For the sake of testing, setting this to Picaso's id.
-  // const url = ` https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=28064&hasimage=1&size=100`
 
   return function(dispatch, getState) {
+
+    const state = getState()
+    const artistAPIId = state.currentArtObject.artistAPIId
+    const objectAPIId = state.currentArtObject.objectAPIId
+
+
+    // This is what I had as of 180719 6pm - remember to change back
+    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`
+
+    // Don't forget to sort randomly!
+
+    //   // For the sake of testing, setting this to Picaso's id.
+    // const url = ` https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=28064&hasimage=1&size=100`
+
     return fetch(url)
       .then(response => response.json())
-        // I can problably make the next line one thing without need for an additional function call
-      .then(response => filterRecordsWithImages(response.records, currentArtObject.objectAPIId))
+      .then(response => filterRecordsWithImages(response.records, objectAPIId))
       // .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
       // .then(console.log("here is the State:", getState()))
       // Put this back in --
@@ -42,9 +38,10 @@ function findAnOriginalRecord(records, getState) {
 function filterRecordsWithImages(records, currentObjectId) {
   console.log("You are filtering the records now.")
   console.log("Here are the records: ", records)
-  return records.filter( record => {
+  return records.filter(record => {
     return (record.primaryimageurl) && (record.objectid !== currentObjectId)
-
+  })
+}
     // Throw an error here if arrayLength = 0
 
     // put commonly used action creators in a helper file
@@ -63,5 +60,3 @@ function filterRecordsWithImages(records, currentObjectId) {
     //     - Make API request for artist, get a 100 records
     //     - Get an array of records where they have a primary image url and they are not in session history
     //       - To do the latter, use .find on the array
-  })
-}
