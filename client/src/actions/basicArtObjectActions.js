@@ -36,6 +36,8 @@ function fetchBasicData(dispatch) {
     .then(response => response.json())
     .then(response => response.records[0])
     .then(record => {
+        // Have to check for primaryimageurl. Despite url search parameters,
+        // some records come back with null for primaryimageurl
       if (record.primaryimageurl) {
         console.log("Retrieved valid record: ", record)
         return record
@@ -43,7 +45,16 @@ function fetchBasicData(dispatch) {
         throw {errorType: "INVALID_RECORD", data: record}
       }
     })
-    .then(record => console.log("Is this valid? ", record))
+    .then(record => {
+      console.log("About to fillAnyMissingFields: ", record)
+      return helpers.fillAnyMissingFields(record)})
+    .then(record => {
+      console.log("About to condenseRecord: ", record)
+      return helpers.condenseRecord(record)})
+    .then(record => {
+      console.log("Here is the condensed record: ", record)
+      dispatch(helpers.loadCurrentArtObject(record))})
+    .then(record => dispatch(helpers.addToSessionHistory(record)))
     .catch(error => {
       if (error.errorType === "INVALID_RECORD") {
         console.log("Retreived invalid record:", error.data)
