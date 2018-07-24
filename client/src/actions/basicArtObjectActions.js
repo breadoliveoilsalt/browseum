@@ -3,7 +3,7 @@ import * as helpers from './helperActions'
 
 
 // I can probably put these under mainRandomButtonClicked
-const baseURL = 'https://api.harvardartmuseums.org/object'
+// const baseURL = 'https://api.harvardartmuseums.org/object'
 
 
 // consider breaking down into baseURL and paramsString...I put it as URL for now to keep things simple
@@ -16,7 +16,10 @@ const baseURL = 'https://api.harvardartmuseums.org/object'
 // const url = 'https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&classification=21|26&sort=random&size=1/'
 
 // Later: this actually seems to be working out well.
-const url = 'https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&size=1&sort=random&q=labeltext:*'
+// const url = 'https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&size=1&sort=random&q=labeltext:*'
+
+// This person only has 8 records, 5 with images.
+const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=27644&sort=random&size=1`
 
 export function mainRandomButtonClicked() {
 
