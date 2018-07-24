@@ -35,25 +35,56 @@ function fetchBasicData(dispatch) {
   fetch(url)
     .then(response => response.json())
     .then(response => response.records[0])
-    .then(function(record) {
-        // Most important data to check for is whether there is an image URL,
-        // so we do that here, and re-fetch data if this is missing.
-        // The Harvard API has a "hasimage" parameter, but this can still return
-        // a primaryimageurl with a value of null.
-        // We fill in any missing data later with fillAnyMissingFields().
-        // I can condense this all this into a tertiary once working.
-      if (!record.primaryimageurl) {
-        console.log("Retreived invalid record", record)
-        fetchBasicData(dispatch)
-      }
-      else {
-        console.log("Retreived valid record", record)
-          // this should be condense and complete record.
+    .then(record => {
+      if (record.primaryimageurl) {
+        console.log("Retrieved valid record: ", record)
         return record
+      } else {
+        throw {errorType: "INVALID_RECORD", data: record}
       }
     })
-    .then(record => helpers.fillAnyMissingFields(record))
-    .then(record => helpers.condenseRecord(record))
-    .then(record => dispatch(helpers.loadCurrentArtObject(record)))
-    .then(record => dispatch(helpers.addToSessionHistory(record)))
+    .then(record => console.log("Is this valid? ", record))
+    .catch(error => {
+      if (error.errorType === "INVALID_RECORD") {
+        console.log("Retreived invalid record:", error.data)
+        fetchBasicData(dispatch)
+      }
+    })
 }
+
+// // NO -- I need dispatch to be there
+// function testRecord(record) {
+//   if (record.primaryimageurl)
+// }
+//
+//
+//
+//     find(record => record.primaryimageurl))
+//     // .then(function(resolve, reject) {
+//     //     if (record.primaryimageurl) {
+//     //       resolve(record)
+//     //     } else {
+//     //       reject(fetchBasicData(dispatch))
+//     //     }
+//     //   })
+//     // .then(record => {
+//     //   if (record.primaryimageurl) {
+//     //     console.log("Retreived valid record", record)
+//     //     return helpers.fillAnyMissingFields(record)
+//     //   }
+//     //   else {
+//     //     console.log("Retreived invalid record", record)
+//     //     return fetchBasicData(dispatch)
+//     //   }})
+//         // Most important data to check for is whether there is an image URL,
+//         // so we do that here, and re-fetch data if this is missing.
+//         // The Harvard API has a "hasimage" parameter, but this can still return
+//         // a primaryimageurl with a value of null.
+//         // We fill in any missing data later with fillAnyMissingFields().
+//         // I can condense this all this into a tertiary once working.
+//     .then(record => {
+//       console.log("Here's the record with a primaryimageurl", record)
+//       return helpers.condenseRecord(record) })
+//     .then(record => dispatch(helpers.loadCurrentArtObject(record)))
+//     .then(record => dispatch(helpers.addToSessionHistory(record)))
+// }
