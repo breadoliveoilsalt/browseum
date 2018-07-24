@@ -38,7 +38,7 @@ function findAnOriginalRecord(filteredRecords, state) {
     // Have to test ids b/c the sessionHistory contains condenced records,
     // not full records like filteredRecords
   for (var i = 0; i < filteredRecords.length; i++) {
-
+    debugger
     if (newRecord) {
       break
     }
@@ -51,6 +51,7 @@ function findAnOriginalRecord(filteredRecords, state) {
     // then it becomes the newRecord to create the next currentArtObject.
 
     for (var i = 0; i < sessionHistory.length; i++) {
+      debugger
       if (testRecord.objectid !== sessionHistory[i]) {
         newRecord = testRecord
         console.log("This is the winning test record: ", testRecord)
