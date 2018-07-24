@@ -2,10 +2,10 @@ function currentArtObjectReducer(
   state =
     {
       primaryimageurl: null,
-      objectAPIId: null,
+      objectApiId: null,
       title: null,
       artist: null,
-      artistAPIId: null,
+      artistApiId: null,
       medium: null,
       dated: null,
       century: null,

@@ -1,46 +1,72 @@
 import fetch from 'isomorphic-fetch'
 
-export function getArtistButtonClicked(currentArtObject){
-
-  return function(dispatch, getState) {
-
-    const state = getState()
-    const artistAPIId = state.currentArtObject.artistAPIId
-    const objectAPIId = state.currentArtObject.objectAPIId
-
-
-    // This is what I had as of 180719 6pm - remember to change back
-    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistAPIId}&hasimage=1&size=100`
-
     // Don't forget to sort randomly!
 
     //   // For the sake of testing, setting this to Picaso's id.
     // const url = ` https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=28064&hasimage=1&size=100`
 
+export function getArtistButtonClicked(currentArtObject){
+
+  return function(dispatch, getState) {
+
+    const state = getState()
+    const artistApiId = state.currentArtObject.artistApiId
+    const objectApiId = state.currentArtObject.objectApiId
+
+
+    // This is what I had as of 180719 6pm - remember to change back
+    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistApiId}&hasimage=1&size=100`
+
     return fetch(url)
       .then(response => response.json())
-      .then(response => filterRecordsWithImages(response.records, objectAPIId))
-      // .then(filteredRecords => console.log("Here are the filtered records: ", filteredRecords))
-      // .then(console.log("here is the State:", getState()))
-      // Put this back in --
-      .then(filteredRecords => findAnOriginalRecord(filteredRecords, getState))
-      .then(sH => console.log("Here is the session history:", sH ))
+      .then(response => filterRecordsWithImages(response.records, objectApiId))
+      .then(filteredRecords => findAnOriginalRecord(filteredRecords, state))
+      .then(foundRecord => console.log("here is the found record: ", foundRecord))
+      // if return value is undefined, then I have to throw error
+      // .then(sH => console.log("Here is the session history:", sH ))
       // have those functions return an error and then jump to catch, which then sets off a dispatch
       // to the state
   }
 }
-//  Put this back in -- IN THE MIDDLE HERE
-function findAnOriginalRecord(records, getState) {
-  const sessionHistory = getState().sessionHistory
-  return sessionHistory // IN MIDDLE HERE
+
+
+function findAnOriginalRecord(filteredRecords, state) {
+
+  const { sessionHistory } = state
+  let newRecord
+
+    // Have to test ids b/c the sessionHistory contains condenced records,
+    // not full records like filteredRecords
+  for (var i = 0; i < filteredRecords.length; i++) {
+
+    if (newRecord) {
+      break
+    }
+
+    const testRecord = filteredRecords[i]
+    console.log("Here's the record for first loop:", testRecord)
+
+    // Take a testRecord from filteredRecords and compare it to each
+    // record in sessionHistory.  If testRecord is not in sessionHistory,
+    // then it becomes the newRecord to create the next currentArtObject.
+
+    for (var i = 0; i < sessionHistory.length; i++) {
+      if (testRecord.objectid !== sessionHistory[i]) {
+        newRecord = testRecord
+        console.log("This is the winning test record: ", testRecord)
+        break
+      }
+    }
+  }
+  return newRecord
 }
 
 function filterRecordsWithImages(records, currentObjectId) {
-  console.log("You are filtering the records now.")
-  console.log("Here are the records: ", records)
-  return records.filter(record => {
+  const filteredRecords = records.filter(record => {
     return (record.primaryimageurl) && (record.objectid !== currentObjectId)
   })
+  console.log("Here are the filtered records:", filteredRecords)
+  return filteredRecords
 }
     // Throw an error here if arrayLength = 0
 

@@ -14,7 +14,7 @@ import ArtViewAndNavigation from './ArtViewAndNavigation'
 class ArtContainer extends Component {
 
   componentDidMount() {
-    if (!this.props.currentArtObject.objectAPIId) {
+    if (!this.props.currentArtObject.objectApiId) {
       this.props.mainRandomButtonClicked()
     }
   }

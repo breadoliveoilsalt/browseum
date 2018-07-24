@@ -38,14 +38,14 @@ export function fillAnyMissingFields(record) {
     // The code below attempts to even out these Harvard API difference.
   if (record.hasOwnProperty("artist")) {
     record.artist = record.artist
-    record.artistAPIId = record.artistid
+    record.artistApiId = record.artistid
   }
   else if (record.hasOwnProperty("people")) {
     record.artist = record.people[0].displayname
-    record.artistAPIId = record.people[0].personid
+    record.artistApiId = record.people[0].personid
   } else {
     record.artist = "Unidentified Artist"
-    record.artistAPIId = 34147
+    record.artistApiId = 34147
   }
 
     // check for medium field
@@ -90,10 +90,10 @@ export function fillAnyMissingFields(record) {
 export function condenseRecord(record) {
   return Object.assign({}, {
     primaryimageurl: record.primaryimageurl,
-    objectAPIId: record.objectid,
+    objectApiId: record.objectid,
     title: record.title,
     artist: record.artist,
-    artistAPIId: record.artistAPIId,
+    artistApiId: record.artistApiId,
     medium: record.medium,
     dated: record.dated,
     century: record.century,
