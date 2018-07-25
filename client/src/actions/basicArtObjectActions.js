@@ -47,8 +47,10 @@ function fetchBasicData(dispatch) {
     })
     .then(record => helpers.fillAnyMissingFields(record))
     .then(record => helpers.condenseRecord(record))
-    .then(record => dispatch(helpers.loadCurrentArtObject(record)))
-    .then(record => dispatch(helpers.addToSessionHistory(record)))
+    .then(record => {
+      dispatch(helpers.loadCurrentArtObject(record))
+      dispatch(helpers.addToSessionHistory(record))
+      })
     .catch(error => {
       if (error.errorType === "INVALID_RECORD") {
         console.log("Retreived invalid record:", error.data)

@@ -18,6 +18,8 @@ export function getArtistButtonClicked(currentArtObject){
     // This is what I had as of 180719 6pm - remember to change back
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistApiId}&hasimage=1&size=100`
 
+
+// UP TO HERE -- HAVE TO TEST IF THIS WORKS
     return fetch(url)
       .then(response => response.json())
       .then(response => filterRecordsWithImages(response.records, objectApiId))
@@ -31,8 +33,10 @@ export function getArtistButtonClicked(currentArtObject){
           return helpers.fillAnyMissingFields(record)
         }})
       .then(record => helpers.condenseRecord(record))
-      .then(record => dispatch(helpers.loadCurrentArtObject(record)))
-      .then(record => dispatch(helpers.addToSessionHistory(record)))
+      .then(record => {
+          dispatch(helpers.loadCurrentArtObject(record))
+          dispatch(helpers.addToSessionHistory(record))
+        })
       .catch(error => {
         if (error.errorType === "NO_ARTIST_RECORDS") {
           console.log("No valid artist records to retreive")
