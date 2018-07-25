@@ -29,3 +29,10 @@ has no margin-top */
 .ui.segment:first-child {
     margin-top: 0.5rem;
 }
+
+.errorMessage {
+  margin-top: 25px;
+  margin-bottom: -25px;
+  font-weight: bold;
+
+}

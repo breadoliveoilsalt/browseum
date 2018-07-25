@@ -1,14 +1,16 @@
 import React from 'react'
 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Message, Container } from 'semantic-ui-react'
 
 const ErrorContainer = ({error}) => {
 
   if (error.errorOccurred) {
     return (
-      <Grid.Row centered className="margin-fix">
-        <Grid.Column width={6}>
-          <p> You got an error! </p>
+      <Grid.Row centered className="errorMessage">
+        <Grid.Column width={16}>
+          <Message negative>
+            <Container textAlign='center' className='bold'> {error.errorMessage} </Container>
+          </Message>
         </ Grid.Column>
       </ Grid.Row>
     )
