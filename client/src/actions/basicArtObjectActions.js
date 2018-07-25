@@ -18,11 +18,11 @@ import * as helpers from './helperActions'
 
 const apiKey = process.env.REACT_APP_API_KEY
 
-// Later: this actually seems to be working out well.
-const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&size=1&sort=random&q=labeltext:*`
+// // Later: this actually seems to be working out well.
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&size=1&sort=random&q=labeltext:*`
 
 // This person only has 8 records, 5 with images.
-// const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=27644&sort=random&size=1`
+const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=27644&sort=random&size=1`
 
 // This person has 24 records, only 6 or 7 with images
 // const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=29090&hasimage=1&sort=random&size=1`

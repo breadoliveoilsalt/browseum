@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
+import {loadError, removeError} from './errorActions'
 
 export function getArtistButtonClicked(currentArtObject){
 
@@ -10,6 +11,8 @@ export function getArtistButtonClicked(currentArtObject){
     const objectApiId = state.currentArtObject.objectApiId
 
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistApiId}&hasimage=1&size=100`
+
+    dispatch(removeError())
 
     return fetch(url)
       .then(response => response.json())
@@ -30,8 +33,8 @@ export function getArtistButtonClicked(currentArtObject){
       .catch(error => {
         if (error.errorType === "NO_ARTIST_RECORDS") {
           console.log("No valid artist records to retreive")
+          dispatch(loadError("Sorry, there are no more works by this artist."))
         }})
-        // Catch should at some point also dispatch something to the state
   }
 }
 
