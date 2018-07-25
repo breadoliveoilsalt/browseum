@@ -8,6 +8,7 @@ import { getArtistButtonClicked } from '../actions/getArtistActions'
 
 import { Grid } from 'semantic-ui-react'
 
+import ErrorContainer from './ErrorContainer'
 import MainRandomButton from './MainRandomButton'
 import ArtViewAndNavigation from './ArtViewAndNavigation'
 
@@ -23,6 +24,8 @@ class ArtContainer extends Component {
     return (
       <Grid stackable>
 
+        <ErrorContainer error={this.props.error} />
+
         <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
 
         <ArtViewAndNavigation
@@ -37,7 +40,10 @@ class ArtContainer extends Component {
 
 }
 const mapStateToProps = (state) => {
-  return { currentArtObject: state.currentArtObject }
+  return {
+    currentArtObject: state.currentArtObject,
+    error: state.error
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

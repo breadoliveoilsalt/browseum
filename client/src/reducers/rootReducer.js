@@ -8,7 +8,7 @@ const rootReducer = combineReducers(
   {
     currentArtObject: currentArtObjectReducer,
     sessionHistory: sessionHistoryReducer,
-    errors: errorReducer
+    error: errorReducer
   }
 )
 

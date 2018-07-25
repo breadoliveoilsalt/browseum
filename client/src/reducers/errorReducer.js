@@ -14,5 +14,3 @@ function errorReducer(state =
   }
 
 export default errorReducer
-
-// up to here...now add this to rootReducer
