@@ -18,7 +18,7 @@ export function getArtistButtonClicked(currentArtObject){
     // This is what I had as of 180719 6pm - remember to change back
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistApiId}&hasimage=1&size=100`
 
-
+// records below should be object, as in art object
 // UP TO HERE -- HAVE TO TEST IF THIS WORKS
     return fetch(url)
       .then(response => response.json())
@@ -49,32 +49,26 @@ export function getArtistButtonClicked(currentArtObject){
 function findAnOriginalRecord(filteredRecords, state) {
 
   const { sessionHistory } = state
+  let arrayOfHistoryIds = []
   let newRecord
 
-    // Have to test ids b/c the sessionHistory contains condenced records,
-    // not full records like filteredRecords
+  // Make an array of the object ids in the sessionHistory
+  for (var i = 0; i < sessionHistory.length; i++) {
+    arrayOfHistoryIds.push(sessionHistory[i].objectApiId)
+  }
+
+  // Go through the filteredRecords. Return the first that is not in sessionHistory,
+  // i.e., it hasn't been viewed yet, by comparing ids. If all the filteredRecords are in the sessionHistory,
+  // this function returns newRecord as undefined, and an error is thrown in getArtistButtonClicked
   for (var i = 0; i < filteredRecords.length; i++) {
-    // debugger
-    if (newRecord) {
+    if (arrayOfHistoryIds.includes(filteredRecords[i].objectid)) {
+      continue
+    } else {
+      newRecord = filteredRecords[i]
       break
     }
-
-    const testRecord = filteredRecords[i]
-    // console.log("Here's the record for first loop:", testRecord)
-
-    // Take a testRecord from filteredRecords and compare it to each
-    // record in sessionHistory.  If testRecord is not in sessionHistory,
-    // then it becomes the newRecord to create the next currentArtObject.
-
-    for (var i = 0; i < sessionHistory.length; i++) {
-      // debugger
-      if (testRecord.objectid !== sessionHistory[i]) {
-        newRecord = testRecord
-        console.log("This is the winning test record: ", testRecord)
-        break
-      }
-    }
   }
+
   return newRecord
 }
 
