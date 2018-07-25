@@ -6,8 +6,10 @@ function errorReducer(state =
   action) {
 
     switch (action.type) {
-      case 'ADD_ERROR':
+      case 'LOAD_ERROR':
         return Object.assign({}, state, {errorOccurred: true, errorMessage: action.message})
+      case 'REMOVE_ERROR':
+        return Object.assign({}, state, {errorOccurred: false, errorMessage: ""})
       default:
         return state
     }
