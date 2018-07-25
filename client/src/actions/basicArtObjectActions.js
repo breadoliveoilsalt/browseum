@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import {loadError, removeError} from './errorActions'
 import * as helpers from './helperActions'
 
 
@@ -37,6 +38,9 @@ export function mainRandomButtonClicked() {
 
 
 function fetchBasicData(dispatch) {
+
+  dispatch(removeError())
+
   fetch(url)
     .then(response => response.json())
     .then(response => response.records[0])
