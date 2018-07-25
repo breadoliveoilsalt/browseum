@@ -1,17 +1,14 @@
 import { combineReducers } from 'redux'
 
-import testReducer from './testReducer'
-import testThunkReducer from './testThunkReducer'
 import currentArtObjectReducer from './currentArtObjectReducer'
 import sessionHistoryReducer from './sessionHistoryReducer'
+import errorReducer from './errorReducer'
 
 const rootReducer = combineReducers(
   {
-    tester: testReducer,
-    testThunk: testThunkReducer,
     currentArtObject: currentArtObjectReducer,
-    sessionHistory: sessionHistoryReducer
-
+    sessionHistory: sessionHistoryReducer,
+    errors: errorReducer
   }
 )
 
