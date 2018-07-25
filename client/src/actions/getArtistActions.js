@@ -24,15 +24,19 @@ export function getArtistButtonClicked(currentArtObject){
       .then(filteredRecords => findAnOriginalRecord(filteredRecords, state))
       // .then(foundRecord => console.log("here is the found record: ", foundRecord))
       .then(record => {
-        console.log("Here is the new record, could be undefined: ", record)
-        // if (!record) {
-        //   throw "There was no new Record"
-        // }
-        helpers.fillAnyMissingFields(record)})
+        if (!record) {
+          throw {errorType: "NO_ARTIST_RECORDS"}
+        } else {
+          console.log("Here is the new record: ", record)
+          return helpers.fillAnyMissingFields(record)
+        }})
       .then(record => helpers.condenseRecord(record))
       .then(record => dispatch(helpers.loadCurrentArtObject(record)))
       .then(record => dispatch(helpers.addToSessionHistory(record)))
-      // .catch(error => console.log(error))
+      .catch(error => {
+        if (error.errorType === "NO_ARTIST_RECORDS") {
+          console.log("No valid artist records to retreive")
+        }})
         // Catch should at some point also dispatch something to the state
   }
 }

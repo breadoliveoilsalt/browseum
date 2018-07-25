@@ -45,15 +45,9 @@ function fetchBasicData(dispatch) {
         throw {errorType: "INVALID_RECORD", data: record}
       }
     })
-    .then(record => {
-      console.log("About to fillAnyMissingFields: ", record)
-      return helpers.fillAnyMissingFields(record)})
-    .then(record => {
-      console.log("About to condenseRecord: ", record)
-      return helpers.condenseRecord(record)})
-    .then(record => {
-      console.log("Here is the condensed record: ", record)
-      dispatch(helpers.loadCurrentArtObject(record))})
+    .then(record => helpers.fillAnyMissingFields(record))
+    .then(record => helpers.condenseRecord(record))
+    .then(record => dispatch(helpers.loadCurrentArtObject(record)))
     .then(record => dispatch(helpers.addToSessionHistory(record)))
     .catch(error => {
       if (error.errorType === "INVALID_RECORD") {

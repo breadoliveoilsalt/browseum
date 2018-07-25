@@ -83,12 +83,17 @@ export function fillAnyMissingFields(record) {
     record.description = null
   }
 
+  console.log("Here is the record after checking for missing fields: ", record)
+
   return record
 
 }
 
 export function condenseRecord(record) {
-  return Object.assign({}, {
+
+  console.log("About to condense record")
+
+  const newRecord = Object.assign({}, {
     primaryimageurl: record.primaryimageurl,
     objectApiId: record.objectid,
     title: record.title,
@@ -110,4 +115,7 @@ export function condenseRecord(record) {
       errorMessage: null
     }
   })
+
+  console.log("Here is the condensed record:", newRecord)
+  return newRecord
 }
