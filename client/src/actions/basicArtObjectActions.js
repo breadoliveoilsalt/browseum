@@ -22,10 +22,16 @@ const apiKey = process.env.REACT_APP_API_KEY
 // const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&size=1&sort=random&q=labeltext:*`
 
 // This person only has 8 records, 5 with images.
-const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=27644&sort=random&size=1`
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=27644&sort=random&size=1`
 
 // This person has 24 records, only 6 or 7 with images
 // const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=29090&hasimage=1&sort=random&size=1`
+
+// This does not work -- it gets repeats
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1`
+
+const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&q=+description:*%20+labeltext:*&sort=random&size=1`
+
 
 export function mainRandomButtonClicked() {
 
