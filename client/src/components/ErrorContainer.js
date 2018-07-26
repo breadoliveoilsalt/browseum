@@ -20,5 +20,4 @@ const ErrorContainer = ({error}) => {
   }
 }
 
-
 export default ErrorContainer
