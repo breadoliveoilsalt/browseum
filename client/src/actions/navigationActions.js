@@ -1,3 +1,5 @@
+// test comment
+
 import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
 import { loadError, removeError } from './errorActions'
