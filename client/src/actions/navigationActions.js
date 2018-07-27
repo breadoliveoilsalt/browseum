@@ -1,26 +1,41 @@
 import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
-import {loadError, removeError} from './errorActions'
+import { loadError, removeError } from './errorActions'
 
-export function getArtistButtonClicked(currentArtObject){
+export function navigationButtonClicked(type, errorMessage){
 
   return function(dispatch, getState) {
 
-    const state = getState()
-    const artistApiId = state.currentArtObject.artistApiId
-    const objectApiId = state.currentArtObject.objectApiId
+    console.log("Navigation Button Clicked!")
 
-    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistApiId}&hasimage=1&size=100`
+    const { currentArtObject, sessionHistory } = getState()
+    // const { objectApiId } = state.currentArtObject
+    const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
+
+    console.log(searchKey, searchValue)
+
+    // an error message could be an argument or prop
+
+    // const artistApiId = state.currentArtObject.artistApiId
+    // artist => person= // currentArtObject.artistApiId
+    // century => century= // currentArtObject.century
+    // culture => culture= // currentArtObject.culture
+
+    // for culture, do I split and grab first?
+
+    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&hasimage=1&size=50`
 
     dispatch(removeError())
 
     return fetch(url)
       .then(response => response.json())
-      .then(response => filterRecordsWithImages(response.records, objectApiId))
-      .then(filteredRecords => findAnOriginalRecord(filteredRecords, state))
+        // Note: I took out passing the currentObjectId as a second argument below
+        // I can probably also just reduce this to one line rather than have separate function
+      .then(response => filterRecordsWithImages(response.records))
+      .then(filteredRecords => findAnOriginalRecord(filteredRecords, sessionHistory))
       .then(record => {
         if (!record) {
-          throw {errorType: "NO_ARTIST_RECORDS"}
+          throw errorMessage
         } else {
           console.log("Here is the new record: ", record)
           return helpers.fillAnyMissingFields(record)
@@ -31,17 +46,15 @@ export function getArtistButtonClicked(currentArtObject){
           dispatch(helpers.addToSessionHistory(record))
         })
       .catch(error => {
-        if (error.errorType === "NO_ARTIST_RECORDS") {
-          console.log("No valid artist records to retreive")
-          dispatch(loadError("Sorry, there are no more works by this artist."))
-        }})
+          console.log(error.message)
+          dispatch(loadError(error.message))
+        })
   }
 }
 
 
-function findAnOriginalRecord(filteredRecords, state) {
+function findAnOriginalRecord(filteredRecords, sessionHistory) {
 
-  const { sessionHistory } = state
   let arrayOfHistoryIds = []
   let newRecord
 
@@ -65,10 +78,29 @@ function findAnOriginalRecord(filteredRecords, state) {
   return newRecord
 }
 
-function filterRecordsWithImages(records, currentObjectId) {
-  const filteredRecords = records.filter(record => {
-    return (record.primaryimageurl) && (record.objectid !== currentObjectId)
-  })
+function filterRecordsWithImages(records) {
+  const filteredRecords = records.filter(record => record.primaryimageurl)
   console.log("Here are the filtered records:", filteredRecords)
   return filteredRecords
+}
+
+function getKeyAndValue(type, currentArtObject) {
+  switch (type) {
+    case "artist":
+      return ({
+        searchKey: "artist",
+        searchValue: currentArtObject.artist
+      })
+    case "period":
+      return ({
+        searchKey: "century",
+        searchValue: currentArtObject.century
+      })
+    case "culture":
+      return ({
+        searchKey: "culture",
+        searchValue: currentArtObject.culture
+      })
+
+  }
 }

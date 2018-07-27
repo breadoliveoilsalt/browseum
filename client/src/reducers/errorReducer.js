@@ -1,5 +1,5 @@
 function errorReducer(state =
-  {errorOccurred: true,
+  {errorOccurred: false,
     errorMessage: ""
   },
 

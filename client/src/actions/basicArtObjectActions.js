@@ -3,18 +3,9 @@ import {loadError, removeError} from './errorActions'
 import * as helpers from './helperActions'
 
 
-// I can probably put these under mainRandomButtonClicked
-// const baseURL = 'https://api.harvardartmuseums.org/object'
+// Consider trying this one: https://api.harvardartmuseums.org/object?apikey=${apiKey}&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1
 
-
-// consider breaking down into baseURL and paramsString...I put it as URL for now to keep things simple
-// Old url.  Not using for this purpose b/c keep getting the same paintings.
-// const paramsString = '?apikey=' + process.env.REACT_APP_API_KEY + '&size=1&sort=random&classification=26|21&q=+description:*%20+labeltext:*'
-
-// Consider trying this one:
-// https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1
-
-// const url = 'https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&classification=21|26&sort=random&size=1/'
+// const url = 'https://api.harvardartmuseums.org/object?apikey=${apiKey}&classification=21|26&sort=random&size=1/'
 
 const apiKey = process.env.REACT_APP_API_KEY
 
@@ -25,13 +16,19 @@ const apiKey = process.env.REACT_APP_API_KEY
 // const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=27644&sort=random&size=1`
 
 // This person has 24 records, only 6 or 7 with images
-// const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=29090&hasimage=1&sort=random&size=1`
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=29090&hasimage=1&sort=random&size=1`
 
 // This does not work -- it gets repeats
 // const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1`
 
-const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&q=+description:*%20+labeltext:*&sort=random&size=1`
+// This does not work either -- gets repeats
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&q=+description:*%20+labeltext:*&sort=random&size=1`
 
+// This seems not to work either -- gets repeats, despite results of 23021
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&q=+description:*%20+labeltext:*&sort=random&size=1`
+
+// results - 209378
+const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&sort=random&size=1`
 
 export function mainRandomButtonClicked() {
 

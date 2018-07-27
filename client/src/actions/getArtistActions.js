@@ -2,15 +2,16 @@ import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
 import {loadError, removeError} from './errorActions'
 
-export function getArtistButtonClicked(currentArtObject){
+export function getArtistButtonClicked(){
 
   return function(dispatch, getState) {
 
+    const apiKey = process.env.REACT_APP_API_KEY
     const state = getState()
     const artistApiId = state.currentArtObject.artistApiId
     const objectApiId = state.currentArtObject.objectApiId
 
-    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&person=${artistApiId}&hasimage=1&size=100`
+    const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=${artistApiId}&hasimage=1&size=100`
 
     dispatch(removeError())
 
