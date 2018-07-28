@@ -4,28 +4,15 @@ import { loadError, removeError } from './errorActions'
 
 export function navigationButtonClicked(type, errorMessage){
 
-  console.log("Here is errorMessage:", errorMessage)
-
   return function(dispatch, getState) {
 
-    console.log("Navigation Button Clicked!")
+    console.log("Navigation Button Clicked for: ", type)
 
     dispatch(removeError())
 
     const { currentArtObject, sessionHistory } = getState()
 
-    // const testResult = getKeyAndValue(type, currentArtObject)
-    // console.log("Test Result:", testResult)
-
-    // let searchKey, searchValue
-
     const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
-
-    const errorMessage = errorMessage
-
-    // console.log("Here are serachKey and searchValue: ", searchKey, searchValue)
-
-    // an error message could be an argument or prop
 
     // const artistApiId = state.currentArtObject.artistApiId
     // artist => person= // currentArtObject.artistApiId
@@ -56,7 +43,6 @@ export function navigationButtonClicked(type, errorMessage){
         })
       .catch(error => {
           if (errorMessage) {
-            debugger
             dispatch(loadError(errorMessage))
           } else {
             dispatch(loadError("Sorry, there seems to be an error with the request. Please try another button."))
