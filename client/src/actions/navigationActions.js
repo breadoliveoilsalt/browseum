@@ -10,14 +10,14 @@ export function navigationButtonClicked(type, errorMessage){
 
     const { currentArtObject, sessionHistory } = getState()
 
-    const testResult = getKeyAndValue(type, currentArtObject)
-    console.log("Test Result:", testResult)
+    // const testResult = getKeyAndValue(type, currentArtObject)
+    // console.log("Test Result:", testResult)
 
-    let searchKey, searchValue
+    // let searchKey, searchValue
 
-    // const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
+    const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
 
-    // console.log(searchKey, searchValue)
+    console.log("Here are serachKey and searchValue: ", searchKey, searchValue)
 
     // an error message could be an argument or prop
 
@@ -28,6 +28,7 @@ export function navigationButtonClicked(type, errorMessage){
 
     // for culture, do I split and grab first?
 
+    // must add sort random!!
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&hasimage=1&size=50`
 
     dispatch(removeError())

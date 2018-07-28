@@ -12,6 +12,8 @@ import OptionalSegment from './OptionalSegment'
 // searchButtonFunction={} altText={"Unattributed"}
 
 
+
+
 const ArtViewAndNavigation = (props) => {
 
   return (
@@ -29,10 +31,12 @@ const ArtViewAndNavigation = (props) => {
             />
 
             <DatedSegment
-              dated={props.currentArtObject.dated}
+
+              currentArtObject={props.currentArtObject}
               navigationButtonClicked={props.navigationButtonClicked}
 
             />
+
             <CultureSegment culture={props.currentArtObject.culture} />
 
             <OptionalSegment
@@ -61,3 +65,8 @@ const ArtViewAndNavigation = (props) => {
 }
 
 export default ArtViewAndNavigation
+
+
+// Notes on DatedSegment:
+// {/* can't just have this -- need full object to test century and get dated info -- dated={props.currentArtObject.dated} */}
+// {/* buttonConditionedOn */}

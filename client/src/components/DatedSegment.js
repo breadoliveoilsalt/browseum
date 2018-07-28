@@ -2,9 +2,7 @@ import React from 'react'
 
 import { Segment, Button } from 'semantic-ui-react'
 
-const DatedSegment = (props) => {
-
-  const navigationButtonClicked = props.navigationButtonClicked
+const DatedSegment = ( {currentArtObject, navigationButtonClicked} ) => {
 
   const segmentButton = [
     <Segment align='center' basic>
@@ -16,10 +14,10 @@ const DatedSegment = (props) => {
   return (
     <div>
       <Segment>
-        <span className="bold"> Dated: </span> {props.dated ? props.dated : "Undated"}
+        <span className="bold"> Dated: </span> {currentArtObject.dated ? currentArtObject.dated : "Undated"}
       </Segment>
 
-      { props.dated ? segmentButton: null}
+      { currentArtObject.century ? segmentButton: null}
     </div>
   )
 
