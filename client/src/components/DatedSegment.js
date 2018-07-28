@@ -6,7 +6,7 @@ const DatedSegment = ( {currentArtObject, navigationButtonClicked} ) => {
 
   const segmentButton = [
     <Segment align='center' basic>
-      <Button size='tiny' onClick={() => navigationButtonClicked("date", "Sorry, there are no more records available from that time period.")}> Look for more from this time period </Button>
+      <Button size='tiny' onClick={() => navigationButtonClicked("date", "Sorry, the query is returning no further records from that time period. Please try another button.")}> Look for more from this time period </Button>
     </Segment>
   ]
 

@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Segment, Button } from 'semantic-ui-react'
 
-const CultureSegment = (props) => {
+const CultureSegment = ( {currentArtObject, navigationButtonClicked} ) => {
 
   const segmentButton = [
     <Segment align='center' basic>
-      <Button size='tiny'> Look for more from this culture </Button>
+      <Button size='tiny' onClick={() => navigationButtonClicked("culture", "Sorry, the query is returning no further records from that culture. Please try another button.")}> Look for more from this culture </Button>
     </Segment>
   ]
 
@@ -14,10 +14,10 @@ const CultureSegment = (props) => {
     <div>
 
       <Segment>
-        <span className="bold"> Culture: </span> {props.culture ? props.culture : "Unassigned"}
+        <span className="bold"> Culture: </span> {currentArtObject.culture ? currentArtObject.culture : "Unassigned"}
       </Segment>
 
-      { props.culture ? segmentButton : null}
+      { currentArtObject.culture ? segmentButton : null}
 
     </div>
   )

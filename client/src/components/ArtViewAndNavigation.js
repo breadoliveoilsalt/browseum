@@ -34,10 +34,11 @@ const ArtViewAndNavigation = (props) => {
 
               currentArtObject={props.currentArtObject}
               navigationButtonClicked={props.navigationButtonClicked}
-
             />
 
-            <CultureSegment culture={props.currentArtObject.culture} />
+            <CultureSegment
+              currentArtObject={props.currentArtObject}
+              navigationButtonClicked={props.navigationButtonClicked}/>
 
             <OptionalSegment
               field={props.currentArtObject.medium}
@@ -70,3 +71,5 @@ export default ArtViewAndNavigation
 // Notes on DatedSegment:
 // {/* can't just have this -- need full object to test century and get dated info -- dated={props.currentArtObject.dated} */}
 // {/* buttonConditionedOn */}
+// need a buttonLabel, category (title)
+// altText if there is no key
