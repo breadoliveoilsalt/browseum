@@ -29,7 +29,7 @@ export function navigationButtonClicked(type, errorMessage){
     // for culture, do I split and grab first?
 
     // must add sort random!!
-    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&hasimage=1&size=50`
+    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&sort=random&hasimage=1&size=50`
 
     dispatch(removeError())
 
