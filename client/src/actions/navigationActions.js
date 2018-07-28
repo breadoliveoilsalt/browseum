@@ -1,5 +1,3 @@
-// test comment
-
 import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
 import { loadError, removeError } from './errorActions'
@@ -11,10 +9,15 @@ export function navigationButtonClicked(type, errorMessage){
     console.log("Navigation Button Clicked!")
 
     const { currentArtObject, sessionHistory } = getState()
-    // const { objectApiId } = state.currentArtObject
-    const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
 
-    console.log(searchKey, searchValue)
+    const testResult = getKeyAndValue(type, currentArtObject)
+    console.log("Test Result:", testResult)
+
+    let searchKey, searchValue
+
+    // const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
+
+    // console.log(searchKey, searchValue)
 
     // an error message could be an argument or prop
 
@@ -93,7 +96,7 @@ function getKeyAndValue(type, currentArtObject) {
         searchKey: "artist",
         searchValue: currentArtObject.artist
       })
-    case "period":
+    case "date":
       return ({
         searchKey: "century",
         searchValue: currentArtObject.century
