@@ -68,7 +68,7 @@ function fetchBasicData(dispatch) {
         console.log("Retreived invalid record:", error.data)
         fetchBasicData(dispatch)
       } else {
-        dispatch(loadError("Sorry, something seems to have gone wrong with the Harvard Museum database."))
+        dispatch(loadError("Sorry, something seems to have gone wrong. Please click Get New Art again."))
       }
     })
 }

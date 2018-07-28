@@ -59,9 +59,19 @@ export function fillAnyMissingFields(record) {
   }
 
     // check for century
-  if (!record.hasOwnProperty("century")) {
+  // if (!record.hasOwnProperty("century")) {
+  //   record.century = null
+  // }
+  if (record.hasOwnProperty("century")) {
+      // added to avoid error with Harvard database when century has hyphen
+    if (record.century.includes("-")) {
+      const newCentury = record.century.split("-")[0] + " century"
+      record.century = newCentury
+    }
+  } else {
     record.century = null
   }
+
 
     // check for culture
   if (!record.hasOwnProperty("culture")) {
