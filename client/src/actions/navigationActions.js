@@ -4,9 +4,13 @@ import { loadError, removeError } from './errorActions'
 
 export function navigationButtonClicked(type, errorMessage){
 
+  console.log("Here is errorMessage:", errorMessage)
+
   return function(dispatch, getState) {
 
     console.log("Navigation Button Clicked!")
+
+    dispatch(removeError())
 
     const { currentArtObject, sessionHistory } = getState()
 
@@ -17,7 +21,9 @@ export function navigationButtonClicked(type, errorMessage){
 
     const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
 
-    console.log("Here are serachKey and searchValue: ", searchKey, searchValue)
+    const errorMessage = errorMessage
+
+    // console.log("Here are serachKey and searchValue: ", searchKey, searchValue)
 
     // an error message could be an argument or prop
 
@@ -28,10 +34,7 @@ export function navigationButtonClicked(type, errorMessage){
 
     // for culture, do I split and grab first?
 
-    // must add sort random!!
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&sort=random&hasimage=1&size=50`
-
-    dispatch(removeError())
 
     return fetch(url)
       .then(response => response.json())
@@ -52,8 +55,12 @@ export function navigationButtonClicked(type, errorMessage){
           dispatch(helpers.addToSessionHistory(record))
         })
       .catch(error => {
-          console.log(error.message)
-          dispatch(loadError(error.message))
+          if (errorMessage) {
+            debugger
+            dispatch(loadError(errorMessage))
+          } else {
+            dispatch(loadError("Sorry, there seems to be an error with the request. Please try another button."))
+          }
         })
   }
 }
