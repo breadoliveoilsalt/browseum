@@ -6,7 +6,7 @@ import * as helpers from './helperActions'
 // Consider trying this one: https://api.harvardartmuseums.org/object?apikey=${apiKey}&classification=26|21&q=+description:*%20+labeltext:*&sort=random&size=1
 
 // const url = 'https://api.harvardartmuseums.org/object?apikey=${apiKey}&classification=21|26&sort=random&size=1/'
-
+//
 const apiKey = process.env.REACT_APP_API_KEY
 
 // // Later: this actually seems to be working out well.
