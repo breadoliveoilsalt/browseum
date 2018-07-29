@@ -12,8 +12,7 @@ import OptionalSegment from './OptionalSegment'
 // searchButtonFunction={} altText={"Unattributed"}
 
 // consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used.
-
-
+//
 
 const ArtViewAndNavigation = (props) => {
 
