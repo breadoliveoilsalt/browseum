@@ -14,18 +14,11 @@ export function navigationButtonClicked(type, errorMessage){
 
     const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
 
-    // const artistApiId = state.currentArtObject.artistApiId
-    // artist => person= // currentArtObject.artistApiId
-    // century => century= // currentArtObject.century
-    // culture => culture= // currentArtObject.culture
-
-    // for culture, do I split and grab first?
 
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&sort=random&hasimage=1&size=50`
 
     return fetch(url)
       .then(response => response.json())
-        // Note: I took out passing the currentObjectId as a second argument below
         // I can probably also just reduce this to one line rather than have separate function
       .then(response => filterRecordsWithImages(response.records))
       .then(filteredRecords => findAnOriginalRecord(filteredRecords, sessionHistory))

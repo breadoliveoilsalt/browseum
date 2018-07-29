@@ -14,13 +14,7 @@ function currentArtObjectReducer(
       description: null,
       commentary: null,
       dateViewed: null,
-      favorite: false,
-      requestMade: false,
-      validDataRetreived: null,
-      errorWithDataRetrieval: {
-        error: null,
-        errorMessage: null
-      }
+      favorite: false
     },
 
   action) {
