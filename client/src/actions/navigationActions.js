@@ -8,14 +8,15 @@ export function navigationButtonClicked(type, errorMessage){
 
     console.log("Navigation Button Clicked for: ", type)
 
-    dispatch(removeError())
-
-    const { currentArtObject, sessionHistory } = getState()
+    const { currentArtObject, sessionHistory, error } = getState()
 
     const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
 
-
     const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&sort=random&hasimage=1&size=50`
+
+    if (error.errorOccurred){
+      dispatch(removeError())
+    }
 
     return fetch(url)
       .then(response => response.json())
@@ -34,7 +35,7 @@ export function navigationButtonClicked(type, errorMessage){
           dispatch(helpers.loadCurrentArtObject(record))
           dispatch(helpers.addToSessionHistory(record))
         })
-      .catch(error => {
+      .catch(e => {
           if (errorMessage) {
             dispatch(loadError(errorMessage))
           } else {
