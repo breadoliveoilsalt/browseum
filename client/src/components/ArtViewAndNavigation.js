@@ -11,7 +11,9 @@ import OptionalSegment from './OptionalSegment'
 // ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}
 // searchButtonFunction={} altText={"Unattributed"}
 
-// consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used. 
+// consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used.
+
+
 
 const ArtViewAndNavigation = (props) => {
 
@@ -25,13 +27,18 @@ const ArtViewAndNavigation = (props) => {
             <TitleSegment title={props.currentArtObject.title} />
 
             <ArtistSegment
-              artist={props.currentArtObject.artist}
-              artistAPIId={props.currentArtObject.artistAPIId}
-              getArtistButtonClicked={props.getArtistButtonClicked}
-              currentArtObject={props.currentArtObject}/>
+              currentArtObject={props.currentArtObject}
+              navigationButtonClicked={props.navigationButtonClicked}
+            />
 
-            <DatedSegment dated={props.currentArtObject.dated} />
-            <CultureSegment culture={props.currentArtObject.culture} />
+            <DatedSegment
+              currentArtObject={props.currentArtObject}
+              navigationButtonClicked={props.navigationButtonClicked}
+            />
+
+            <CultureSegment
+              currentArtObject={props.currentArtObject}
+              navigationButtonClicked={props.navigationButtonClicked}/>
 
             <OptionalSegment
               field={props.currentArtObject.medium}
@@ -59,3 +66,10 @@ const ArtViewAndNavigation = (props) => {
 }
 
 export default ArtViewAndNavigation
+
+
+// Notes on DatedSegment:
+// {/* can't just have this -- need full object to test century and get dated info -- dated={props.currentArtObject.dated} */}
+// {/* buttonConditionedOn */}
+// need a buttonLabel, category (title)
+// altText if there is no key
