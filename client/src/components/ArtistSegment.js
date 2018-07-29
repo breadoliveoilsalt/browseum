@@ -1,24 +1,26 @@
 import React from 'react'
 import {Segment, Button} from 'semantic-ui-react'
 
-const ArtistSegment = (props) => {
+const ArtistSegment = ( {currentArtObject, navigationButtonClicked}) => {
 
-  const getArtistArt = props.getArtistButtonClicked
+    const segmentButton = [
+      <Segment align='center' basic>
+        <Button size='tiny' onClick={() => navigationButtonClicked("artist", "Sorry, the query is returning no further records from that artist. Please try another button.")}> Look for more by this artist </Button>
+      </Segment>
+    ]
 
-  return (
-
+    return (
       <div>
-        <Segment>
-          <span className="bold"> Artist: </span> {props.artist}
-        </ Segment>
 
-        <Segment align='center' basic>
-          <Button size='tiny' onClick={ () => getArtistArt() }>
-            Look for more by this artist
-          </Button>
+        <Segment>
+          <span className="bold"> Artist: </span> {currentArtObject.artist ? currentArtObject.artist : "Unknown Artist"}
         </Segment>
+
+        { currentArtObject.artist ? segmentButton : null}
+
       </div>
-  )
+    )
 
 }
+
 export default ArtistSegment

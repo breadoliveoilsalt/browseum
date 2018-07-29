@@ -87,8 +87,8 @@ function getKeyAndValue(type, currentArtObject) {
   switch (type) {
     case "artist":
       return ({
-        searchKey: "artist",
-        searchValue: currentArtObject.artist
+        searchKey: "person",
+        searchValue: currentArtObject.artistApiId
       })
     case "date":
       return ({
