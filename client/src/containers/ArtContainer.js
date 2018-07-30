@@ -21,7 +21,7 @@ class ArtContainer extends Component {
   render() {
     return (
 
-      <div>
+      <div className="margin-fix">
 
         {this.props.error.errorOccurred ? <ErrorMessage errorMessage={this.props.error.errorMessage} /> : null }
 

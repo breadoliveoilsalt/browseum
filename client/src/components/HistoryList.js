@@ -1,23 +1,45 @@
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Table } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
 const HistoryList = ( {source} ) => {
 
   const listRows = source.map( (e, i) => {
-    return e.title
-      // need a Row for each, with two columns -- one for History item and one for date viewed
+    return (
+      <Table.Row>
+        <Table.Cell width={10}>
+            {e.title}
+        </Table.Cell>
+
+        <Table.Cell width={6}>
+          Some stuff
+        </Table.Cell>
+
+      </Table.Row>
+
+    )
 
   })
 
   return (
       <Grid>
         <Grid.Row centered>
-          <Grid.Column width={16} >
-            You made it to HistoryList.
-            This will render a bunch of HistoryItems.
-            {listRows}
-          </Grid.Column>
+          <Table stackable celled striped>
+
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell textAlign='center' width={10}>Artwork Title</Table.HeaderCell>
+                <Table.HeaderCell textAlign='center' width={6}>Date Viewed (Reverse Chronological Order)</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+
+
+            <Table.Body>
+              {listRows}
+            </Table.Body>
+          </Table>
+
         </Grid.Row>
       </Grid>
   )

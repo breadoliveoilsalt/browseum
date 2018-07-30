@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import { Header } from 'semantic-ui-react'
+
+import { loadCurrentArtObject } from '../actions/helperActions'
+
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
 
@@ -13,7 +17,14 @@ class HistoryContainer extends Component {
     const reverseHistory = this.props.sessionHistory.slice(0).reverse()
 
     return (
-      <div>
+      <div className="margin-fix">
+
+        <Header
+          as='h2'
+          textAlign='center'
+          className="underlined"
+          content="Browsing History"
+        />
 
         <TopLevelButton
           buttonText={"Get All History"}
@@ -21,6 +32,7 @@ class HistoryContainer extends Component {
 
         <HistoryList
           source={reverseHistory}
+          loadCurrentArtObject={this.props.loadCurrentArtObject}
         />
 
       </div>
@@ -39,5 +51,10 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      loadCurrentArtObject: bindActionCreators(loadCurrentArtObject, dispatch)
+   }
+}
 
-export default connect(mapStateToProps)(HistoryContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryContainer)
