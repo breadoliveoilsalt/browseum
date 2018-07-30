@@ -13,6 +13,11 @@ import OptionalSegment from './OptionalSegment'
 
 // consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used.
 //
+// Notes on DatedSegment:
+// {/* can't just have this -- need full object to test century and get dated info -- dated={props.currentArtObject.dated} */}
+// {/* buttonConditionedOn */}
+// need a buttonLabel, category (title)
+// altText if there is no key
 
 const ArtViewAndNavigation = (props) => {
 
@@ -65,10 +70,3 @@ const ArtViewAndNavigation = (props) => {
 }
 
 export default ArtViewAndNavigation
-
-
-// Notes on DatedSegment:
-// {/* can't just have this -- need full object to test century and get dated info -- dated={props.currentArtObject.dated} */}
-// {/* buttonConditionedOn */}
-// need a buttonLabel, category (title)
-// altText if there is no key
