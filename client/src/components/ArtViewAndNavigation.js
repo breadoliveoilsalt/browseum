@@ -19,13 +19,15 @@ import OptionalSegment from './OptionalSegment'
 // need a buttonLabel, category (title)
 // altText if there is no key
 
+
+// Maybe make the image a component that can show a loader
 const ArtViewAndNavigation = (props) => {
 
   return (
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={10}>
-            <Image src={props.currentArtObject.primaryimageurl} size='large' centered />
+              <Image src={props.currentArtObject.primaryimageurl} size='large' centered />
           </Grid.Column>
 
           <Grid.Column width={6}>

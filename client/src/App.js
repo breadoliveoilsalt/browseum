@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import LayoutGrid from './components/LayoutGrid'
+import Layout from './containers/Layout'
 
 class App extends Component {
 
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <LayoutGrid/>
+          <Layout/>
         </div>
       </BrowserRouter>
     );

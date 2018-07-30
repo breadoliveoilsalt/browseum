@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Container, Grid } from 'semantic-ui-react'
 
-import Top from './Top'
-import NavBar from './NavBar'
+import Top from '../components/Top'
+import NavBar from '../components/NavBar'
 
-import Home from './Home'
+import Home from '../components/Home'
 import ArtContainer from './ArtContainer'
 import FavoritesContainer from './FavoritesContainer'
 import HistoryContainer from './HistoryContainer'
 
-class LayoutGrid extends Component {
+class Layout extends Component {
 
   render() {
     return (
@@ -35,4 +35,4 @@ class LayoutGrid extends Component {
   }
 }
 
-export default LayoutGrid
+export default Layout

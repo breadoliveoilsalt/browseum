@@ -8,9 +8,9 @@ import { navigationButtonClicked } from '../actions/navigationActions'
 
 import { Grid } from 'semantic-ui-react'
 
-import ErrorContainer from './ErrorContainer'
-import TopLevelButton from './TopLevelButton'
-import ArtViewAndNavigation from './ArtViewAndNavigation'
+import ErrorContainer from '../components/ErrorContainer'
+import TopLevelButton from '../components/TopLevelButton'
+import ArtViewAndNavigation from '../components/ArtViewAndNavigation'
 
 class ArtContainer extends Component {
 
