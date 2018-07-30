@@ -6,13 +6,15 @@ const ErrorContainer = ({error}) => {
 
   if (error.errorOccurred) {
     return (
-      <Grid.Row centered className="errorMessage">
-        <Grid.Column width={16}>
-          <Message negative>
-            <Container textAlign='center' className='bold'> {error.errorMessage} </Container>
-          </Message>
-        </ Grid.Column>
-      </ Grid.Row>
+      <Grid stackable>
+        <Grid.Row centered className="errorMessage">
+          <Grid.Column width={16}>
+            <Message negative>
+              <Container textAlign='center' className='bold'> {error.errorMessage} </Container>
+            </Message>
+          </ Grid.Column>
+        </ Grid.Row>
+      </Grid>
     )
   }
   else {

@@ -22,8 +22,8 @@ class ArtContainer extends Component {
 
   render() {
     return (
-      <Grid stackable>
 
+      <div>
         <ErrorContainer error={this.props.error} />
 
         <TopLevelButton
@@ -35,8 +35,7 @@ class ArtContainer extends Component {
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
         />
-
-      </Grid>
+      </div>
     )
   }
 
