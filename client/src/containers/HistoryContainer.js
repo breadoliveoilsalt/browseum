@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
 
-
 class HistoryContainer extends Component {
 
-  // <Grid stackable >
-  //
-  // </Grid>
-
   render() {
+
+    const reverseHistory = this.props.sessionHistory.slice(0).reverse()
+
     return (
       <div>
 
@@ -19,7 +20,7 @@ class HistoryContainer extends Component {
         />
 
         <HistoryList
-          source={"Source is either sessionHistory or allHistory"}
+          source={reverseHistory}
         />
 
       </div>
@@ -29,4 +30,14 @@ class HistoryContainer extends Component {
 
 }
 
-export default HistoryContainer
+
+const mapStateToProps = (state) => {
+  return {
+    currentArtObject: state.currentArtObject,
+    error: state.error,
+    sessionHistory: state.sessionHistory
+  }
+}
+
+
+export default connect(mapStateToProps)(HistoryContainer)
