@@ -6,8 +6,6 @@ import { bindActionCreators } from 'redux'
 import { mainRandomButtonClicked } from '../actions/basicArtObjectActions'
 import { navigationButtonClicked } from '../actions/navigationActions'
 
-import { Grid } from 'semantic-ui-react'
-
 import ErrorMessage from '../components/ErrorMessage'
 import TopLevelButton from '../components/TopLevelButton'
 import ArtViewAndNavigation from '../components/ArtViewAndNavigation'
@@ -24,7 +22,8 @@ class ArtContainer extends Component {
     return (
 
       <div>
-        <ErrorMessage error={this.props.error} />
+
+        {this.props.error.errorOccurred ? <ErrorMessage errorMessage={this.props.error.errorMessage} /> : null }
 
         <TopLevelButton
             buttonText={"Get New Art!"}
@@ -35,11 +34,12 @@ class ArtContainer extends Component {
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
         />
+
       </div>
     )
   }
-
 }
+
 const mapStateToProps = (state) => {
   return {
     currentArtObject: state.currentArtObject,

@@ -2,24 +2,20 @@ import React from 'react'
 
 import { Grid, Message, Container } from 'semantic-ui-react'
 
-const ErrorMessage = ({error}) => {
+const ErrorMessage = ({errorMessage}) => {
 
-  if (error.errorOccurred) {
     return (
       <Grid stackable>
         <Grid.Row centered className="errorMessage">
           <Grid.Column width={16}>
             <Message negative>
-              <Container textAlign='center' className='bold'> {error.errorMessage} </Container>
+              <Container textAlign='center' className='bold'> {errorMessage} </Container>
             </Message>
           </ Grid.Column>
         </ Grid.Row>
       </Grid>
     )
-  }
-  else {
-    return null
-  }
+
 }
 
 export default ErrorMessage

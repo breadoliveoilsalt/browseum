@@ -1,7 +1,8 @@
-
-//
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
+
+import TopLevelButton from '../components/TopLevelButton'
+import HistoryList from '../components/HistoryList'
+
 
 class HistoryContainer extends Component {
 
@@ -11,14 +12,18 @@ class HistoryContainer extends Component {
 
   render() {
     return (
+      <div>
 
+        <TopLevelButton
+          buttonText={"Get All History"}
+        />
 
+        <HistoryList
+          source={"Source is either sessionHistory or allHistory"}
+        />
 
-      <Grid.Row>
-        <Grid.Column width={16}>
-          You made it to history.
-        </ Grid.Column>
-      </Grid.Row>
+      </div>
+
     )
   }
 
