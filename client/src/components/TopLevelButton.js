@@ -2,13 +2,13 @@ import React from 'react'
 
 import { Button, Grid } from 'semantic-ui-react'
 
-const MainRandomButton = ({mainRandomButtonClicked}) => (
+const TopLevelButton = ({buttonText, action}) => (
 
     <Grid.Row centered className="margin-fix">
       <Grid.Column width={6}>
-        <Button fluid onClick={mainRandomButtonClicked}> Get New Art! </Button>
+        <Button fluid onClick={() => action()}> {buttonText} </Button>
       </ Grid.Column>
     </ Grid.Row>
 )
 
-export default MainRandomButton
+export default TopLevelButton

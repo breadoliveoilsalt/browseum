@@ -9,7 +9,7 @@ import { navigationButtonClicked } from '../actions/navigationActions'
 import { Grid } from 'semantic-ui-react'
 
 import ErrorContainer from './ErrorContainer'
-import MainRandomButton from './MainRandomButton'
+import TopLevelButton from './TopLevelButton'
 import ArtViewAndNavigation from './ArtViewAndNavigation'
 
 class ArtContainer extends Component {
@@ -26,13 +26,15 @@ class ArtContainer extends Component {
 
         <ErrorContainer error={this.props.error} />
 
-        <MainRandomButton mainRandomButtonClicked={this.props.mainRandomButtonClicked}/>
+        <TopLevelButton
+            buttonText={"Get New Art!"}
+            action={this.props.mainRandomButtonClicked}
+        />
 
         <ArtViewAndNavigation
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
-
-          />
+        />
 
       </Grid>
     )
