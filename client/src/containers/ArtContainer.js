@@ -8,7 +8,7 @@ import { navigationButtonClicked } from '../actions/navigationActions'
 
 import { Grid } from 'semantic-ui-react'
 
-import ErrorContainer from '../components/ErrorContainer'
+import ErrorMessage from '../components/ErrorMessage'
 import TopLevelButton from '../components/TopLevelButton'
 import ArtViewAndNavigation from '../components/ArtViewAndNavigation'
 
@@ -24,7 +24,7 @@ class ArtContainer extends Component {
     return (
 
       <div>
-        <ErrorContainer error={this.props.error} />
+        <ErrorMessage error={this.props.error} />
 
         <TopLevelButton
             buttonText={"Get New Art!"}

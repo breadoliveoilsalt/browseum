@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Grid, Message, Container } from 'semantic-ui-react'
 
-const ErrorContainer = ({error}) => {
+const ErrorMessage = ({error}) => {
 
   if (error.errorOccurred) {
     return (
@@ -22,4 +22,4 @@ const ErrorContainer = ({error}) => {
   }
 }
 
-export default ErrorContainer
+export default ErrorMessage
