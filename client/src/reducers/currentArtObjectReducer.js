@@ -1,8 +1,9 @@
 function currentArtObjectReducer(
   state =
     {
-      primaryimageurl: null,
+      id: null,
       objectApiId: null,
+      primaryimageurl: null,
       title: null,
       artist: null,
       artistApiId: null,
@@ -13,7 +14,8 @@ function currentArtObjectReducer(
       labeltext: null,
       description: null,
       commentary: null,
-      dateViewed: null,
+      firstViewed: null,
+      lastViewed: null,
       favorite: false
     },
 
