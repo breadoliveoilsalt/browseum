@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Grid, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
+// {source, historyLinkClicked}
+const HistoryList = ( props ) => {
 
-const HistoryList = ( {source, historyLinkClicked} ) => {
-
-  const listRows = source.map( (e, i) => {
+  const listRows = props.source.map( (object, i) => {
     return (
       <Table.Row>
         <Table.Cell width={10}>
-            <Link to='/art' className='link-formatting' onClick={() => }> {e.title} </Link>
+            <Link to='/art' className='link-formatting' onClick={(event) => props.historyLinkClicked(object, event)}> {object.title} </Link>
         </Table.Cell>
 
         <Table.Cell width={6}>
