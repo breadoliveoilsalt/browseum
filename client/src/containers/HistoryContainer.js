@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+  // withRouter is needd to access history and push() below:
 import { withRouter } from 'react-router-dom'
 
 import { Header } from 'semantic-ui-react'
@@ -16,12 +17,10 @@ class HistoryContainer extends Component {
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
-    console.log("link clicked!")
-    console.log("Event object:", event)
-    console.log("Plain object", object)
     this.props.removeError()
     this.props.loadCurrentArtObject(object)
     this.props.addToSessionHistory(object)
+    this.props.history.push("/art")
   }
 
   render() {
