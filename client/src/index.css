@@ -12,6 +12,11 @@ body {
   text-decoration: underline;
 }
 
+.link-formatting {
+  text-decoration: underline;
+  color: black;
+}
+
 .margin-fix {
   margin-top: 25px;
 }

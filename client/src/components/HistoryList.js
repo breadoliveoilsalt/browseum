@@ -3,13 +3,13 @@ import { Grid, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-const HistoryList = ( {source} ) => {
+const HistoryList = ( {source, historyLinkClicked} ) => {
 
   const listRows = source.map( (e, i) => {
     return (
       <Table.Row>
         <Table.Cell width={10}>
-            {e.title}
+            <Link to='/art' className='link-formatting' onClick={() => }> {e.title} </Link>
         </Table.Cell>
 
         <Table.Cell width={6}>
