@@ -2,18 +2,17 @@ import React, { Component } from 'react'
 import { Grid, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-// {source, historyLinkClicked}
-const HistoryList = ( props ) => {
+const HistoryList = ( {source, historyLinkClicked} ) => {
 
-  const listRows = props.source.map( (object, i) => {
+  const listRows = source.map( (object, i) => {
     return (
       <Table.Row>
         <Table.Cell width={10}>
-            <Link to='/art' className='link-formatting' onClick={(event) => props.historyLinkClicked(object, event)}> {object.title} </Link>
+            <Link to='/art' className='link-formatting' onClick={(event) => historyLinkClicked(object, event)}> {object.title} </Link>
         </Table.Cell>
 
         <Table.Cell width={6}>
-          Some stuff
+          {object.dateViewed.toLocaleString()}
         </Table.Cell>
 
       </Table.Row>
