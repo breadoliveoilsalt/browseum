@@ -3,7 +3,7 @@ import { Grid, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const HistoryList = ( {source, historyLinkClicked} ) => {
-
+   // test comment
     // consider turning this into a HistoryItem...otherwise delete HistoryItem component
   const listRows = source.map( (object, i) => {
     return (
