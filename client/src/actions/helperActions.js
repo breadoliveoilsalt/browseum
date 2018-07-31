@@ -103,9 +103,11 @@ export function condenseRecord(record) {
 
   console.log("About to condense record")
 
+    // This is basically what defines what a currentArtObject state looks like.
   const newRecord = Object.assign({}, {
-    primaryimageurl: record.primaryimageurl,
+    id: null,
     objectApiId: record.objectid,
+    primaryimageurl: record.primaryimageurl,
     title: record.title,
     artist: record.artist,
     artistApiId: record.artistApiId,
@@ -116,14 +118,9 @@ export function condenseRecord(record) {
     commentary: record.commentary,
     labeltext: record.labeltext,
     description: record.description,
-    dateViewed: new Date,
+    firstViewed: new Date,
+    lastViewed: new Date,
     favorite: false,
-    requestMade: false,
-    validDataRetreived: true,
-    errorWithDataRetrieval: {
-      error: null,
-      errorMessage: null
-    }
   })
 
   console.log("Here is the condensed record:", newRecord)

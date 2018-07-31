@@ -13,7 +13,7 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
         </Table.Cell>
 
         <Table.Cell width={6} textAlign='center'>
-          {object.dateViewed.toLocaleString()}
+          {object.lastViewed.toLocaleString()}
         </Table.Cell>
 
       </Table.Row>

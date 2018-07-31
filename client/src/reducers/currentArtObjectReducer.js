@@ -1,22 +1,22 @@
 function currentArtObjectReducer(
   state =
     {
-      id: null,
-      objectApiId: null,
-      primaryimageurl: null,
-      title: null,
-      artist: null,
-      artistApiId: null,
-      medium: null,
-      dated: null,
-      century: null,
-      culture: null,
-      labeltext: null,
-      description: null,
-      commentary: null,
-      firstViewed: null,
-      lastViewed: null,
-      favorite: false
+      // id: null,
+      // objectApiId: null,
+      // primaryimageurl: null,
+      // title: null,
+      // artist: null,
+      // artistApiId: null,
+      // medium: null,
+      // dated: null,
+      // century: null,
+      // culture: null,
+      // labeltext: null,
+      // description: null,
+      // commentary: null,
+      // firstViewed: null,
+      // lastViewed: null,
+      // favorite: false
     },
 
   action) {
@@ -24,11 +24,9 @@ function currentArtObjectReducer(
 
   switch (action.type) {
 
-    case 'REQUEST_ART_OBJECT':
-      return Object.assign({}, state, {requestMade: true})
-
     case 'LOAD_ART_OBJECT':
-      return Object.assign({}, state, action.payload)
+        // removed , state, from below
+      return Object.assign({}, action.payload)
 
     default:
       return state
