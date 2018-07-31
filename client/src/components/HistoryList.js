@@ -7,11 +7,11 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
   const listRows = source.map( (object, i) => {
     return (
       <Table.Row>
-        <Table.Cell width={10}>
+        <Table.Cell width={10} textAlign='center'>
             <Link to='/art' className='link-formatting' onClick={(event) => historyLinkClicked(object, event)}> {object.title} </Link>
         </Table.Cell>
 
-        <Table.Cell width={6}>
+        <Table.Cell width={6} textAlign='center'>
           {object.dateViewed.toLocaleString()}
         </Table.Cell>
 
@@ -28,8 +28,8 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
 
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell textAlign='center' width={10}>Artwork Title</Table.HeaderCell>
-                <Table.HeaderCell textAlign='center' width={6}>Date Viewed (Reverse Chronological Order)</Table.HeaderCell>
+                <Table.HeaderCell width={10} textAlign='center'>Artwork Title</Table.HeaderCell>
+                <Table.HeaderCell width={6} textAlign='center'>Date Viewed (Reverse Chronological Order)</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
