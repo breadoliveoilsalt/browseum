@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 const HistoryList = ( {source, historyLinkClicked} ) => {
 
+    // consider turning this into a HistoryItem...otherwise delete HistoryItem component
   const listRows = source.map( (object, i) => {
     return (
       <Table.Row>
@@ -16,9 +17,7 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
         </Table.Cell>
 
       </Table.Row>
-
     )
-
   })
 
   return (
