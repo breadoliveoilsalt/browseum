@@ -10,6 +10,8 @@ import { Header } from 'semantic-ui-react'
 import { loadCurrentArtObject, addToSessionHistory, updateLastViewed} from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
 
+import { postInitialObjectData } from '../actions/persistenceActions'
+
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
 
@@ -44,7 +46,7 @@ class HistoryContainer extends Component {
 
         <TopLevelButton
           buttonText={"Get All History"}
-          action={() => console.log("Get history button clicked")}
+          action={() => this.props.postInitialObjectData("Get history button clicked")}
         />
 
         <HistoryList
@@ -71,7 +73,8 @@ const mapDispatchToProps = (dispatch) => {
       removeError: () => dispatch(removeError()),
       updateLastViewed: () => dispatch(updateLastViewed()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
-      addToSessionHistory: (object) => dispatch(addToSessionHistory(object))
+      addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
+      postInitialObjectData: (data) => dispatch(postInitialObjectData(data))
    }
 }
 

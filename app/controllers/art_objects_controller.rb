@@ -1,6 +1,10 @@
 class ArtObjectsController < ApplicationController
 
   def create
-    raise "You made it to create in the controller".inspect
+    render :json => {"text": "You are in controller#create"}
+  end
+
+  def index
+     render :json => {"text": "You are in controller#index"}
   end
 end

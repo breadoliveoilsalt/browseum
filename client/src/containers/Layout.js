@@ -23,10 +23,10 @@ class Layout extends Component {
 
           <Switch>
             {/* Does not work to be able to pass match etc down: <Route path="/" component={NavBar} /> */}
-            <Route exact path="/" component={Home} />
-            <Route exact path="/art" component={ArtContainer} />
-            <Route exact path="/favorites" component={FavoritesContainer} />
-            <Route exact path="/history" component={HistoryContainer} />
+            <Route exact strict path="/" component={Home} />
+            <Route exact strict path="/art" component={ArtContainer} />
+            <Route exact strict path="/favorites" component={FavoritesContainer} />
+            <Route exact strict path="/history" component={HistoryContainer} />
           </Switch>
 
       </ Container>
