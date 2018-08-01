@@ -28,6 +28,9 @@ function currentArtObjectReducer(
         // removed , state, from below
       return Object.assign({}, action.payload)
 
+    // case 'UPDATE_LAST_VIEWED':
+    //   return Object.assign({}, state, {lastViewed: new Date})
+
     default:
       return state
   }

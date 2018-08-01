@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 import { Header } from 'semantic-ui-react'
 
-import { loadCurrentArtObject, addToSessionHistory } from '../actions/helperActions'
+import { loadCurrentArtObject, addToSessionHistory, updateLastViewed} from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
 
 import TopLevelButton from '../components/TopLevelButton'
@@ -17,9 +17,14 @@ class HistoryContainer extends Component {
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
+      // need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
+    const updatedObject = Object.assign({}, object)
+    updatedObject.lastViewed = new Date
+    // this.props.updateLastViewed()
+      // It's bc "object" is beig called below
+    this.props.loadCurrentArtObject(updatedObject)
+    this.props.addToSessionHistory(updatedObject)
     this.props.removeError()
-    this.props.loadCurrentArtObject(object)
-    this.props.addToSessionHistory(object)
     this.props.history.push("/art")
   }
 
@@ -64,6 +69,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       removeError: () => dispatch(removeError()),
+      updateLastViewed: () => dispatch(updateLastViewed()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object))
    }
