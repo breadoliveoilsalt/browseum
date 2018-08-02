@@ -11,20 +11,14 @@ class ArtObjectsController < ApplicationController
     if @art_object.save
       render json: @art_object
     else
-        # Th:is is a 422 error code:
       render json: {errors: @art_object.errors.full_messages }
-
-      # body: nil, status: 422 -- this sort of worked
-      # :json => { :errors => @model.errors.full_messages }
-      # render status: 422
-      # , {status: "error", code: "422", errorMessage: "There was a problem saving the art object to the database"}
     end
 
   end
 
-  def index
-     render :json => {"text": "You are in controller#index"}
-  end
+  # def index
+  #    render :json => {"text": "You are in controller#index"}
+  # end
 
   private
 

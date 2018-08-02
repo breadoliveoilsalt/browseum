@@ -15,13 +15,11 @@ export function postInitialObjectData(data) {
       body: JSON.stringify(currentArtObject)
       })
     .then(res => res.json())
-    .then(data2 =>
-      // => {
-      // if (data.status === "error") {
-      //   throw
-      // }
-      console.log("Here is the server response:", data2))
-    .catch(error => console.log("There was an error!", error))
-
-    }
+    .then(res => {
+      if (res.errors) {
+        console.log("There were some errors with the server:", res.errors)
+      } else {
+        console.log("Here is the successful server response:", res)
+    }})
   }
+}
