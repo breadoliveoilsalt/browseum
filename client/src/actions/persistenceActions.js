@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
+  // This sends the COA to the Rails API DB and returns an id from the database, which is then assigned to the COA
 export function postInitialObjectData() {
     // Notice: that if I wrap a function in dispatch in mapPropsToDispatch...
         // postInitialObjectData: (data) => dispatch(postInitialObjectData(data))

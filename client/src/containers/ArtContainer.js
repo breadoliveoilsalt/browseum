@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { mainRandomButtonClicked } from '../actions/basicArtObjectActions'
+import { getRandomArt } from '../actions/basicArtObjectActions'
 import { navigationButtonClicked } from '../actions/navigationActions'
 
 import ErrorMessage from '../components/ErrorMessage'
@@ -14,7 +14,7 @@ class ArtContainer extends Component {
 
   componentDidMount() {
     if (!this.props.currentArtObject.objectApiId) {
-      this.props.mainRandomButtonClicked()
+      this.props.getRandomArt()
     }
   }
 
@@ -27,7 +27,7 @@ class ArtContainer extends Component {
 
         <TopLevelButton
             buttonText={"Get New Art!"}
-            action={this.props.mainRandomButtonClicked}
+            action={this.props.getRandomArt}
         />
 
         <ArtViewAndNavigation
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      mainRandomButtonClicked: bindActionCreators(mainRandomButtonClicked, dispatch),
+      getRandomArt: bindActionCreators(getRandomArt, dispatch),
       navigationButtonClicked: bindActionCreators(navigationButtonClicked, dispatch)
    }
 }
