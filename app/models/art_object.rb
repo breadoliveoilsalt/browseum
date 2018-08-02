@@ -1,8 +1,8 @@
 class ArtObject < ApplicationRecord
 
-  def self.new_from_json(params)
+  validates :labelText, presence: true
 
-
-
-  end
+    # Not using a custom class constructor for now
+  # def self.new_from_json(params)
+  # end
 end
