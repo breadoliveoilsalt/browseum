@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getRandomArt } from '../actions/basicArtObjectActions'
+import { getRandomArt } from '../actions/getRandomArtActions'
 import { navigationButtonClicked } from '../actions/navigationActions'
 
 import ErrorMessage from '../components/ErrorMessage'

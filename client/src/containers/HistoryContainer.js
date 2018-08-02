@@ -46,7 +46,7 @@ class HistoryContainer extends Component {
 
         <TopLevelButton
           buttonText={"Get All History"}
-          action={() => this.props.postInitialObjectData()}
+          action={null}
         />
 
         <HistoryList

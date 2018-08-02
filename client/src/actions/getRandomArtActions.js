@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import {loadError, removeError} from './errorActions'
+import { postInitialObjectData } from './persistenceActions'
 import * as helpers from './helperActions'
 
 
@@ -32,15 +33,15 @@ const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=
 
 export function getRandomArt() {
 
-  return function(dispatch){
+  return function(dispatch, getState){
       // Had to specify a function here so that fetchBasicData could call itself
       // again in the event the first record pulled did not have a image url
-    return fetchBasicData(dispatch)
+    return fetchBasicData(dispatch, getState)
     }
   }
 
 
-function fetchBasicData(dispatch) {
+function fetchBasicData(dispatch, getState) {
 
   // Consider making this conditional
   dispatch(removeError())
@@ -60,10 +61,13 @@ function fetchBasicData(dispatch) {
     })
     .then(record => helpers.fillAnyMissingFields(record))
     .then(record => helpers.condenseRecord(record))
-    .then(record => {
-      dispatch(helpers.loadCurrentArtObject(record))
-      dispatch(helpers.addToSessionHistory(record))
-      })
+      // Load the retreived and condensed current art object into the state:
+    .then(record => dispatch(helpers.loadCurrentArtObject(record)))
+      // Then save the object to the Rails API DB. This returns a database "id" which is then assigned to the CAO:
+    .then(record => dispatch(postInitialObjectData()))
+      // Once the CAO is assigned an id from the database, then the CAO is added to the session history.
+      // Need to call getState() because we only want to add the CAO to the sessionHistory once it has an id from the DB
+    .then(record => dispatch(helpers.addToSessionHistory(getState().currentArtObject)))
     .catch(error => {
       if (error.errorType === "INVALID_RECORD") {
         console.log("Retreived invalid record:", error.data)
@@ -73,3 +77,5 @@ function fetchBasicData(dispatch) {
       }
     })
 }
+
+// function loadAndSaveObject(object, dispatch)
