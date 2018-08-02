@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
-  // This needs to be a thunk
-export function postInitialObjectData(data) {
-    // NOTE that if I wrap a function in dispatch in mapPropsToDispatch...
+export function postInitialObjectData() {
+    // Notice: that if I wrap a function in dispatch in mapPropsToDispatch...
         // postInitialObjectData: (data) => dispatch(postInitialObjectData(data))
     // ...then thunkage still works and I still get access to getState
   return function(dispatch, getState) {
@@ -19,7 +18,16 @@ export function postInitialObjectData(data) {
       if (res.errors) {
         console.log("There were some errors with the server:", res.errors)
       } else {
-        console.log("Here is the successful server response:", res)
+        console.log("Assigning id to the CAO:", res.id)
+        dispatch(updateId(res.id))
     }})
   }
+}
+
+
+function updateId(id) {
+  return ({
+    type: 'UPDATE_ID',
+    payload: id
+  })
 }
