@@ -64,7 +64,7 @@ function fetchBasicData(dispatch, getState) {
       // Load the retreived and condensed current art object into the state:
     .then(record => dispatch(helpers.loadCurrentArtObject(record)))
       // Then save the object to the Rails API DB. This returns a database "id" which is then assigned to the CAO:
-    .then(record => dispatch(postInitialObjectData()))
+    .then( () => dispatch(postInitialObjectData()))
       // Once the CAO is assigned an id from the database, then the CAO is added to the session history.
       // Need to call getState() because we only want to add the CAO to the sessionHistory once it has an id from the DB
     .then(record => dispatch(helpers.addToSessionHistory(getState().currentArtObject)))
