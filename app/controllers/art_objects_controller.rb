@@ -7,7 +7,9 @@ class ArtObjectsController < ApplicationController
       # I decided against creating a custom class constructor (eg. ArtObject.new_from_json)
       # and instead am keeping the keys from the incomng JSON object as is, ie, not making them
       # snake case.  Seems to create too much confusion in drafting b/w ruby and javascript.
-    @art_object = ArtObject.new(art_object_params)
+      # The line below looks to see if the randomly selected art previously exists in the DB. If not,
+      # it initializes a new record
+    @art_object = ArtObject.find_by(objectApiId: params[:objectApiId]) || ArtObject.new(art_object_params)
     if @art_object.save
       render json: @art_object
     else
