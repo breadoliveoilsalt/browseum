@@ -65,9 +65,6 @@ export function fillAnyMissingFields(record) {
   }
 
     // check for century
-  // if (!record.hasOwnProperty("century")) {
-  //   record.century = null
-  // }
   if (record.hasOwnProperty("century")) {
       // added to avoid error with Harvard database when century has hyphen
     if (record.century.includes("-")) {
@@ -77,7 +74,6 @@ export function fillAnyMissingFields(record) {
   } else {
     record.century = null
   }
-
 
     // check for culture
   if (!record.hasOwnProperty("culture")) {
@@ -113,7 +109,7 @@ export function condenseRecord(record) {
   const newRecord = Object.assign({}, {
     id: null,
     objectApiId: record.objectid,
-    primaryimageurl: record.primaryimageurl,
+    primaryImageUrl: record.primaryimageurl,
     title: record.title,
     artist: record.artist,
     artistApiId: record.artistApiId,
@@ -122,7 +118,7 @@ export function condenseRecord(record) {
     century: record.century,
     culture: record.culture,
     commentary: record.commentary,
-    labeltext: record.labeltext,
+    labelText: record.labeltext,
     description: record.description,
     firstViewed: new Date,
     lastViewed: new Date,

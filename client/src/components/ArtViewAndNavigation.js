@@ -27,7 +27,7 @@ const ArtViewAndNavigation = (props) => {
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={10}>
-              <Image src={props.currentArtObject.primaryimageurl} size='large' centered />
+              <Image src={props.currentArtObject.primaryImageUrl} size='large' centered />
           </Grid.Column>
 
           <Grid.Column width={6}>
@@ -58,9 +58,9 @@ const ArtViewAndNavigation = (props) => {
                 text={props.currentArtObject.description} />
 
               <OptionalSegment
-                field={props.currentArtObject.labeltext}
+                field={props.currentArtObject.labelText}
                 title={"Wall Label Text"}
-                text={props.currentArtObject.labeltext} />
+                text={props.currentArtObject.labelText} />
 
               <OptionalSegment
                 field={props.currentArtObject.commentary}
