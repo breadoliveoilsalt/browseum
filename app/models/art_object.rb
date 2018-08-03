@@ -11,6 +11,13 @@ class ArtObject < ApplicationRecord
     self.find_by(id: id).title
   end
 
+  def self.custom_new(art_object_params)
+    art_object = self.new
+    art_object.title = art_object_params[:title]
+    art_object
+
+  end
+
 
   #
   # def self.new_from_json(params)
