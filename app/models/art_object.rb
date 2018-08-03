@@ -1,7 +1,10 @@
 class ArtObject < ApplicationRecord
 
-  # This is how to test error messages:
-  # validates :labelText, presence: true
+    # Re: Validations: On client side, see "client/src/actions/helper actions" for which keys get auto-filled.
+    # Those auto-fills and other checks on the client side (like primaryImageUrl) are the main
+    # basis for the list of these validations.
+    # Remember that because the :favorite key comes from the client as "false", that cannot be validated.
+  validates :primaryImageUrl, :title, :artist, :artistApiId, :firstViewed, :lastViewed, presence: true
 
   def self.get_title(id)
     self.find_by(id: id).title

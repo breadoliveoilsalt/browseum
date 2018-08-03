@@ -35,7 +35,7 @@ export function fillAnyMissingFields(record) {
 
   // check for title
   if (!record.hasOwnProperty("title")) {
-    record.title = null
+    record.title = "Untitled"
   }
 
     // check for artist field or reformat
