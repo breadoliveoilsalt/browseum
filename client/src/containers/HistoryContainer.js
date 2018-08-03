@@ -19,11 +19,10 @@ class HistoryContainer extends Component {
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
-      // need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
+      // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
     const updatedObject = Object.assign({}, object)
     updatedObject.lastViewed = new Date
-    // this.props.updateLastViewed()
-      // It's bc "object" is beig called below
+    // I will probably need to add here something that updates the view in the DB...another action to Post a fetch update
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
     this.props.removeError()

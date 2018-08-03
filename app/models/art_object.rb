@@ -39,7 +39,8 @@ class ArtObject < ApplicationRecord
   end
 
   def self.records_from_last_30_days
-
+      self.where(:lastViewed => (Time.now - 30.day)..Time.now)
+        # Client.all(:conditions => { :created_at => (Time.now.midnight - 1.day)..Time.now.midnight})
   end
 
 end
