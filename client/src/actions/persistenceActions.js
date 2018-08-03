@@ -18,6 +18,7 @@ export function postInitialObjectData() {
     .then(res => {
       if (res.errors) {
         console.log("There were some errors with the server:", res.errors)
+        throw res.errors
       } else {
         console.log("Assigning id to the CAO:", res.id)
         dispatch(updateId(res.id))
