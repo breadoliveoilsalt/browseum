@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
 import { loadError, removeError } from './errorActions'
+import { postInitialObjectData } from './persistenceActions'
 
 export function navigationButtonClicked(type, errorMessage){
 
@@ -31,10 +32,9 @@ export function navigationButtonClicked(type, errorMessage){
           return helpers.fillAnyMissingFields(record)
         }})
       .then(record => helpers.condenseRecord(record))
-      .then(record => {
-          dispatch(helpers.loadCurrentArtObject(record))
-          dispatch(helpers.addToSessionHistory(record))
-        })
+      .then(record => dispatch(helpers.loadCurrentArtObject(record)))
+      .then( () => dispatch(postInitialObjectData()))
+      .then(record => dispatch(helpers.addToSessionHistory(getState().currentArtObject)))
       .catch(e => {
           if (errorMessage) {
             dispatch(loadError(errorMessage))

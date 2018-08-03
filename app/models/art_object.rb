@@ -28,7 +28,12 @@ class ArtObject < ApplicationRecord
   end
 
   def self.find_and_update_lastViewed(id)
-    art_object = self.find_by(id)
+    puts "You are updating lastViewed"
+    art_object = self.find_by(id: id)
+    if !art_object
+      puts "You are returning nil"
+      return nil
+    end
     art_object.lastViewed = Time.zone.now
     art_object
   end
