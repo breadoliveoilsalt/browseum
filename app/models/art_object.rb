@@ -13,8 +13,24 @@ class ArtObject < ApplicationRecord
 
   def self.custom_new(art_object_params)
     art_object = self.new
+    art_object.objectApiId = art_object_params[:objectApiId]
+    art_object.primaryImageUrl = art_object_params[:primaryImageUrl]
     art_object.title = art_object_params[:title]
+    art_object.artist = art_object_params[:artist]
+    art_object.artistApiId = art_object_params[:artistApiId]
+    art_object.medium = art_object_params[:medium]
+    art_object.dated = art_object_params[:dated]
+    art_object.century = art_object_params[:century]
+    art_object.culture = art_object_params[:culture]
+    art_object.labelText = art_object_params[:labelText]
+    art_object.description = art_object_params[:description]
+    art_object.commentary = art_object_params[:commentary]
+    art_object.firstViewed = Date.parse(art_object_params[:firstViewed])
+    art_object.lastViewed = Date.parse(art_object_params[:lastViewed])
+    art_object.favorite = art_object_params[:favorite]
     art_object
+    # art_object.title = art_object_params[:title]
+    # art_object
 
   end
 
@@ -23,22 +39,10 @@ class ArtObject < ApplicationRecord
   # def self.new_from_json(params)
   #   puts "You made it to new from json!"
   #   art_object = self.new
-  #   art_object.objectApiId = params[:objectApiId]
-  #   art_object.primaryImageUrl = params[:primaryImageUrl]
-  #   art_object.title = params[:title]
-  #   art_object.artist = params[:artist]
-  #   art_object.artistApiId = params[:artistApiId]
-  #   art_object.medium = params[:medium]
-  #   art_object.dated = params[:dated]
-  #   art_object.century = params[:century]
-  #   art_object.culture = params[:culture]
-  #   art_object.labelText = params[:labelText]
-  #   art_object.description = params[:description]
-  #   art_object.commentary = params[:commentary]
-  #   art_object.firstViewed = Date.parse(params[:firstViewed]
-  #   art_object.lastViewed = Date.parse(params[:lastViewed]
-  #   art_object.favorite = params[:favorite]
-  #   art_object
+
+
+
+
   # end
 
 end
