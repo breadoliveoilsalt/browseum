@@ -9,7 +9,7 @@ class ArtObjectsController < ApplicationController
       # snake case.  Seems to create too much confusion in drafting b/w ruby and javascript.
       # The line below looks to see if the randomly selected art previously exists in the DB. If not,
       # it initializes a new record
-    @art_object = ArtObject.find_by(objectApiId: params[:objectApiId]) || ArtObject.new_from_json(art_object_params)
+    @art_object = ArtObject.find_by(objectApiId: params[:objectApiId]) || ArtObject.new(art_object_params)
     if @art_object.save
       render json: @art_object
     else

@@ -73,7 +73,7 @@ function fetchBasicData(dispatch, getState) {
         console.log("Retreived invalid record:", error.data)
         fetchBasicData(dispatch)
       } else {
-        dispatch(loadError("Sorry, something seems to have gone wrong. Please click Get New Art again."))
+        dispatch(loadError("Sorry, something seems to have gone wrong. This art object will not be saved. Please click Get New Art again."))
       }
     })
 }
