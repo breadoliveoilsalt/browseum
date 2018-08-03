@@ -1,9 +1,5 @@
 class ArtObject < ApplicationRecord
 
-   # < ActiveRecord::Base
-
-#  No idea why this was there:
-
   # This is how to test error messages:
   # validates :labelText, presence: true
 
@@ -29,20 +25,16 @@ class ArtObject < ApplicationRecord
     art_object.lastViewed = Date.parse(art_object_params[:lastViewed])
     art_object.favorite = art_object_params[:favorite]
     art_object
-    # art_object.title = art_object_params[:title]
-    # art_object
-
   end
 
+  def self.find_and_update_lastViewed(id)
+    art_object = self.find_by(id)
+    art_object.lastViewed = Time.zone.now
+    art_object
+  end
 
-  #
-  # def self.new_from_json(params)
-  #   puts "You made it to new from json!"
-  #   art_object = self.new
+  def self.records_from_last_30_days
 
-
-
-
-  # end
+  end
 
 end
