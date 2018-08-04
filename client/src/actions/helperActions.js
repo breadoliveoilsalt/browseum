@@ -23,6 +23,7 @@ export function updateLastViewed() {
   })
 }
 
+
 ///// ACTIONS FOR MANAGING RECORD DATA /////
 
 export function fillAnyMissingFields(record) {

@@ -5,12 +5,22 @@ export function retreive30DayHistory() {
     console.log("About to fetch")
     return fetch('/api/artobjects')
     .then(res => res.json())
-    .then(res => console.log("Fetch response:", res))
+    .then(res => {
+      console.log("Fetch response:", res)
+      dispatch(loadExtendedHistory(res))
+    })
   }
 }
 
+function loadExtendedHistory(records) {
+  return ({
+    type: 'LOAD_EXTENDED_HISTORY',
+    payload: records
+  })
+}
 
-function resetExtendedHistory() {
+
+export function resetExtendedHistory() {
   return ({
     type: 'RESET_EXTENDED_HISTORY'
   })

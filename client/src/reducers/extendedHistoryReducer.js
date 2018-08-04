@@ -1,6 +1,6 @@
 function extendedHistoryReducer(state = [], action) {
   switch (action.type) {
-    case 'ADD_TO_EXTENDED_HISTORY':
+    case 'LOAD_EXTENDED_HISTORY':
       return [...state, action.payload]
     case 'RESET_EXTENDED_HISTORY':
       return []
@@ -9,4 +9,4 @@ function extendedHistoryReducer(state = [], action) {
   }
 }
 
-export default sessionHistoryReducer
+export default extendedHistoryReducer

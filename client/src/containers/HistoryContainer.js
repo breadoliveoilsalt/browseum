@@ -7,16 +7,21 @@ import { withRouter } from 'react-router-dom'
 
 import { Header } from 'semantic-ui-react'
 
-import { loadCurrentArtObject, addToSessionHistory, updateLastViewed} from '../actions/helperActions'
+import { loadCurrentArtObject, addToSessionHistory, updateLastViewed } from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
 
 import { postInitialObjectData } from '../actions/persistenceActions'
-import { retreive30DayHistory } from '../actions/retreivalActions'
+import { retreive30DayHistory, resetExtendedHistory } from '../actions/retreiveHistoryActions'
 
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
 
 class HistoryContainer extends Component {
+
+  // Ensures that user only sees sessionHistory when going to /art:
+  componentWillUnmount() {
+    resetExtendedHistory()
+  }
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
@@ -32,7 +37,7 @@ class HistoryContainer extends Component {
 
   render() {
 
-    const reverseHistory = this.props.sessionHistory.slice(0).reverse()
+    const reverseHistory = this.props.extendedHistory.length === 0 ? this.props.sessionHistory.slice(0).reverse() : this.props.extendedHistory.slice(0).reverse()
 
     return (
       <div className="margin-fix">
@@ -64,7 +69,8 @@ const mapStateToProps = (state) => {
   return {
     currentArtObject: state.currentArtObject,
     error: state.error,
-    sessionHistory: state.sessionHistory
+    sessionHistory: state.sessionHistory,
+    extendedHistory: state.extendedHistory
   }
 }
 
@@ -75,7 +81,8 @@ const mapDispatchToProps = (dispatch) => {
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       postInitialObjectData: (data) => dispatch(postInitialObjectData(data)),
-      retreive30DayHistory: () => dispatch(retreive30DayHistory())
+      retreive30DayHistory: () => dispatch(retreive30DayHistory()),
+      resetExtendedHistory: () => dispatch(resetExtendedHistory())
    }
 }
 
