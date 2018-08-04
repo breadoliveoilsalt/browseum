@@ -23,6 +23,10 @@ class ArtObjectsController < ApplicationController
      render :json => art_objects
   end
 
+  def update
+    puts "You made it to update. Params:", params
+  end
+
   private
 
     # The permitted params conform to the keys in the JavaScript/JSON object sent from the app

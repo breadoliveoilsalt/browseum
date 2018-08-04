@@ -5,10 +5,11 @@ import { bindActionCreators } from 'redux'
 
 import { Header } from 'semantic-ui-react'
 
+// Should be something like sessonHelperActions, no?
 import { loadCurrentArtObject, addToSessionHistory, updateLastViewed } from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
 
-import { postInitialObjectData } from '../actions/persistenceActions'
+import { postInitialObjectData, postUpdateToLastViewed } from '../actions/persistenceActions'
 import { retreive30DayHistory, resetExtendedHistory } from '../actions/retreiveHistoryActions'
 
 import TopLevelButton from '../components/TopLevelButton'
@@ -36,7 +37,7 @@ class HistoryContainer extends Component {
       // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
     const updatedObject = Object.assign({}, object)
     updatedObject.lastViewed = new Date
-    // I will probably need to add here something that updates the view in the DB...another action to Post a fetch update
+    this.props.postUpdateToLastViewed(updatedObject.id)
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
     this.props.removeError()
@@ -93,6 +94,8 @@ class HistoryContainer extends Component {
   }
 }
 
+// Remember I can remove some old stuff here, like currentArtObject, and error probably
+
 const mapStateToProps = (state) => {
   return {
     currentArtObject: state.currentArtObject,
@@ -106,6 +109,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       removeError: () => dispatch(removeError()),
       updateLastViewed: () => dispatch(updateLastViewed()),
+      postUpdateToLastViewed: (id) => dispatch(postUpdateToLastViewed(id)),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       postInitialObjectData: (data) => dispatch(postInitialObjectData(data)),

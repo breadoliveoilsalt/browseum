@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   post "/api/artobjects", to: "art_objects#create"
   get "/api/artobjects", to: "art_objects#index"
-  # get '/testthunk', to: 'test_thunk#home'
+  put "/api/artobjects/:id", to: "art_objects#update"
+
 end
