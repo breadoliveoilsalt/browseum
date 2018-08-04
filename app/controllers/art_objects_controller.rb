@@ -18,9 +18,10 @@ class ArtObjectsController < ApplicationController
 
   end
 
-  # def index
-  #    render :json => {"text": "You are in controller#index"}
-  # end
+  def index
+     art_objects = ArtObject.records_from_last_30_days
+     render :json => art_objects
+  end
 
   private
 

@@ -11,6 +11,7 @@ import { loadCurrentArtObject, addToSessionHistory, updateLastViewed} from '../a
 import { removeError } from '../actions/errorActions'
 
 import { postInitialObjectData } from '../actions/persistenceActions'
+import { retreive30DayHistory } from '../actions/retreivalActions'
 
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
@@ -45,7 +46,7 @@ class HistoryContainer extends Component {
 
         <TopLevelButton
           buttonText={"Get All History"}
-          action={null}
+          action={this.props.retreive30DayHistory}
         />
 
         <HistoryList
@@ -73,7 +74,8 @@ const mapDispatchToProps = (dispatch) => {
       updateLastViewed: () => dispatch(updateLastViewed()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
-      postInitialObjectData: (data) => dispatch(postInitialObjectData(data))
+      postInitialObjectData: (data) => dispatch(postInitialObjectData(data)),
+      retreive30DayHistory: () => dispatch(retreive30DayHistory())
    }
 }
 
