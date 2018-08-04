@@ -8,3 +8,10 @@ export function retreive30DayHistory() {
     .then(res => console.log("Fetch response:", res))
   }
 }
+
+
+function resetExtendedHistory() {
+  return ({
+    type: 'RESET_EXTENDED_HISTORY'
+  })
+}
