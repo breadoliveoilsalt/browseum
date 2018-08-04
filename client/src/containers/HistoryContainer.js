@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-  // withRouter is needd to access history and push() below:
-import { withRouter } from 'react-router-dom'
 
 import { Header } from 'semantic-ui-react'
 
@@ -18,9 +16,16 @@ import HistoryList from '../components/HistoryList'
 
 class HistoryContainer extends Component {
 
-  // Ensures that user only sees sessionHistory when going to /art:
-  componentWillUnmount() {
-    resetExtendedHistory()
+    // A bit verbose, but this adds a listener to ensure that if the user navigates to /history,
+    // the user sees the sessionHistory, regardless of whether the user has previously clicked
+    // the button to get the extended history. 
+  constructor(props) {
+    super(props)
+    this.props.history.listen((location, action) => {
+      if (this.props.extendedHistory.length !== 0) {
+        this.props.resetExtendedHistory()
+      }
+    })
   }
 
   historyLinkClicked = (object, event) => {
@@ -32,6 +37,8 @@ class HistoryContainer extends Component {
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
     this.props.removeError()
+      // this.props.history is available b/c this component is a direct child of a <Route>.
+      // {withRouter} is not needed
     this.props.history.push("/art")
   }
 
@@ -50,8 +57,13 @@ class HistoryContainer extends Component {
         />
 
         <TopLevelButton
-          buttonText={"Get All History"}
+          buttonText={"See History from the Last 30 Days"}
           action={this.props.retreive30DayHistory}
+        />
+
+        <TopLevelButton
+          buttonText={"Clear extended history"}
+          action={this.props.resetExtendedHistory}
         />
 
         <HistoryList
