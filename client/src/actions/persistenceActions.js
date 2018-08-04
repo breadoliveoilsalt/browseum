@@ -26,13 +26,13 @@ export function postInitialObjectData() {
   }
 }
 
-export function postUpdateToLastViewed(id) {
+export function postUpdateToLastViewed(id, dateTime) {
   return function(dispatch){
     console.log("lastViewed about to be POSTed")
     return fetch(`/api/artobjects/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({id: id})
+        body: JSON.stringify({id: id, lastViewed: dateTime})
         })
     .then(res => console.log(res))
 

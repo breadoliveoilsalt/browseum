@@ -24,8 +24,8 @@ class ArtObject < ApplicationRecord
     art_object.labelText = art_object_params[:labelText]
     art_object.description = art_object_params[:description]
     art_object.commentary = art_object_params[:commentary]
-    art_object.firstViewed = Date.parse(art_object_params[:firstViewed])
-    art_object.lastViewed = Date.parse(art_object_params[:lastViewed])
+    art_object.firstViewed = DateTime.parse(art_object_params[:firstViewed])
+    art_object.lastViewed = DateTime.parse(art_object_params[:lastViewed])
     art_object.favorite = art_object_params[:favorite]
     art_object
   end
@@ -37,13 +37,13 @@ class ArtObject < ApplicationRecord
       puts "You are returning nil"
       return nil
     end
-    art_object.lastViewed = Time.zone.now
+    art_object.lastViewed = DateTime.now
+    art_object.save
     art_object
   end
 
   def self.records_from_last_30_days
-      self.where(:lastViewed => (Time.now - 30.day)..Time.now)
-        # Client.all(:conditions => { :created_at => (Time.now.midnight - 1.day)..Time.now.midnight})
+      self.where(:lastViewed => (DateTime.now - 30.day)..DateTime.now)
   end
 
 end
