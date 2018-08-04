@@ -16,9 +16,12 @@ import HistoryList from '../components/HistoryList'
 
 class HistoryContainer extends Component {
 
-    // A bit verbose, but this adds a listener to ensure that if the user navigates to /history,
+    // The goal here is to ensure that if the user navigates to /history,
     // the user sees the sessionHistory, regardless of whether the user has previously clicked
-    // the button to get the extended history. 
+    // the button to get the extended history. Effectively, every time the user navigates away from
+    // /history after requesting extended history, the extendedHistory state is reset.  Thanks to the
+    // conditional rendering below, the user then sees only the sessionHistory.
+    // I went this path to avoid making requests to the Rails API DB everytime a user visits /history.
   constructor(props) {
     super(props)
     this.props.history.listen((location, action) => {
@@ -37,43 +40,56 @@ class HistoryContainer extends Component {
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
     this.props.removeError()
-      // this.props.history is available b/c this component is a direct child of a <Route>.
-      // {withRouter} is not needed
+      // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
   }
 
   render() {
 
-    const reverseHistory = this.props.extendedHistory.length === 0 ? this.props.sessionHistory.slice(0).reverse() : this.props.extendedHistory.slice(0).reverse()
+    const extendedHistoryRequested = !(this.props.extendedHistory.length === 0)
 
-    return (
-      <div className="margin-fix">
+    if (!extendedHistoryRequested) {
+      return (
+        <div className="margin-fix">
 
-        <Header
-          as='h2'
-          textAlign='center'
-          className="underlined"
-          content="Browsing History"
-        />
+          <Header
+            as='h2'
+            textAlign='center'
+            className="underlined"
+            content="Browsing History from This Session"
+          />
 
-        <TopLevelButton
-          buttonText={"See History from the Last 30 Days"}
-          action={this.props.retreive30DayHistory}
-        />
+          <TopLevelButton
+            buttonText={"See History from the Last 30 Days"}
+            action={this.props.retreive30DayHistory}
+            />
 
-        <TopLevelButton
-          buttonText={"Clear extended history"}
-          action={this.props.resetExtendedHistory}
-        />
+          <HistoryList
+            source={this.props.sessionHistory.slice(0).reverse()}
+            historyLinkClicked={this.historyLinkClicked}
+          />
 
-        <HistoryList
-          source={reverseHistory}
-          historyLinkClicked={this.historyLinkClicked}
-        />
+        </div>
+      )
+    } else {
+      return (
+        <div className="margin-fix">
 
-      </div>
+          <Header
+            as='h2'
+            textAlign='center'
+            className="underlined"
+            content="Browsing History from the Last 30 Days"
+          />
 
-    )
+          <HistoryList
+            source={this.props.extendedHistory.slice(0).reverse()}
+            historyLinkClicked={this.historyLinkClicked}
+          />
+
+        </div>
+      )
+    }
   }
 }
 
