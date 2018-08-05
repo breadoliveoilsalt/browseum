@@ -4,11 +4,9 @@ import fetch from 'isomorphic-fetch'
 export function postInitialObjectData(record) {
     // Notice: that if I wrap a function in dispatch in mapPropsToDispatch...
         // postInitialObjectData: (data) => dispatch(postInitialObjectData(data))
-    // ...then thunkage still works and I still get access to getState
-  return function(dispatch, getState) {
-
-    // const { currentArtObject } = getState()
-    // console.log("CAO about to be POSTed:", currentArtObject)
+    // ...then thunkage still works and I still get access to getState if inserted
+    // as a second argument below.
+  return function(dispatch) {
     return fetch("/api/artobjects", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -38,7 +36,6 @@ export function postUpdateToLastViewed(id, dateTime) {
 
   }
 }
-
 
 function updateId(id) {
   return ({
