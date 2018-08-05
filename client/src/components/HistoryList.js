@@ -7,8 +7,6 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
     // consider turning this into a HistoryItem...otherwise delete HistoryItem component
   const listRows = source.map( (object, i) => {
 
-    const date = object.lastViewed
-
     return (
       <Table.Row>
         <Table.Cell width={10} textAlign='center'>
@@ -16,7 +14,7 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
         </Table.Cell>
 
         <Table.Cell width={6} textAlign='center'>
-          {typeof date === "string" ? new Date(date).toLocaleString() : date.toLocaleString()}
+          {typeof object.lastViewed === "string" ? new Date(object.lastViewed).toLocaleString() : object.lastViewed.toLocaleString()}
         </Table.Cell>
 
       </Table.Row>

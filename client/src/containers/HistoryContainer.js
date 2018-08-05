@@ -32,32 +32,19 @@ class HistoryContainer extends Component {
     })
   }
 
+
   historyLinkClicked = (object, event) => {
     event.preventDefault()
-      // To handle where user clicks link from extended history:
-    this.props.sessionHistory.includes(object) ? null : this.props.addToSessionHistory(object)
-      // Remember - using "object" instead of creating a copy of "object means that
-      // any prior sessionHistory entry gets an updated lastViewed as well
-    object.lastViewed = new Date
-    this.props.postUpdate(object.id, {lastViewed: object.lastViewed})
-    this.props.loadCurrentArtObject(object)
+      // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
+    const updatedObject = Object.assign({}, object)
+    updatedObject.lastViewed = new Date
+    this.props.postUpdate(updatedObject.id, {lastViewed: updatedObject.lastViewed})
+    this.props.loadCurrentArtObject(updatedObject)
+    this.props.addToSessionHistory(updatedObject)
     this.props.removeError()
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
   }
-
-  // historyLinkClicked = (object, event) => {
-  //   event.preventDefault()
-  //     // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
-  //   const updatedObject = Object.assign({}, object)
-  //   updatedObject.lastViewed = new Date
-  //   this.props.postUpdateToLastViewed(updatedObject.id, updatedObject.lastViewed)
-  //   this.props.loadCurrentArtObject(updatedObject)
-  //   this.props.addToSessionHistory(updatedObject)
-  //   this.props.removeError()
-  //     // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
-  //   this.props.history.push("/art")
-  // }
 
   render() {
 
@@ -71,16 +58,17 @@ class HistoryContainer extends Component {
             as='h2'
             textAlign='center'
             className="underlined"
-            content="Browsing History from This Session"
+            content="This Session's Browsing History"
           />
 
           <TopLevelButton
-            buttonText={"See History from the Last 30 Days"}
+            buttonText={"See Art Viewed During the Last 30 Days"}
             action={this.props.retreive30DayHistory}
             />
 
           <HistoryList
-            source={this.props.sessionHistory.slice().sort(( a, b ) => b.lastViewed > a.lastViewed )}
+            source={this.props.sessionHistory.slice().reverse()}
+              // ?sort(( a, b ) => b.lastViewed > a.lastViewed )}
             historyLinkClicked={this.historyLinkClicked}
           />
 
@@ -94,7 +82,7 @@ class HistoryContainer extends Component {
             as='h2'
             textAlign='center'
             className="underlined"
-            content="Browsing History from the Last 30 Days"
+            content="Art Viewed During the Last 30 Days"
           />
 
           <HistoryList
