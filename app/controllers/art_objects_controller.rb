@@ -27,7 +27,8 @@ class ArtObjectsController < ApplicationController
     art_object = ArtObject.find_by(id: params[:id])
     # art_object.lastViewed = Time.zone.now
     if art_object.update(art_object_params)
-      render json: art_object
+      head :ok, content_type: "text/html"
+      # render json: art_object
     else
       render json: {errors: art_object.errors.full_messages }
     end
