@@ -34,11 +34,13 @@ class HistoryContainer extends Component {
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
-      // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
+      // To handle where user clicks link from extended history:
+    this.props.sessionHistory.includes(object) ? null : this.props.addToSessionHistory(object)
+      // Remember - using "object" instead of creating a copy of "object means that
+      // any prior sessionHistory entry gets an updated lastViewed as well
     object.lastViewed = new Date
     this.props.postUpdateToLastViewed(object.id, object.lastViewed)
     this.props.loadCurrentArtObject(object)
-    // this.props.addToSessionHistory(object)
     this.props.removeError()
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
@@ -78,7 +80,7 @@ class HistoryContainer extends Component {
             />
 
           <HistoryList
-            source={this.props.sessionHistory.sort(( a, b ) => b.lastViewed > a.lastViewed )}
+            source={this.props.sessionHistory.slice().sort(( a, b ) => b.lastViewed > a.lastViewed )}
             historyLinkClicked={this.historyLinkClicked}
           />
 
