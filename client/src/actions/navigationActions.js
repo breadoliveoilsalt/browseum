@@ -32,9 +32,10 @@ export function navigationButtonClicked(type, errorMessage){
           return helpers.fillAnyMissingFields(record)
         }})
       .then(record => helpers.condenseRecord(record))
-      .then(record => dispatch(helpers.loadCurrentArtObject(record)))
-      .then( () => dispatch(postInitialObjectData()))
-      .then(record => dispatch(helpers.addToSessionHistory(getState().currentArtObject)))
+      .then(record => dispatch(postInitialObjectData(record)))
+      .then(response => {
+        dispatch(helpers.loadCurrentArtObject(response))
+        dispatch(helpers.addToSessionHistory(response))})
       .catch(e => {
           if (errorMessage) {
             dispatch(loadError(errorMessage))

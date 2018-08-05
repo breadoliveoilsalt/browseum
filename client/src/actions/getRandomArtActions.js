@@ -33,15 +33,15 @@ const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=
 
 export function getRandomArt() {
 
-  return function(dispatch, getState){
+  return function(dispatch){
       // Had to specify a function here so that fetchBasicData could call itself
       // again in the event the first record pulled did not have a image url
-    return fetchBasicData(dispatch, getState)
+    return fetchBasicData(dispatch)
     }
   }
 
 
-function fetchBasicData(dispatch, getState) {
+function fetchBasicData(dispatch) {
 
   // Consider making this conditional
   dispatch(removeError())
@@ -63,13 +63,8 @@ function fetchBasicData(dispatch, getState) {
     .then(record => helpers.condenseRecord(record))
     .then(record => dispatch(postInitialObjectData(record)))
     .then(response => {
-      console.log("res", response)
       dispatch(helpers.loadCurrentArtObject(response))
       dispatch(helpers.addToSessionHistory(response))})
-      // id => {
-      // record.id = id
-      // dispatch(helpers.loadCurrentArtObject(record))
-      // dispatch(helpers.addToSessionHistory(record))})
     .catch(error => {
       if (error.errorType === "INVALID_RECORD") {
         console.log("Retreived invalid record:", error.data)
