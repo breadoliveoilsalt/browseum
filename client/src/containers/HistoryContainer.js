@@ -9,7 +9,7 @@ import { Header } from 'semantic-ui-react'
 import { loadCurrentArtObject, addToSessionHistory, updateLastViewed } from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
 
-import { postInitialObjectData, postUpdateToLastViewed } from '../actions/persistenceActions'
+import { postInitialObjectData, postUpdate } from '../actions/persistenceActions'
 import { retreive30DayHistory, resetExtendedHistory } from '../actions/retreiveHistoryActions'
 
 import TopLevelButton from '../components/TopLevelButton'
@@ -39,7 +39,7 @@ class HistoryContainer extends Component {
       // Remember - using "object" instead of creating a copy of "object means that
       // any prior sessionHistory entry gets an updated lastViewed as well
     object.lastViewed = new Date
-    this.props.postUpdateToLastViewed(object.id, object.lastViewed)
+    this.props.postUpdate(object.id, {lastViewed: object.lastViewed})
     this.props.loadCurrentArtObject(object)
     this.props.removeError()
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
@@ -123,7 +123,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       removeError: () => dispatch(removeError()),
       updateLastViewed: () => dispatch(updateLastViewed()),
-      postUpdateToLastViewed: (id) => dispatch(postUpdateToLastViewed(id)),
+      postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       postInitialObjectData: (data) => dispatch(postInitialObjectData(data)),
