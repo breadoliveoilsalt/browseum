@@ -35,15 +35,27 @@ class HistoryContainer extends Component {
   historyLinkClicked = (object, event) => {
     event.preventDefault()
       // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
-    const updatedObject = Object.assign({}, object)
-    updatedObject.lastViewed = new Date
-    this.props.postUpdateToLastViewed(updatedObject.id, updatedObject.lastViewed)
-    this.props.loadCurrentArtObject(updatedObject)
-    this.props.addToSessionHistory(updatedObject)
+    object.lastViewed = new Date
+    this.props.postUpdateToLastViewed(object.id, object.lastViewed)
+    this.props.loadCurrentArtObject(object)
+    // this.props.addToSessionHistory(object)
     this.props.removeError()
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
   }
+
+  // historyLinkClicked = (object, event) => {
+  //   event.preventDefault()
+  //     // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
+  //   const updatedObject = Object.assign({}, object)
+  //   updatedObject.lastViewed = new Date
+  //   this.props.postUpdateToLastViewed(updatedObject.id, updatedObject.lastViewed)
+  //   this.props.loadCurrentArtObject(updatedObject)
+  //   this.props.addToSessionHistory(updatedObject)
+  //   this.props.removeError()
+  //     // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
+  //   this.props.history.push("/art")
+  // }
 
   render() {
 
@@ -66,7 +78,7 @@ class HistoryContainer extends Component {
             />
 
           <HistoryList
-            source={this.props.sessionHistory.slice(0).reverse()}
+            source={this.props.sessionHistory.sort(( a, b ) => b.lastViewed > a.lastViewed )}
             historyLinkClicked={this.historyLinkClicked}
           />
 
@@ -84,7 +96,7 @@ class HistoryContainer extends Component {
           />
 
           <HistoryList
-            source={this.props.extendedHistory.slice(0).reverse()}
+            source={this.props.extendedHistory}
             historyLinkClicked={this.historyLinkClicked}
           />
 

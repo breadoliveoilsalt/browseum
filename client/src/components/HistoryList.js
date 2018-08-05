@@ -31,7 +31,7 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell width={10} textAlign='center'>Artwork Title</Table.HeaderCell>
-                <Table.HeaderCell width={6} textAlign='center'>Date Viewed (Reverse Chronological Order)</Table.HeaderCell>
+                <Table.HeaderCell width={6} textAlign='center'>Last Viewed (Reverse Chronological Order)</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
