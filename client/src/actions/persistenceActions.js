@@ -26,14 +26,12 @@ export function postInitialObjectData(record) {
 
 export function postUpdate(id, data) {
   return function(dispatch){
-    console.log("Update about to be POSTed:", data)
     return fetch(`/api/artobjects/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
         })
-    .then(res => console.log(res))
-
+    .then(res => console.log("Errors on update to DB, if any:", res))
   }
 }
 

@@ -43,7 +43,11 @@ class ArtObject < ApplicationRecord
   end
 
   def self.records_from_last_30_days
-      self.where(:lastViewed => (DateTime.now - 30.day)..DateTime.now).order(lastViewed: :desc)
+    self.where(:lastViewed => (DateTime.now - 30.day)..DateTime.now).order(lastViewed: :desc)
+  end
+
+  def self.favorites
+    self.where(favorite: true).order(lastViewed: :desc)
   end
 
 end
