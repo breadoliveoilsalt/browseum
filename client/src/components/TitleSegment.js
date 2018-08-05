@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Segment, Button } from 'semantic-ui-react'
+import FavoriteButton from './FavoriteButton'
 
 const TitleSegment = (props) => (
 
@@ -10,7 +11,9 @@ const TitleSegment = (props) => (
       </Segment>
 
       <Segment align='center' basic>
-        <Button size='tiny'> Add to Favorites </Button>
+        <FavoriteButton
+          text={"Add to Favorites"}
+          action={null} />
       </Segment>
 
     </div>

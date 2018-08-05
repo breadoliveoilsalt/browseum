@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
+// Can probabaly delete:
 import { bindActionCreators } from 'redux'
 
 import { Header } from 'semantic-ui-react'
@@ -41,6 +42,7 @@ class HistoryContainer extends Component {
     this.props.postUpdate(updatedObject.id, {lastViewed: updatedObject.lastViewed})
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
+      // try to make this conditional -- global
     this.props.removeError()
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
@@ -96,7 +98,7 @@ class HistoryContainer extends Component {
   }
 }
 
-// Remember I can remove some old stuff here, like currentArtObject, and error probably
+// Remember I can remove some old stuff here, like currentArtObject, and error probably, and updateLastViewed
 
 const mapStateToProps = (state) => {
   return {
