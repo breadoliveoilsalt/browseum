@@ -61,13 +61,15 @@ function fetchBasicData(dispatch, getState) {
     })
     .then(record => helpers.fillAnyMissingFields(record))
     .then(record => helpers.condenseRecord(record))
-      // Load the retreived and condensed current art object into the state:
-    .then(record => dispatch(helpers.loadCurrentArtObject(record)))
-      // Then save the object to the Rails API DB. This returns a database "id" which is then assigned to the CAO:
-    .then( () => dispatch(postInitialObjectData()))
-      // Once the CAO is assigned an id from the database, then the CAO is added to the session history.
-      // Need to call getState() because we only want to add the CAO to the sessionHistory once it has an id from the DB
-    .then(record => dispatch(helpers.addToSessionHistory(getState().currentArtObject)))
+    .then(record => dispatch(postInitialObjectData(record)))
+    .then(response => {
+      console.log("res", response)
+      dispatch(helpers.loadCurrentArtObject(response))
+      dispatch(helpers.addToSessionHistory(response))})
+      // id => {
+      // record.id = id
+      // dispatch(helpers.loadCurrentArtObject(record))
+      // dispatch(helpers.addToSessionHistory(record))})
     .catch(error => {
       if (error.errorType === "INVALID_RECORD") {
         console.log("Retreived invalid record:", error.data)
@@ -77,5 +79,3 @@ function fetchBasicData(dispatch, getState) {
       }
     })
 }
-
-// function loadAndSaveObject(object, dispatch)
