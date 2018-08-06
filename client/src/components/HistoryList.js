@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 const HistoryList = ( {source, historyLinkClicked} ) => {
 
-
   const headerRow =
       <Table.Row>
           <Table.HeaderCell width={10} textAlign='center'>Artwork Title</Table.HeaderCell>

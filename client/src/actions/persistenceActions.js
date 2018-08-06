@@ -41,10 +41,13 @@ export function postUpdate(id, data) {
 
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
+    const { currentArtObject, sessionHistory } = getState()
+
       // Update the COA in the store/state
-    dispatch(updateCurrentArtObject(data))
+    if (currentArtObject.id === id) {
+      dispatch(updateCurrentArtObject(data))
+    }
       // Update all copies of the COA in the sessionHistory
-    const { sessionHistory } = getState()
     sessionHistory.forEach( (e) => {
       if (e.id === id) {
         const newObject = Object.assign(e, data)

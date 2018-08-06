@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { Header } from 'semantic-ui-react'
-
+// Remove update last Viewed1
 // Should be something like sessonHelperActions, no?
 import { loadCurrentArtObject, addToSessionHistory, updateLastViewed } from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
@@ -32,7 +32,6 @@ class HistoryContainer extends Component {
       }
     })
   }
-
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
