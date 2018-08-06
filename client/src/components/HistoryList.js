@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom'
 
 const HistoryList = ( {source, historyLinkClicked} ) => {
 
-    // consider turning this into a HistoryItem...otherwise delete HistoryItem component
-  const listRows = source.map( (object, i) => {
 
+  const headerRow =
+      <Table.Row>
+          <Table.HeaderCell width={10} textAlign='center'>Artwork Title</Table.HeaderCell>
+          <Table.HeaderCell width={6} textAlign='center'>Last Viewed (Reverse Chronological Order)</Table.HeaderCell>
+      </Table.Row>
+
+  const listRows = source.map( (object, i) => {
     return (
       <Table.Row>
         <Table.Cell width={10} textAlign='center'>
@@ -16,7 +21,6 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
         <Table.Cell width={6} textAlign='center'>
           {typeof object.lastViewed === "string" ? new Date(object.lastViewed).toLocaleString() : object.lastViewed.toLocaleString()}
         </Table.Cell>
-
       </Table.Row>
     )
   })
@@ -27,10 +31,7 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
           <Table stackable celled striped>
 
             <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell width={10} textAlign='center'>Artwork Title</Table.HeaderCell>
-                <Table.HeaderCell width={6} textAlign='center'>Last Viewed (Reverse Chronological Order)</Table.HeaderCell>
-              </Table.Row>
+              {headerRow}
             </Table.Header>
 
 

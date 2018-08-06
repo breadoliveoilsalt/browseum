@@ -16,6 +16,7 @@ class FavoritesContainer extends Component {
 
 }
 
+// favorites button ={true}
 
 const mapStateToProps = (state) => {
   return {
