@@ -35,6 +35,7 @@ const ArtViewAndNavigation = (props) => {
                 title={props.currentArtObject.title}
                 addToFavoritesClicked={props.addToFavoritesClicked}
                 id={props.currentArtObject.id}
+                favorited={props.currentArtObject.favorite}
               />
 
               <ArtistSegment
