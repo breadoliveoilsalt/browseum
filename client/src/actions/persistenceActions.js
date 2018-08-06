@@ -31,7 +31,11 @@ export function postUpdate(id, data) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
         })
-    .then(res => console.log("Errors on update to DB, if any:", res))
+    .then(res => {
+      console.log("Response from DB on postUpdate:", res)
+        // I think i need to "return res" in order to use postUpdate (which is a promise)
+        // in another promise -- addToFavoritesClicked.  Note I had to do this above in postInitialObjectData
+      return res})
   }
 }
 

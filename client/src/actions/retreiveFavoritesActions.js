@@ -10,7 +10,7 @@ export function getFavorites() {
 
 export function resetFavorites(data) {
   return ({
-    action: "RESET_FAVORITES",
+    type: "RESET_FAVORITES",
     payload: data
   })
 }

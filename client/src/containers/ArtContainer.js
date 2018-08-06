@@ -21,8 +21,21 @@ class ArtContainer extends Component {
   }
 
   addToFavoritesClicked = (id, event) => {
-    return new Promise( () => this.props.postUpdate(id, {favorite: true}))
-    .then(res => console.log("Promise Resolution:", res))}
+    Promise.resolve(this.props.postUpdate(id, {favorite: true}))
+      .then( () => this.props.getFavorites())
+  }
+
+// The problem may be with getFavorites
+// This was the beginning of something starting to work...then I stopped?
+  // addToFavoritesClicked = (id, event) => {
+  //   Promise.resolve(this.props.postUpdate(id, {favorite: true}))
+  //   .then( () => this.props.getFavorites())
+  //   .then((res) => console.log("addToFavoritesClicked res", res))}
+
+  //
+  // addToFavoritesClicked = (id, event) => {
+  //   return new Promise(this.props.postUpdate(id, {favorite: true}))
+  //   .then( () => this.props.getFavorites())}
 
 
 // This works but I do not get a "res" in the then
