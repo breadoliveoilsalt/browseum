@@ -39,9 +39,23 @@ export function postUpdate(id, data) {
   }
 }
 
-function updateId(id) {
+export function updateSessionObjects(id, data) {
+  return function(dispatch, getState) {
+    dispatch(updateCurrentArtObject(data))
+    const { sessionHistory } = getState()
+    sessionHistory.forEach( (e) => {
+      if (e.id === id) {
+        const newObject = Object.assign(e, data)
+      }
+    })
+    console.log("New sessionHistory", sessionHistory)
+  }
+
+}
+
+export function updateCurrentArtObject(data) {
   return ({
-    type: 'UPDATE_ID',
-    payload: id
+    type: 'UPDATE',
+    payload: data
   })
 }
