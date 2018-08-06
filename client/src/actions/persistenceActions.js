@@ -41,21 +41,30 @@ export function postUpdate(id, data) {
 
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
+      // Update the COA in the store/state
     dispatch(updateCurrentArtObject(data))
+      // Update all copies of the COA in the sessionHistory
     const { sessionHistory } = getState()
     sessionHistory.forEach( (e) => {
       if (e.id === id) {
         const newObject = Object.assign(e, data)
       }
     })
-    console.log("New sessionHistory", sessionHistory)
+    dispatch(reloadSessionHistory(sessionHistory))
   }
 
 }
 
-export function updateCurrentArtObject(data) {
+function updateCurrentArtObject(data) {
   return ({
-    type: 'UPDATE',
+    type: 'UPDATE_COA',
+    payload: data
+  })
+}
+
+function reloadSessionHistory(data) {
+  return ({
+    type: 'RELOAD_SESSION_HISTORY',
     payload: data
   })
 }
