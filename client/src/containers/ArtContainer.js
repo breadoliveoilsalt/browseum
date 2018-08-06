@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { getRandomArt } from '../actions/getRandomArtActions'
 import { navigationButtonClicked } from '../actions/navigationActions'
-import { getFavorites, resetFavorites } from '../actions/retreiveFavoritesActions'
+import { getFavorites } from '../actions/retreiveFavoritesActions'
 import { postUpdate, updateSessionObjects } from '../actions/persistenceActions'
 
 import ErrorMessage from '../components/ErrorMessage'
@@ -65,14 +65,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-// can change all of these to () => dispatch format and then get rid of bindActionCreators
 const mapDispatchToProps = (dispatch) => {
   return {
       getRandomArt: () => dispatch(getRandomArt()),
       navigationButtonClicked: (type, errorMessage) => dispatch(navigationButtonClicked(type, errorMessage)),
       getFavorites: () => dispatch(getFavorites()),
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
-      resetFavorites: (data) => dispatch(resetFavorites(data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data))
    }
 }
