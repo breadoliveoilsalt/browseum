@@ -20,15 +20,15 @@ class ArtContainer extends Component {
     }
   }
 
-
-  addToFavoritesClicked = (id, event) => {
-    this.props.updateSessionObjects(id, {favorite: true})}    
-  // This works as of 180806 244pm
+  // 
   // addToFavoritesClicked = (id, event) => {
-  //   Promise.resolve(this.props.postUpdate(id, {favorite: true}))
-  //     .then( () => this.props.updateSessionObjects(id, {favorite: true}))
-  //     .then( () => this.props.getFavorites())
-  // }
+  //   this.props.updateSessionObjects(id, {favorite: true})}
+  // This works as of 180806 244pm
+  addToFavoritesClicked = (id, event) => {
+    Promise.resolve(this.props.postUpdate(id, {favorite: true}))
+      .then( () => this.props.updateSessionObjects(id, {favorite: true}))
+      .then( () => this.props.getFavorites())
+  }
 
   render() {
     return (
