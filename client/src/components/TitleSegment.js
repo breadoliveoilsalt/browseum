@@ -3,7 +3,7 @@ import React from 'react'
 import { Segment, Button } from 'semantic-ui-react'
 import FavoriteButton from './FavoriteButton'
 
-const TitleSegment = ( {id, title, favorited, addToFavoritesClicked} ) => (
+const TitleSegment = ( {id, title, favorited, addToFavoritesClicked, removeFromFavoritesClicked} ) => (
 
     <div>
       <Segment>
@@ -13,7 +13,7 @@ const TitleSegment = ( {id, title, favorited, addToFavoritesClicked} ) => (
       <Segment align='center' basic>
         <FavoriteButton
           text={favorited ? "Remove from Favorites" : "Add to Favorites"}
-          action={favorited ? null: addToFavoritesClicked}
+          action={favorited ? removeFromFavoritesClicked : addToFavoritesClicked}
           id={id}
         />
       </Segment>

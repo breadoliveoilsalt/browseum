@@ -28,6 +28,12 @@ class ArtContainer extends Component {
       .then( () => this.props.getFavorites())
   }
 
+  removeFromFavoritesClicked = (id, event) => {
+    Promise.resolve(this.props.postUpdate(id, {favorite: false}))
+      .then( () => this.props.updateSessionObjects(id, {favorite: false}))
+      .then( () => this.props.getFavorites())
+  }
+
   render() {
     return (
 
@@ -44,6 +50,7 @@ class ArtContainer extends Component {
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
             addToFavoritesClicked={this.addToFavoritesClicked}
+            removeFromFavoritesClicked={this.removeFromFavoritesClicked}
         />
 
       </div>

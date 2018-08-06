@@ -33,9 +33,10 @@ const ArtViewAndNavigation = (props) => {
           <Grid.Column width={6}>
               <TitleSegment
                 title={props.currentArtObject.title}
-                addToFavoritesClicked={props.addToFavoritesClicked}
                 id={props.currentArtObject.id}
                 favorited={props.currentArtObject.favorite}
+                addToFavoritesClicked={props.addToFavoritesClicked}
+                removeFromFavoritesClicked={props.removeFromFavoritesClicked}
               />
 
               <ArtistSegment
