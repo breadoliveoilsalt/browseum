@@ -6,7 +6,6 @@ export function retreive30DayHistory() {
     return fetch('/api/artobjects')
     .then(res => res.json())
     .then(res => {
-      console.log("Fetch response:", res)
       dispatch(loadExtendedHistory(res))
     })
   }

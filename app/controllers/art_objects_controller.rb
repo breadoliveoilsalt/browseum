@@ -34,6 +34,14 @@ class ArtObjectsController < ApplicationController
     end
   end
 
+  def favorites
+    art_objects = ArtObject.favorites
+    # if !(art_objects.empty?)
+    render :json => art_objects
+    # else
+
+  end
+
   private
 
     # The permitted params conform to the keys in the JavaScript/JSON object sent from the app

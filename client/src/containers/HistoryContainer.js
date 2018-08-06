@@ -109,6 +109,7 @@ const mapStateToProps = (state) => {
   }
 }
 
+// do I need the final () eg in retreive30DayHistory()? To test and update other containers if necessary
 const mapDispatchToProps = (dispatch) => {
   return {
       removeError: () => dispatch(removeError()),

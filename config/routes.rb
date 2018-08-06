@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post "/api/artobjects", to: "art_objects#create"
   get "/api/artobjects", to: "art_objects#index"
   put "/api/artobjects/:id", to: "art_objects#update"
+  get "/api/artobjects/favorites", to: "art_objects#favorites"
 
 end

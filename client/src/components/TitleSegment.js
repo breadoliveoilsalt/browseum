@@ -13,7 +13,9 @@ const TitleSegment = (props) => (
       <Segment align='center' basic>
         <FavoriteButton
           text={"Add to Favorites"}
-          action={null} />
+          action={props.addToFavoritesClicked}
+          id={props.id}
+        />
       </Segment>
 
     </div>
