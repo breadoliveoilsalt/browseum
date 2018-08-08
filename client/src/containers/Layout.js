@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Container, Grid } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 
 import TitleHeader from '../components/TitleHeader'
 import NavBar from '../components/NavBar'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Segment, Button } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 
 const OptionalSegment = (props) => {
 

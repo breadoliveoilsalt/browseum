@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Grid, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
