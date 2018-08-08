@@ -3,7 +3,7 @@ import { Header, Grid } from 'semantic-ui-react'
 
 const TitleHeader = () => (
 
-  <Grid>
+  <Grid stackable>
     <Grid.Row centered>
       <Header as='h1'> Browseum </Header>
     </Grid.Row>
