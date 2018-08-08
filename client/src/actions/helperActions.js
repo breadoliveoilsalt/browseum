@@ -114,8 +114,8 @@ export function condenseRecord(record) {
     commentary: record.commentary,
     labelText: record.labeltext,
     description: record.description,
-    firstViewed: new Date,
-    lastViewed: new Date,
+    firstViewed: new Date(),
+    lastViewed: new Date(),
     favorite: false,
   })
 

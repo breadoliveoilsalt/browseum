@@ -35,7 +35,7 @@ class HistoryContainer extends Component {
     event.preventDefault()
       // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
     const updatedObject = Object.assign({}, object)
-    updatedObject.lastViewed = new Date
+    updatedObject.lastViewed = new Date()
     this.props.postUpdate(updatedObject.id, {lastViewed: updatedObject.lastViewed})
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)

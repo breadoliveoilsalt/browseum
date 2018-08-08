@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import { Grid, Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 
 import { getFavorites } from '../actions/retreiveFavoritesActions'
 import { postUpdate, updateSessionObjects } from '../actions/persistenceActions'
 import { loadCurrentArtObject, addToSessionHistory } from '../actions/helperActions'
 import { removeError } from '../actions/errorActions'
-
 
 import FavoritesList from '../components/FavoritesList'
 
@@ -33,7 +32,7 @@ class FavoritesContainer extends Component {
     event.preventDefault()
       // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
     const updatedObject = Object.assign({}, object)
-    updatedObject.lastViewed = new Date
+    updatedObject.lastViewed = new Date()
     this.props.postUpdate(updatedObject.id, {lastViewed: updatedObject.lastViewed})
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
