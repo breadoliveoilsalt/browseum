@@ -39,6 +39,10 @@ export function postUpdate(id, data) {
   }
 }
 
+  // Once a piece of art is "favorited" or "unfavorited", this updates the
+  // currentArtObject in the store/state and updates all instances
+  // of the art object in the sessionHistory to avoid any confusion as to whether
+  // the art object is favorited or not.
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
     const { currentArtObject, sessionHistory } = getState()

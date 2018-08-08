@@ -48,8 +48,8 @@ class FavoritesContainer extends Component {
       <div className="margin-fix">
 
         <Header
-          as='h2'
-          textAlign='center'
+          as="h2"
+          textAlign="center"
           className="underlined"
           content="Favorites"
         />

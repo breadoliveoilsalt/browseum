@@ -4,13 +4,13 @@ export function getFavorites() {
   return function(dispatch) {
     return fetch('/api/artobjects/favorites')
     .then(response => response.json())
-    .then(response => dispatch(resetFavorites(response)))
+    .then(response => dispatch(reloadFavorites(response)))
   }
 }
 
-export function resetFavorites(data) {
+export function reloadFavorites(data) {
   return ({
-    type: "RESET_FAVORITES",
+    type: "RELOAD_FAVORITES",
     payload: data
   })
 }

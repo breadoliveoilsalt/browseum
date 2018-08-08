@@ -7,7 +7,7 @@ const TitleHeader = () => (
     <Grid.Row centered>
       <Header
         as='h1'
-        content='Browseum' 
+        content='Browseum'
       />
     </Grid.Row>
   </Grid>

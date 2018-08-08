@@ -59,7 +59,7 @@ function findAnOriginalRecord(filteredRecords, sessionHistory) {
 
     // Go through the filteredRecords. Return the first that is not in sessionHistory,
     // i.e., it hasn't been viewed yet, by comparing ids. If all the filteredRecords are in the sessionHistory,
-    // this function returns newRecord as undefined, and an error is thrown in getArtistButtonClicked
+    // this function returns newRecord as undefined, and an error is thrown in getRandomArt()
   for (var i = 0; i < filteredRecords.length; i++) {
     if (arrayOfHistoryIds.includes(filteredRecords[i].objectid)) {
       continue
