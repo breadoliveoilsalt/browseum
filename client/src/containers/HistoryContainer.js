@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-// Can probabaly delete:
-import { bindActionCreators } from 'redux'
 
 import { Header } from 'semantic-ui-react'
 // Remove update last Viewed1
