@@ -5,7 +5,10 @@ const TitleHeader = () => (
 
   <Grid stackable>
     <Grid.Row centered>
-      <Header as='h1'> Browseum </Header>
+      <Header
+        as='h1'
+        content='Browseum' 
+      />
     </Grid.Row>
   </Grid>
 
