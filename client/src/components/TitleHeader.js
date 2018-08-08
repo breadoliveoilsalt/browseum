@@ -2,12 +2,10 @@ import React from 'react'
 import { Header, Grid } from 'semantic-ui-react'
 
 
-const Top = () => (
+const TitleHeader = () => (
 
   <Header as='h1'> Browseum </Header>
 
-
 )
 
-
-export default Top
+export default TitleHeader

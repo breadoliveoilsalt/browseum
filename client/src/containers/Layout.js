@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Container, Grid } from 'semantic-ui-react'
 
-import Top from '../components/Top'
+import TitleHeader from '../components/TitleHeader'
 import NavBar from '../components/NavBar'
 
 import Home from '../components/Home'
@@ -17,12 +17,11 @@ class Layout extends Component {
 
       <Container>
 
-          <Top />
+          <TitleHeader />
 
           <NavBar />
 
           <Switch>
-            {/* Does not work to be able to pass match etc down: <Route path="/" component={NavBar} /> */}
             <Route exact strict path="/" component={Home} />
             <Route exact strict path="/art" component={ArtContainer} />
             <Route exact strict path="/favorites" component={FavoritesContainer} />
