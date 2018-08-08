@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch'
 import * as helpers from './helperActions'
 import { loadError, removeError } from './errorActions'
 import { postInitialObjectData } from './persistenceActions'
-//
+
 export function navigationButtonClicked(type, errorMessage){
 
   return function(dispatch, getState) {
