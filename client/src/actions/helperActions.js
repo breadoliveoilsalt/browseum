@@ -16,13 +16,6 @@ export function addToSessionHistory(record){
   })
 }
 
-export function updateLastViewed() {
-  console.log("helperAction update last viewed")
-  return ({
-    type: 'UPDATE_LAST_VIEWED'
-  })
-}
-
 
 ///// ACTIONS FOR MANAGING RECORD DATA /////
 
