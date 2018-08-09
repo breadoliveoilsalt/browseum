@@ -33,7 +33,6 @@ function fetchBasicData(dispatch) {
         // Have to check that record has primaryimageurl, i.e., an image to load.
         // Despite url search parameters, some records come back a primaryimageurl with a value of null.
       if (record.primaryimageurl) {
-        console.log("Retrieved valid record: ", record)
         return record
       } else {
         throw {errorType: "INVALID_RECORD", data: record}
@@ -207,10 +206,8 @@ export function fillAnyMissingFields(record) {
 
 export function condenseRecord(record) {
 
-  console.log("About to condense record")
-    // COME BACK TO - why do I nee object Assign.  Just do = {}
-    // This is basically what defines what the currentArtObject looks like in the store/state.
-  const newRecord = Object.assign({}, {
+    // This is basically defines what the currentArtObject looks like in the store/state.
+  const newRecord = {
     id: null,
     objectApiId: record.objectid,
     primaryImageUrl: record.primaryimageurl,
@@ -227,8 +224,7 @@ export function condenseRecord(record) {
     firstViewed: new Date(),
     lastViewed: new Date(),
     favorite: false,
-  })
+  }
 
-  console.log("Here is the condensed record:", newRecord)
   return newRecord
 }
