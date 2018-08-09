@@ -30,16 +30,17 @@ class ArtObject < ApplicationRecord
     art_object
   end
 
-  def self.find_and_update_lastViewed(id)
+  def self.find_and_update_lastViewed(objectApiId)
     puts "You are updating lastViewed"
-    art_object = self.find_by(id: id)
+    art_object = self.find_by(objectApiId: objectApiId)
     if !art_object
       puts "You are returning nil"
       return nil
+    else
+      art_object.lastViewed = DateTime.now
+      art_object.save
+      art_object
     end
-    art_object.lastViewed = DateTime.now
-    art_object.save
-    art_object
   end
 
   def self.records_from_last_30_days
