@@ -4,11 +4,11 @@ import { Segment, Button } from 'semantic-ui-react'
 
 const CultureSegment = ( {currentArtObject, navigationButtonClicked} ) => {
 
-  const segmentButton = [
+  const segmentButton = (
     <Segment align='center' basic>
       <Button size='tiny' onClick={() => navigationButtonClicked("culture", "Sorry, the query is returning no further records from that culture. Please try another button.")}> Look for more from this culture </Button>
     </Segment>
-  ]
+  )
 
   return (
     <div>
