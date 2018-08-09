@@ -65,13 +65,6 @@ export function updateSessionObjects(id, data) {
 
 }
 
-// function updateCurrentArtObject(data) {
-//   return ({
-//     type: 'UPDATE_COA',
-//     payload: data
-//   })
-// }
-
 function reloadSessionHistory(data) {
   return ({
     type: 'RELOAD_SESSION_HISTORY',

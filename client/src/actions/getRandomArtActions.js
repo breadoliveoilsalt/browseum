@@ -9,18 +9,20 @@ const apiKey = process.env.REACT_APP_API_KEY
 const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&sort=random&size=1`
 
 export function getRandomArt() {
-  return function(dispatch){
+  return function(dispatch, getState){
       // Had to specify a function below so that fetchBasicData could call itself
       // again in the event the first record retreived from Harvard Museum API
       // did not have an image url.
-    return fetchBasicData(dispatch)
+    return fetchBasicData(dispatch, getState)
     }
   }
 
-function fetchBasicData(dispatch) {
+function fetchBasicData(dispatch, getState) {
 
-  // Consider making this conditional
-  dispatch(removeError())
+    // Note: getState() is not available within fetch
+  if (getState().error.errorOccurred === true) {
+    dispatch(removeError())
+  }
 
   fetch(url)
     .then(response => response.json())
