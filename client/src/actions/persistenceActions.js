@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { loadCurrentArtObject } from './helperActions'
 
   // This sends the COA to the Rails API DB and returns an id from the database, which is then assigned to the COA
 export function postInitialObjectData(record) {
@@ -49,25 +50,27 @@ export function updateSessionObjects(id, data) {
 
       // Update the COA in the store/state
     if (currentArtObject.id === id) {
-      dispatch(updateCurrentArtObject(data))
+      const copyOfCOA = Object.assign({}, currentArtObject, data)
+      dispatch(loadCurrentArtObject(copyOfCOA))
     }
       // Update all copies of the COA in the sessionHistory
-    sessionHistory.forEach( (e) => {
+    const copyOfSessionHistory = [...sessionHistory]
+    copyOfSessionHistory.forEach( (e) => {
       if (e.id === id) {
-        const newObject = Object.assign(e, data)
+        return Object.assign(e, data)
       }
     })
-    dispatch(reloadSessionHistory(sessionHistory))
+    dispatch(reloadSessionHistory(copyOfSessionHistory))
   }
 
 }
 
-function updateCurrentArtObject(data) {
-  return ({
-    type: 'UPDATE_COA',
-    payload: data
-  })
-}
+// function updateCurrentArtObject(data) {
+//   return ({
+//     type: 'UPDATE_COA',
+//     payload: data
+//   })
+// }
 
 function reloadSessionHistory(data) {
   return ({
