@@ -1,27 +1,23 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
 
 import { Header } from 'semantic-ui-react'
-// Remove update last Viewed1
-// Should be something like sessonHelperActions, no?
-import { removeError, loadCurrentArtObject, addToSessionHistory, resetExtendedHistory } from '../actions/basicActionCreators'
-// import { removeError } from '../actions/errorActions'
 
+import { removeError, loadCurrentArtObject, addToSessionHistory, resetExtendedHistory } from '../actions/basicActionCreators'
 import { postInitialObjectData, postUpdate, get30DayHistory } from '../actions/serverApiThunks'
-// import {  } from '../actions/retreiveHistoryActions'
 
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
 
 class HistoryContainer extends Component {
 
-    // The goal here is to ensure that if the user navigates to /history,
+    // The goal with the constructor below is to ensure that if the user navigates to /history,
     // the user sees the sessionHistory, regardless of whether the user has previously clicked
     // the button to get the extended history. Effectively, every time the user navigates away from
-    // /history after requesting extended history, the extendedHistory state is reset.  Thanks to the
-    // conditional rendering below, the user then sees only the sessionHistory.
-    // I went this path to avoid making requests to the Rails API DB everytime a user visits /history.
+    // /history after requesting extended history, the extendedHistory state is reset to an empty array.
+    // Thanks to the conditional rendering below, the user then sees only the sessionHistory
+    // when revisiting /history.  I went this path to experiment and avoid making requests to the
+    // Rails API DB everytime a user visits /history.
   constructor(props) {
     super(props)
     this.props.history.listen((location, action) => {
@@ -96,11 +92,8 @@ class HistoryContainer extends Component {
   }
 }
 
-// Remember I can remove some old stuff here, like currentArtObject, and error probably
-
 const mapStateToProps = (state) => {
   return {
-    currentArtObject: state.currentArtObject,
     error: state.error,
     sessionHistory: state.sessionHistory,
     extendedHistory: state.extendedHistory

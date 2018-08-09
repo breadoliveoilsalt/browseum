@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
-// import { navigationButtonClicked } from '../actions/navigationActions'
-// import { getFavorites } from '../actions/retreiveFavoritesActions'
 import { postUpdate, updateSessionObjects, getFavorites } from '../actions/serverApiThunks'
 
 import ErrorMessage from '../components/ErrorMessage'
@@ -19,9 +17,6 @@ class ArtContainer extends Component {
     }
   }
 
-// Upto : now change button based on whether it's a favorite or not
-
-  // This works as of 180806 334pm
   addToFavoritesClicked = (id, event) => {
     Promise.resolve(this.props.postUpdate(id, {favorite: true}))
       .then( () => this.props.updateSessionObjects(id, {favorite: true}))

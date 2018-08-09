@@ -5,7 +5,6 @@ import { Header } from 'semantic-ui-react'
 
 import { getFavorites, postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
 import { removeError, loadCurrentArtObject, addToSessionHistory } from '../actions/basicActionCreators'
-// import { removeError } from '../actions/errorActions'
 
 import FavoritesList from '../components/FavoritesList'
 
@@ -17,9 +16,6 @@ class FavoritesContainer extends Component {
     }
   }
 
-
-  // Really consider -- much of this is so duplicative of History Container and HistoryList.  How can I refactor
-  // To avoid the copy and paste?
   removeFromFavoritesClicked = (id, event) => {
     Promise.resolve(this.props.postUpdate(id, {favorite: false}))
       .then( () => this.props.updateSessionObjects(id, {favorite: false}))
