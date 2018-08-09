@@ -29,7 +29,6 @@ export function reloadFavorites(data) {
   })
 }
 
-
 //// HISTORY HANDLING ////
 export function addToSessionHistory(record){
   return ({

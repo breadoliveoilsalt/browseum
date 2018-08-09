@@ -27,7 +27,7 @@ function fetchBasicData(dispatch, getState) {
     .then(response => response.json())
     .then(response => response.records[0])
     .then(record => {
-        // Have to check that record has primaryimageurl, i.e., an image to load.
+        // This checks that record has primaryimageurl, i.e., an image to load.
         // Despite url search parameters, some records come back a primaryimageurl with a value of null.
       if (record.primaryimageurl) {
         return record
