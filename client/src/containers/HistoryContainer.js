@@ -39,8 +39,9 @@ class HistoryContainer extends Component {
     this.props.postUpdate(updatedObject.id, {lastViewed: updatedObject.lastViewed})
     this.props.loadCurrentArtObject(updatedObject)
     this.props.addToSessionHistory(updatedObject)
-      // try to make this conditional -- global
-    this.props.removeError()
+    if (this.props.error.errorOccurred) {
+      this.props.removeError()
+    }
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
   }
