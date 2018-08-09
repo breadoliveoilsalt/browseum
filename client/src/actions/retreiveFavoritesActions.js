@@ -1,3 +1,5 @@
+//// copied ////
+
 import fetch from 'isomorphic-fetch'
 
 export function getFavorites() {

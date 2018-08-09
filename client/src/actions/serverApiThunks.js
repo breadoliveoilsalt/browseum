@@ -1,7 +1,7 @@
-//// copied ////
-
 import fetch from 'isomorphic-fetch'
-import { loadCurrentArtObject } from './helperActions'
+// import { loadCurrentArtObject } from './helperActions'
+import { loadCurrentArtObject, reloadFavorites, loadExtendedHistory, reloadSessionHistory } from './basicActionCreators'
+
 
   // This sends the COA to the Rails API DB and returns an id from the database, which is then assigned to the COA
 export function postInitialObjectData(record) {
@@ -42,11 +42,33 @@ export function postUpdate(id, data) {
   }
 }
 
-  // Once a piece of art is "favorited" or "unfavorited", this updates the
-  // currentArtObject in the store/state and updates all instances
-  // of the art object in the sessionHistory to avoid any confusion as to whether
-  // the art object is favorited or not.
-  //
+
+export function getFavorites() {
+  return function(dispatch) {
+    return fetch('/api/artobjects/favorites')
+    .then(response => response.json())
+    .then(response => dispatch(reloadFavorites(response)))
+  }
+}
+
+/// change this to get
+export function retreive30DayHistory() {
+  return function(dispatch) {
+    console.log("About to fetch")
+    return fetch('/api/artobjects')
+    .then(res => res.json())
+    .then(res => {
+      dispatch(loadExtendedHistory(res))
+    })
+  }
+}
+
+
+// Once a piece of art is "favorited" or "unfavorited", this updates the
+// currentArtObject in the store/state and updates all instances
+// of the art object in the sessionHistory to avoid any confusion as to whether
+// the art object is favorited or not.
+//
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
     const { currentArtObject, sessionHistory } = getState()
@@ -65,12 +87,4 @@ export function updateSessionObjects(id, data) {
     })
     dispatch(reloadSessionHistory(copyOfSessionHistory))
   }
-
-}
-
-function reloadSessionHistory(data) {
-  return ({
-    type: 'RELOAD_SESSION_HISTORY',
-    payload: data
-  })
 }

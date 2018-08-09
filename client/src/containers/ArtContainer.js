@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import { getRandomArt } from '../actions/getRandomArtActions'
-import { navigationButtonClicked } from '../actions/navigationActions'
-import { getFavorites } from '../actions/retreiveFavoritesActions'
-import { postUpdate, updateSessionObjects } from '../actions/persistenceActions'
+import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
+// import { navigationButtonClicked } from '../actions/navigationActions'
+// import { getFavorites } from '../actions/retreiveFavoritesActions'
+import { postUpdate, updateSessionObjects, getFavorites } from '../actions/serverApiThunks'
 
 import ErrorMessage from '../components/ErrorMessage'
 import TopLevelButton from '../components/TopLevelButton'

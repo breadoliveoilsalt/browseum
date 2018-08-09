@@ -1,3 +1,5 @@
+//// COPIED ////
+
 import fetch from 'isomorphic-fetch'
 import {loadError, removeError} from './errorActions'
 import { postInitialObjectData } from './persistenceActions'
