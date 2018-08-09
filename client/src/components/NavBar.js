@@ -14,5 +14,4 @@ const NavBar = () => (
     </Grid>
   )
 
-
 export default NavBar
