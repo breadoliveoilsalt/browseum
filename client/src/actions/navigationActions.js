@@ -13,8 +13,10 @@ export function navigationButtonClicked(type, errorMessage){
 
     const { searchKey, searchValue } = getKeyAndValue(type, currentArtObject)
 
-    const url = `https://api.harvardartmuseums.org/object?apikey=3ff0e030-8144-11e8-b372-95bc18ef563e&${searchKey}=${searchValue}&sort=random&hasimage=1&size=50`
+    const apiKey = process.env.REACT_APP_API_KEY
 
+    const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&${searchKey}=${searchValue}&sort=random&hasimage=1&size=50`
+    
     if (error.errorOccurred){
       dispatch(removeError())
     }
