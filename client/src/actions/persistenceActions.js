@@ -44,6 +44,7 @@ export function postUpdate(id, data) {
   // currentArtObject in the store/state and updates all instances
   // of the art object in the sessionHistory to avoid any confusion as to whether
   // the art object is favorited or not.
+  //
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
     const { currentArtObject, sessionHistory } = getState()
