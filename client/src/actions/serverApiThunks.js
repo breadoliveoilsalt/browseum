@@ -42,7 +42,6 @@ export function postUpdate(id, data) {
   }
 }
 
-
 export function getFavorites() {
   return function(dispatch) {
     return fetch('/api/artobjects/favorites')
@@ -51,8 +50,7 @@ export function getFavorites() {
   }
 }
 
-/// change this to get
-export function retreive30DayHistory() {
+export function get30DayHistory() {
   return function(dispatch) {
     console.log("About to fetch")
     return fetch('/api/artobjects')
@@ -63,12 +61,10 @@ export function retreive30DayHistory() {
   }
 }
 
-
-// Once a piece of art is "favorited" or "unfavorited", this updates the
-// currentArtObject in the store/state and updates all instances
-// of the art object in the sessionHistory to avoid any confusion as to whether
-// the art object is favorited or not.
-//
+  // Once a piece of art is "favorited" or "unfavorited", this updates the
+  // currentArtObject in the store/state and updates all instances
+  // of the art object in the sessionHistory to avoid any confusion as to whether
+  // the art object is favorited or not.
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
     const { currentArtObject, sessionHistory } = getState()

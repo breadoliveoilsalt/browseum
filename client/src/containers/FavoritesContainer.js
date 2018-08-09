@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
 
 import { Header } from 'semantic-ui-react'
 
-import { getFavorites } from '../actions/retreiveFavoritesActions'
-import { postUpdate, updateSessionObjects } from '../actions/persistenceActions'
-import { loadCurrentArtObject, addToSessionHistory } from '../actions/helperActions'
-import { removeError } from '../actions/errorActions'
+import { getFavorites, postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
+import { removeError, loadCurrentArtObject, addToSessionHistory } from '../actions/basicActionCreators'
+// import { removeError } from '../actions/errorActions'
 
 import FavoritesList from '../components/FavoritesList'
 

@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 import { Header } from 'semantic-ui-react'
 // Remove update last Viewed1
 // Should be something like sessonHelperActions, no?
-import { loadCurrentArtObject, addToSessionHistory } from '../actions/helperActions'
-import { removeError } from '../actions/errorActions'
+import { removeError, loadCurrentArtObject, addToSessionHistory, resetExtendedHistory } from '../actions/basicActionCreators'
+// import { removeError } from '../actions/errorActions'
 
-import { postInitialObjectData, postUpdate } from '../actions/persistenceActions'
-import { retreive30DayHistory, resetExtendedHistory } from '../actions/retreiveHistoryActions'
+import { postInitialObjectData, postUpdate, get30DayHistory } from '../actions/serverApiThunks'
+// import {  } from '../actions/retreiveHistoryActions'
 
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
@@ -63,7 +63,7 @@ class HistoryContainer extends Component {
 
           <TopLevelButton
             buttonText={"See Art Viewed During the Last 30 Days"}
-            action={this.props.retreive30DayHistory}
+            action={this.props.get30DayHistory}
             />
 
           <HistoryList
@@ -107,7 +107,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-// do I need the final () eg in retreive30DayHistory()? To test and update other containers if necessary
+// do I need the final () eg in get30DayHistory()? To test and update other containers if necessary
 const mapDispatchToProps = (dispatch) => {
   return {
       removeError: () => dispatch(removeError()),
@@ -115,7 +115,7 @@ const mapDispatchToProps = (dispatch) => {
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       postInitialObjectData: (data) => dispatch(postInitialObjectData(data)),
-      retreive30DayHistory: () => dispatch(retreive30DayHistory()),
+      get30DayHistory: () => dispatch(get30DayHistory()),
       resetExtendedHistory: () => dispatch(resetExtendedHistory())
    }
 }
