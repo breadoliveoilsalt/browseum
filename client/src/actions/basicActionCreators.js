@@ -13,7 +13,6 @@ export function removeError() {
   }
 }
 
-
 //// CURRENT ART OBJECT HANDLING ////
 export function loadCurrentArtObject(record) {
   return ({
@@ -21,7 +20,6 @@ export function loadCurrentArtObject(record) {
     payload: record
   })
 }
-
 
 //// FAVORITES HANDLING ////
 export function reloadFavorites(data) {
