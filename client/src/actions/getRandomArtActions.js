@@ -6,10 +6,10 @@ import * as helpers from './helperActions'
 const apiKey = process.env.REACT_APP_API_KEY
 
 // results - 209378 -- as of 180729, this has been my standard url
-// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&sort=random&size=1`
+const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&sort=random&size=1`
 
 // Test URL
-const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=27644&sort=random&size=1`
+// const url = `https://api.harvardartmuseums.org/object?apikey=${apiKey}&person=27644&sort=random&size=1`
 
 export function getRandomArt() {
   return function(dispatch){
