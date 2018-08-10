@@ -36,7 +36,7 @@ class FavoritesContainer extends Component {
       // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
     this.props.history.push("/art")
   }
-//
+
   render() {
     return (
       <div className="margin-fix">

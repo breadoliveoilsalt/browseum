@@ -65,7 +65,7 @@ class HistoryContainer extends Component {
           <HistoryList
             source={this.props.sessionHistory.slice().reverse()}
               // ?sort(( a, b ) => b.lastViewed > a.lastViewed )}
-            historyLinkClicked={this.historyLinkClicked}
+            historyLinkClicked={this.props.historyLinkClicked}
           />
 
         </div>
