@@ -6,9 +6,9 @@ import ArtistSegment from './ArtistSegment'
 import TitleSegment from './TitleSegment'
 import DatedSegment from './DatedSegment'
 import CultureSegment from './CultureSegment'
-import OptionalSegment from './OptionalSegment'
+import OptionalInfoSegment from './OptionalInfoSegment'
 
-// ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}
+// ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}Info
 // searchButtonFunction={} altText={"Unattributed"}
 
 // consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used.
@@ -53,22 +53,22 @@ const ArtViewAndNavigation = (props) => {
                 currentArtObject={props.currentArtObject}
                 navigationButtonClicked={props.navigationButtonClicked}/>
 
-              <OptionalSegment
+              <OptionalInfoSegment
                 field={props.currentArtObject.medium}
                 title={"Medium"}
                 text={props.currentArtObject.medium} />
 
-              <OptionalSegment
+              <OptionalInfoSegment
                 field={props.currentArtObject.description}
                 title={"Short Description"}
                 text={props.currentArtObject.description} />
 
-              <OptionalSegment
+              <OptionalInfoSegment
                 field={props.currentArtObject.labelText}
                 title={"Wall Label Text"}
                 text={props.currentArtObject.labelText} />
 
-              <OptionalSegment
+              <OptionalInfoSegment
                 field={props.currentArtObject.commentary}
                 title={"Commentary"}
                 text={props.currentArtObject.commentary} />
