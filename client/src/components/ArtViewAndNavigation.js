@@ -2,11 +2,14 @@ import React from 'react'
 
 import { Grid, Image } from 'semantic-ui-react'
 
-import ArtistSegment from './ArtistSegment'
 import TitleSegment from './TitleSegment'
+import MandatoryInfoSegment from './MandatoryInfoSegment'
+import OptionalInfoSegment from './OptionalInfoSegment'
+import ArtistSegment from './ArtistSegment'
+
 import DatedSegment from './DatedSegment'
 import CultureSegment from './CultureSegment'
-import OptionalInfoSegment from './OptionalInfoSegment'
+
 
 // ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}Info
 // searchButtonFunction={} altText={"Unattributed"}
@@ -18,7 +21,11 @@ import OptionalInfoSegment from './OptionalInfoSegment'
 // {/* buttonConditionedOn */}
 // need a buttonLabel, category (title)
 // altText if there is no key
-
+//
+// <ArtistSegment
+//   currentArtObject={props.currentArtObject}
+//   navigationButtonClicked={props.navigationButtonClicked}
+// />
 
 // Maybe make the image a component that can show a loader
 const ArtViewAndNavigation = (props) => {
@@ -39,9 +46,14 @@ const ArtViewAndNavigation = (props) => {
                 removeFromFavoritesClicked={props.removeFromFavoritesClicked}
               />
 
-              <ArtistSegment
-                currentArtObject={props.currentArtObject}
+
+              <MandatoryInfoSegment
+                field={props.currentArtObject.artist}
+                title={"Artist"}
+                buttonText={"Look for more by this artist"}
                 navigationButtonClicked={props.navigationButtonClicked}
+                type={"artist"}
+                errorMessage={"Sorry, the query is returning no further records from that artist. Please try another button."}
               />
 
               <DatedSegment

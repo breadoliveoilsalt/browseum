@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Segment } from 'semantic-ui-react'
 
-const OptionalSegment = ( {field, title, text}) => {
+const OptionalSegment = ( {field, title, text} ) => {
 
   if (field) {
     return (
