@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Grid, Image } from 'semantic-ui-react'
 
+import ArtImageDisplay from './ArtImageDisplay'
 import TitleAndFavoriteSegment from './TitleAndFavoriteSegment'
 import MandatoryInfoSegment from './MandatoryInfoSegment'
 import OptionalInfoSegment from './OptionalInfoSegment'
@@ -12,7 +13,7 @@ const ArtViewAndNavigation = (props) => {
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={10}>
-              <Image src={props.currentArtObject.primaryImageUrl} size='large' centered />
+              <ArtImageDisplay source={props.currentArtObject.primaryImageUrl} />
           </Grid.Column>
 
           <Grid.Column width={6}>

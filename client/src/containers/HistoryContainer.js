@@ -29,7 +29,7 @@ class HistoryContainer extends Component {
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
-      // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason
+      // Need this otherwise the prior sessionHistory entry gets an updated lastViewed as well for some reason:
     const updatedObject = Object.assign({}, object)
     updatedObject.lastViewed = new Date()
     this.props.postUpdate(updatedObject.id, {lastViewed: updatedObject.lastViewed})
@@ -38,7 +38,7 @@ class HistoryContainer extends Component {
     if (this.props.error.errorOccurred) {
       this.props.removeError()
     }
-      // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed
+      // this.props.history is available b/c this component is a direct child of a <Route>. {withRouter} is not needed:
     this.props.history.push("/art")
   }
 
