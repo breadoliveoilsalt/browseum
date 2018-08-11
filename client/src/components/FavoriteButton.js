@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Button } from 'semantic-ui-react'
 
-// Rem - I moved "fluid" from original draft below
 const FavoriteButton = ( {text, action, id} ) => (
 
       <Button
