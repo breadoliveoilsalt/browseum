@@ -5,9 +5,9 @@ import { Grid, Image } from 'semantic-ui-react'
 import TitleSegment from './TitleSegment'
 import MandatoryInfoSegment from './MandatoryInfoSegment'
 import OptionalInfoSegment from './OptionalInfoSegment'
-import ArtistSegment from './ArtistSegment'
+// import ArtistSegment from './ArtistSegment'
 
-import DatedSegment from './DatedSegment'
+// import DatedSegment from './DatedSegment'
 import CultureSegment from './CultureSegment'
 
 
@@ -23,6 +23,11 @@ import CultureSegment from './CultureSegment'
 // altText if there is no key
 //
 // <ArtistSegment
+//   currentArtObject={props.currentArtObject}
+//   navigationButtonClicked={props.navigationButtonClicked}
+// />
+//
+// <DatedSegment
 //   currentArtObject={props.currentArtObject}
 //   navigationButtonClicked={props.navigationButtonClicked}
 // />
@@ -46,20 +51,26 @@ const ArtViewAndNavigation = (props) => {
                 removeFromFavoritesClicked={props.removeFromFavoritesClicked}
               />
 
-
               <MandatoryInfoSegment
                 field={props.currentArtObject.artist}
                 title={"Artist"}
                 buttonText={"Look for more by this artist"}
+                buttonCondition={props.currentArtObject.artist}
                 navigationButtonClicked={props.navigationButtonClicked}
                 type={"artist"}
                 errorMessage={"Sorry, the query is returning no further records from that artist. Please try another button."}
               />
 
-              <DatedSegment
-                currentArtObject={props.currentArtObject}
+              <MandatoryInfoSegment
+                field={props.currentArtObject.dated}
+                title={"Dated"}
+                buttonText={"Look for more from this time period"}
+                buttonCondition={props.currentArtObject.century}
                 navigationButtonClicked={props.navigationButtonClicked}
+                type={"date"}
+                errorMessage={"Sorry, the query is returning no further records from that time period. Please try another button."}
               />
+
 
               <CultureSegment
                 currentArtObject={props.currentArtObject}
