@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Grid, Image } from 'semantic-ui-react'
 
-import TitleSegment from './TitleSegment'
+import TitleAndFavoriteSegment from './TitleAndFavoriteSegment'
 import MandatoryInfoSegment from './MandatoryInfoSegment'
 import OptionalInfoSegment from './OptionalInfoSegment'
 
@@ -16,7 +16,7 @@ const ArtViewAndNavigation = (props) => {
           </Grid.Column>
 
           <Grid.Column width={6}>
-              <TitleSegment
+              <TitleAndFavoriteSegment
                 title={props.currentArtObject.title}
                 id={props.currentArtObject.id}
                 favorited={props.currentArtObject.favorite}

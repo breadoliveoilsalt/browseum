@@ -3,7 +3,7 @@ import React from 'react'
 import { Segment } from 'semantic-ui-react'
 import FavoriteButton from './FavoriteButton'
 
-const TitleSegment = ( {id, title, favorited, addToFavoritesClicked, removeFromFavoritesClicked} ) => (
+const TitleAndFavoriteSegment = ( {id, title, favorited, addToFavoritesClicked, removeFromFavoritesClicked} ) => (
 
     <div>
       <Segment>
@@ -22,4 +22,4 @@ const TitleSegment = ( {id, title, favorited, addToFavoritesClicked, removeFromF
 
 )
 
-export default TitleSegment
+export default TitleAndFavoriteSegment
