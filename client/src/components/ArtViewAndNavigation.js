@@ -5,38 +5,7 @@ import { Grid, Image } from 'semantic-ui-react'
 import TitleSegment from './TitleSegment'
 import MandatoryInfoSegment from './MandatoryInfoSegment'
 import OptionalInfoSegment from './OptionalInfoSegment'
-// import ArtistSegment from './ArtistSegment'
 
-// import DatedSegment from './DatedSegment'
-// import CultureSegment from './CultureSegment'
-
-
-// ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}Info
-// searchButtonFunction={} altText={"Unattributed"}
-
-// consider just passing currentArtObject into the various mandatory Segments...eg, in ArtistSegment, delete all the crap not used.
-//
-// Notes on DatedSegment:
-// {/* can't just have this -- need full object to test century and get dated info -- dated={props.currentArtObject.dated} */}
-// {/* buttonConditionedOn */}
-// need a buttonLabel, category (title)
-// altText if there is no key
-//
-// <ArtistSegment
-//   currentArtObject={props.currentArtObject}
-//   navigationButtonClicked={props.navigationButtonClicked}
-// />
-//
-// <DatedSegment
-//   currentArtObject={props.currentArtObject}
-//   navigationButtonClicked={props.navigationButtonClicked}
-// />
-//
-// <CultureSegment
-//   currentArtObject={props.currentArtObject}
-//   navigationButtonClicked={props.navigationButtonClicked}/>
-
-// Maybe make the image a component that can show a loader
 const ArtViewAndNavigation = (props) => {
 
   return (
