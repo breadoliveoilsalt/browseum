@@ -64,8 +64,7 @@ class HistoryContainer extends Component {
 
           <HistoryList
             source={this.props.sessionHistory.slice().reverse()}
-              // ?sort(( a, b ) => b.lastViewed > a.lastViewed )}
-            historyLinkClicked={this.props.historyLinkClicked}
+            historyLinkClicked={this.historyLinkClicked}
           />
 
         </div>
@@ -100,7 +99,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-// do I need the final () eg in get30DayHistory()? To test and update other containers if necessary
 const mapDispatchToProps = (dispatch) => {
   return {
       removeError: () => dispatch(removeError()),
