@@ -17,7 +17,6 @@ export function postInitialObjectData(record) {
     .then(res => res.json())
     .then(res => {
       if (res.errors) {
-        console.log("There were some errors with the server:", res.errors)
         throw res.errors
       } else {
         return res
