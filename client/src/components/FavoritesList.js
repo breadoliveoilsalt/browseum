@@ -6,8 +6,6 @@ import FavoriteButton from './FavoriteButton'
 
 const FavoritesList = ( {source, historyLinkClicked, removeFromFavoritesClicked} ) => {
 
-  console.log("props", source, historyLinkClicked, removeFromFavoritesClicked)
-
   const headerRow =
       <Table.Row>
           <Table.HeaderCell width={8} textAlign='center'>Artwork Title</Table.HeaderCell>
