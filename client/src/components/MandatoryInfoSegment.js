@@ -5,7 +5,7 @@ import { Segment, Button } from 'semantic-ui-react'
 // title
 // text
 
-const MandatoryInfoSegment = ( {field, title, buttonText, navigationButtonClicked, type, errorMessage} ) => {
+const MandatoryInfoSegment = ( {field, title, buttonText, buttonCondition, navigationButtonClicked, type, errorMessage} ) => {
 
     const segmentButton = (
       <Segment align='center' basic>
@@ -20,7 +20,7 @@ const MandatoryInfoSegment = ( {field, title, buttonText, navigationButtonClicke
           <span className="bold"> {title}: </span> {field ? field : "Unknown"}
         </Segment>
 
-        { field ? segmentButton : null}
+        { buttonCondition ? segmentButton : null}
 
       </div>
     )

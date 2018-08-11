@@ -8,7 +8,7 @@ import OptionalInfoSegment from './OptionalInfoSegment'
 // import ArtistSegment from './ArtistSegment'
 
 // import DatedSegment from './DatedSegment'
-import CultureSegment from './CultureSegment'
+// import CultureSegment from './CultureSegment'
 
 
 // ArtInfoSegment -- source={currentArtObject.somthing} optional={true} boldText={} plainText={} searchButton={true} searchButtonTitle={}Info
@@ -31,6 +31,10 @@ import CultureSegment from './CultureSegment'
 //   currentArtObject={props.currentArtObject}
 //   navigationButtonClicked={props.navigationButtonClicked}
 // />
+//
+// <CultureSegment
+//   currentArtObject={props.currentArtObject}
+//   navigationButtonClicked={props.navigationButtonClicked}/>
 
 // Maybe make the image a component that can show a loader
 const ArtViewAndNavigation = (props) => {
@@ -71,10 +75,15 @@ const ArtViewAndNavigation = (props) => {
                 errorMessage={"Sorry, the query is returning no further records from that time period. Please try another button."}
               />
 
-
-              <CultureSegment
-                currentArtObject={props.currentArtObject}
-                navigationButtonClicked={props.navigationButtonClicked}/>
+              <MandatoryInfoSegment
+                field={props.currentArtObject.culture}
+                title={"Culture"}
+                buttonText={"Look for more from this culture"}
+                buttonCondition={props.currentArtObject.culture}
+                navigationButtonClicked={props.navigationButtonClicked}
+                type={"culture"}
+                errorMessage={"Sorry, the query is returning no further records from that culture. Please try another button."}
+              />
 
               <OptionalInfoSegment
                 field={props.currentArtObject.medium}
