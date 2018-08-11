@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Header } from 'semantic-ui-react'
 
 import { removeError, loadCurrentArtObject, addToSessionHistory, resetExtendedHistory } from '../actions/basicActionCreators'
-import { postInitialObjectData, postUpdate, get30DayHistory } from '../actions/serverApiThunks'
+import { postUpdate, get30DayHistory } from '../actions/serverApiThunks'
 
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
@@ -105,7 +105,6 @@ const mapDispatchToProps = (dispatch) => {
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
-      postInitialObjectData: (data) => dispatch(postInitialObjectData(data)),
       get30DayHistory: () => dispatch(get30DayHistory()),
       resetExtendedHistory: () => dispatch(resetExtendedHistory())
    }
