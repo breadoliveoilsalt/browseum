@@ -8,7 +8,7 @@ class Home extends Component {
 
         <Container text className="margin-fix">
 
-            <Header as='h2' textAlign='center' className="underlined"> Welcome to Browseum </Header>
+            <Header as="h2" textAlign="center" className="underlined"> Welcome to Browseum </Header>
 
               <p>
                 Want to sift leisurely through pieces of famous art? Browseum has you covered. It randomly selects and displays artwork from the Harvard Art Museums.
@@ -19,7 +19,7 @@ class Home extends Component {
               </p>
 
               <p>
-                Like what you see? Feel free to add it to your favorites. Or, at the click of a button, see if other random artwork is available from the artist, or from the artist's time period or culture.
+                Like what you see? Feel free to add it to your favorites. Or, at the click of a button, see if other random artwork is available from the artist, or from the artist's time period or culture. If you want to revisit seeing something you liked that is not a "favorite", you can find it in your browsing history, up to 30 days in the past.  
               </p>
 
               <p>

@@ -20,7 +20,7 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
         <Table.Cell width={6} textAlign='center'>
             {/* This ternary operator is needed to display correct info whether source is
               record from Rails API (a string) or the sessionHistory */}
-          {typeof object.lastViewed === "string" ? new Date(object.lastViewed).toLocaleString() : object.lastViewed.toLocaleString()}
+          {typeof object.lastViewed === 'string' ? new Date(object.lastViewed).toLocaleString() : object.lastViewed.toLocaleString()}
         </Table.Cell>
       </Table.Row>
     )
@@ -35,7 +35,6 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
               {headerRow}
             </Table.Header>
 
-
             <Table.Body>
               {listRows}
             </Table.Body>
@@ -45,6 +44,5 @@ const HistoryList = ( {source, historyLinkClicked} ) => {
       </Grid>
   )
 }
-
 
 export default HistoryList

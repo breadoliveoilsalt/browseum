@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Segment, Image, Dimmer, Loader } from 'semantic-ui-react'
 
 class ArtImageDisplay extends Component {

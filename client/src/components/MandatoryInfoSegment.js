@@ -24,7 +24,7 @@ const MandatoryInfoSegment = ( {
           <span className="bold"> {title}: </span> {field ? field : "Unknown"}
         </Segment>
 
-        { buttonCondition ? segmentButton : null}
+        { buttonCondition ? segmentButton : null }
 
       </div>
     )

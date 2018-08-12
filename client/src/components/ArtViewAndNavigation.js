@@ -7,73 +7,73 @@ import TitleAndFavoriteSegment from './TitleAndFavoriteSegment'
 import MandatoryInfoSegment from './MandatoryInfoSegment'
 import OptionalInfoSegment from './OptionalInfoSegment'
 
-const ArtViewAndNavigation = (props) => {
+const ArtViewAndNavigation = ( {currentArtObject, navigationButtonClicked, addToFavoritesClicked, removeFromFavoritesClicked} ) => {
 
   return (
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={10}>
-              <ArtImageDisplay source={props.currentArtObject.primaryImageUrl} />
+              <ArtImageDisplay source={currentArtObject.primaryImageUrl} />
           </Grid.Column>
 
           <Grid.Column width={6}>
               <TitleAndFavoriteSegment
-                title={props.currentArtObject.title}
-                id={props.currentArtObject.id}
-                favorited={props.currentArtObject.favorite}
-                addToFavoritesClicked={props.addToFavoritesClicked}
-                removeFromFavoritesClicked={props.removeFromFavoritesClicked}
+                title={currentArtObject.title}
+                id={currentArtObject.id}
+                favorited={currentArtObject.favorite}
+                addToFavoritesClicked={addToFavoritesClicked}
+                removeFromFavoritesClicked={removeFromFavoritesClicked}
               />
 
               <MandatoryInfoSegment
-                field={props.currentArtObject.artist}
+                field={currentArtObject.artist}
                 title={"Artist"}
                 buttonText={"Look for more by this artist"}
-                buttonCondition={props.currentArtObject.artist}
-                navigationButtonClicked={props.navigationButtonClicked}
+                buttonCondition={currentArtObject.artist}
+                navigationButtonClicked={navigationButtonClicked}
                 type={"artist"}
                 errorMessage={"Sorry, the query is returning no further records from that artist. Please try another button."}
               />
 
               <MandatoryInfoSegment
-                field={props.currentArtObject.dated}
+                field={currentArtObject.dated}
                 title={"Dated"}
                 buttonText={"Look for more from this time period"}
-                buttonCondition={props.currentArtObject.century}
-                navigationButtonClicked={props.navigationButtonClicked}
+                buttonCondition={currentArtObject.century}
+                navigationButtonClicked={navigationButtonClicked}
                 type={"date"}
                 errorMessage={"Sorry, the query is returning no further records from that time period. Please try another button."}
               />
 
               <MandatoryInfoSegment
-                field={props.currentArtObject.culture}
+                field={currentArtObject.culture}
                 title={"Culture"}
                 buttonText={"Look for more from this culture"}
-                buttonCondition={props.currentArtObject.culture}
-                navigationButtonClicked={props.navigationButtonClicked}
+                buttonCondition={currentArtObject.culture}
+                navigationButtonClicked={navigationButtonClicked}
                 type={"culture"}
                 errorMessage={"Sorry, the query is returning no further records from that culture. Please try another button."}
               />
 
               <OptionalInfoSegment
-                field={props.currentArtObject.medium}
+                field={currentArtObject.medium}
                 title={"Medium"}
-                text={props.currentArtObject.medium} />
+                text={currentArtObject.medium} />
 
               <OptionalInfoSegment
-                field={props.currentArtObject.description}
+                field={currentArtObject.description}
                 title={"Short Description"}
-                text={props.currentArtObject.description} />
+                text={currentArtObject.description} />
 
               <OptionalInfoSegment
-                field={props.currentArtObject.labelText}
+                field={currentArtObject.labelText}
                 title={"Wall Label Text"}
-                text={props.currentArtObject.labelText} />
+                text={currentArtObject.labelText} />
 
               <OptionalInfoSegment
-                field={props.currentArtObject.commentary}
+                field={currentArtObject.commentary}
                 title={"Commentary"}
-                text={props.currentArtObject.commentary} />
+                text={currentArtObject.commentary} />
 
           </Grid.Column>
         </Grid.Row>

@@ -45,7 +45,6 @@ const FavoritesList = ( {source, historyLinkClicked, removeFromFavoritesClicked}
               {headerRow}
             </Table.Header>
 
-
             <Table.Body>
               {listRows}
             </Table.Body>
@@ -55,6 +54,5 @@ const FavoritesList = ( {source, historyLinkClicked, removeFromFavoritesClicked}
       </Grid>
   )
 }
-
 
 export default FavoritesList
