@@ -46,7 +46,8 @@ export function get30DayHistory() {
 
 //// HELPER FUNCTIONS ////
 
-  // Updates Rails API DB on "favorited/unfavorited" and "lastViewed"
+  // Updates Rails API DB on "favorited/unfavorited" button clicks and  when Something
+  // is "lastViewed". Note: "data" is a hash. 
 export function postUpdate(id, data) {
   return function(dispatch){
     return fetch(`/api/artobjects/${id}`, {
@@ -59,7 +60,7 @@ export function postUpdate(id, data) {
 }
 
   // Updates the currentArtObject and sessionHistory in store/state
-  // on "favorited/unfavorited" and "lastViewed"
+  // on "favorited/unfavorited" button clicks and when something is "lastViewed"
 export function updateSessionObjects(id, data) {
   return function(dispatch, getState) {
     const { currentArtObject, sessionHistory } = getState()

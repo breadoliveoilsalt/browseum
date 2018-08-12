@@ -10,7 +10,7 @@ export function getRandomArt() {
   return function(dispatch, getState){
       // Had to specify a named, separate function on next line so that fetchBasicData could call itself
       // again in the event the first record retreived from Harvard Museum API
-      // did not have an image url.
+      // did not have an image url (which is  quirk of the Harvard API):
     return fetchBasicData(dispatch, getState)
     }
   }
@@ -19,6 +19,7 @@ function fetchBasicData(dispatch, getState) {
 
   const { error } = getState()
 
+      // If last attempt to pull a record rendered error message, remove it:
   if (error.errorOccurred) {
     dispatch(removeError())
   }
@@ -28,7 +29,7 @@ function fetchBasicData(dispatch, getState) {
     .then(response => response.records[0])
     .then(record => {
         // This checks that record has primaryimageurl, i.e., an image to load.
-        // Despite url search parameters, some records come back a primaryimageurl with a value of null.
+        // Despite url search parameters, some records come back with a null value for primaryimageurl.
       if (record.primaryimageurl) {
         return record
       } else {
@@ -42,9 +43,12 @@ function fetchBasicData(dispatch, getState) {
       dispatch(loadCurrentArtObject(response))
       dispatch(addToSessionHistory(response))})
     .catch(error => {
+        // If the record retreived from the Harvard API lacked a primaryimageurl, close out the
+        // fetch promise and start over the process of getting a record:
       if (error.errorType === "INVALID_RECORD") {
         fetchBasicData(dispatch, getState)
       } else {
+        // Sometimes the Harvard API seems just wonky and returns an error message.  This handles that case:
         dispatch(loadError("Sorry, something seems to have gone wrong. Please click Get New Art again."))
       }
     })
@@ -98,7 +102,7 @@ function findAnOriginalRecord(filteredRecords, sessionHistory) {
 
     // Then iterate through the filteredRecords. Return the first that is not in sessionHistory,
     // i.e., it hasn't been viewed yet, by comparing ids. If all the filteredRecords are in the sessionHistory,
-    // this function returns newRecord as undefined, and an error is thrown in getRandomArt() via fetchBasicData().
+    // this function returns newRecord as undefined, and errorMessage is thrown navigationButtonClicked.
   for (let i = 0; i < filteredRecords.length; i++) {
     if (arrayOfHistoryIds.includes(filteredRecords[i].objectid)) {
       continue
@@ -115,6 +119,9 @@ function filterRecordsWithImages(records) {
   return records.filter(record => record.primaryimageurl)
 }
 
+  // This is a helper for navigationButtonClicked. It returns parameters accepted by the Harvard API
+  // so navigationButtonClicked can make the correct `get` request to the Harvard API, depending on the
+  // button the user clicked.
 function getKeyAndValue(type, currentArtObject) {
   switch (type) {
     case "artist":
@@ -173,7 +180,7 @@ export function fillAnyMissingFields(record) {
   }
     // Check for century
   if (record.hasOwnProperty("century")) {
-      // added to avoid error with Harvard database when century has hyphen
+      // Added to avoid error with Harvard database when century has hyphen:
     if (record.century.includes("-")) {
       const newCentury = record.century.split("-")[0] + " century"
       record.century = newCentury
