@@ -8,19 +8,19 @@ To use this app:
 
 1. Fork and clone it.
 
-2. In your terminal, run `npm install`.
-
 2. In your terminal, `cd` into the parent directory for Browseum.  
 
-3. In your terminal run: `rake db:migrate`.  This will initialize the Rails API database.
+3. In your terminal, run `npm install`.  Then run `bundle install`.
 
-4. Also in your terminal, run: `rake start`.  This will start two servers: one to handle React's client-side rendering, and one for the Rails API.
+4. Next, in your terminal, run: `rake db:migrate`.  This will initialize the Rails API database.
 
-5. Head to localhost:3000 in your browser.  There you will see the welcome page, and you can use the navigation buttons to being browsing random works of art.  
+5. Lastly, in your terminal, run: `rake start`.  This will start two servers: one to handle React's client-side rendering, and one for the Rails API.
+
+6. Head to localhost:3000 in your browser.  There you will see the welcome page, and you can use the navigation buttons to being browsing random works of art.  
 
 To close out the program, close your browser, and in the terminal where you ran `rake start`, hit control+c (on a Mac).  
 
-To run the program again, repeat step 2 and then step 4.  
+To run the program again, repeat step 2 and then step 5.  
 
 Thanks for stopping by!
 
