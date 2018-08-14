@@ -1,0 +1,43 @@
+body {
+  margin: 50px;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.link-formatting {
+  text-decoration: underline;
+  color: black;
+}
+
+.margin-fix {
+  margin-top: 20px;
+}
+
+.borderless {
+  border-style: none;
+}
+
+.ui.segment {
+  margin: 0.5rem 0.5rem;
+}
+/* To override awkward styling with Segments in ArtViewAndNavigation, where first child
+has no margin-top */
+
+.ui.segment:first-child {
+    margin-top: 0.5rem;
+}
+
+.errorMessage {
+  margin-top: 25px;
+  margin-bottom: -25px;
+  font-weight: bold;
+
+}
