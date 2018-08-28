@@ -36,8 +36,8 @@ has no margin-top */
 }
 
 .errorMessage {
-  margin-top: 25px;
-  margin-bottom: -25px;
+  /* margin-top: 25px; */
+  /* margin-bottom: -25px; */
   font-weight: bold;
 
 }
