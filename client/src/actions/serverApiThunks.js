@@ -56,6 +56,7 @@ export function postUpdate(id, data) {
         body: JSON.stringify(data)
         })
     .then(res => res)
+      // TN: NOTE ERROR HANDLING DRAFTED BELOW.
     .catch(error => {
         dispatch(loadError("Sorry, something seems to have gone wrong with the database."))
       })
