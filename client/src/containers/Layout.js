@@ -18,7 +18,7 @@ class Layout extends Component {
 
 
   // componentDidMount() {
-  //   this.props.getFavorites()
+  //  console.log("We're in layout now")
   // }
 
   render() {

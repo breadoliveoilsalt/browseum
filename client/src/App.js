@@ -4,11 +4,14 @@ import { connect } from 'react-redux'
 
 import { getFavorites } from './actions/serverApiThunks'
 
-import Layout from './containers/Layout'
+// import Layout from './containers/Layout'
+import LayoutParent from './containers/LayoutParent'
 
 class App extends Component {
 
+  // Does not load
   // componentDidMount() {
+  //   debugger
   //   this.props.getFavorites()
   // }
 
@@ -16,7 +19,7 @@ class App extends Component {
 
     return (
         <div className="App">
-          <Layout/>
+          <LayoutParent/>
         </div>
 
     );
@@ -40,5 +43,5 @@ class App extends Component {
 //   }
 // }
 
-// export default connect(null, mapDispatchToProps)(Layout)
+// export default connect(null, mapDispatchToProps)(App)
 export default App
