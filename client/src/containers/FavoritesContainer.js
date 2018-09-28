@@ -9,7 +9,7 @@ import { removeError, loadCurrentArtObject, addToSessionHistory } from '../actio
 import FavoritesList from '../components/FavoritesList'
 
 class FavoritesContainer extends Component {
-
+  //
   componentDidMount() {
     if (!this.props.favorites.length) {
       this.props.getFavorites()
