@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
+
+import { getFavorites } from '../actions/serverApiThunks'
 
 import TitleHeader from '../components/TitleHeader'
 import NavBar from '../components/NavBar'
@@ -11,6 +14,11 @@ import FavoritesContainer from './FavoritesContainer'
 import HistoryContainer from './HistoryContainer'
 
 class Layout extends Component {
+
+
+  componentDidMount() {
+    this.props.getFavorites()
+  }
 
   render() {
     return (
@@ -34,4 +42,10 @@ class Layout extends Component {
   }
 }
 
-export default Layout
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getFavorites: () => dispatch(getFavorites())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Layout)

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Header } from 'semantic-ui-react'
 
+// see if you can remove getFavorites now, including from mapPropsToDispatch
 import { getFavorites, postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
 import { removeError, loadCurrentArtObject, addToSessionHistory } from '../actions/basicActionCreators'
 
@@ -10,11 +11,11 @@ import FavoritesList from '../components/FavoritesList'
 
 class FavoritesContainer extends Component {
   //
-  componentDidMount() {
-    if (!this.props.favorites.length) {
-      this.props.getFavorites()
-    }
-  }
+  // componentDidMount() {
+  //   if (!this.props.favorites.length) {
+  //     this.props.getFavorites()
+  //   }
+  // }
 
   removeFromFavoritesClicked = (id, event) => {
     Promise.resolve(this.props.postUpdate(id, {favorite: false}))
@@ -70,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data)),
-      getFavorites: () => dispatch(getFavorites()),
+      // getFavorites: () => dispatch(getFavorites()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       removeError: () => dispatch(removeError()),
