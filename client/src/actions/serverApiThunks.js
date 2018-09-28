@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { loadCurrentArtObject, reloadFavorites, loadExtendedHistory, reloadSessionHistory } from './basicActionCreators'
+import { loadCurrentArtObject, reloadFavorites, loadExtendedHistory, reloadSessionHistory, loadError } from './basicActionCreators'
 
 //// SEND RECORD TO RAILS API DB FOR ID ////
 //// RETURNS FULL RECORD FOR THUNKS IN harvardApiThunks TO LOAD INTO STORE/STATE ////
@@ -47,7 +47,7 @@ export function get30DayHistory() {
 //// HELPER FUNCTIONS ////
 
   // Updates Rails API DB on "favorited/unfavorited" button clicks and  when Something
-  // is "lastViewed". Note: "data" is a hash. 
+  // is "lastViewed". Note: "data" is a hash.
 export function postUpdate(id, data) {
   return function(dispatch){
     return fetch(`/api/artobjects/${id}`, {
@@ -56,6 +56,9 @@ export function postUpdate(id, data) {
         body: JSON.stringify(data)
         })
     .then(res => res)
+    .catch(error => {
+        dispatch(loadError("Sorry, something seems to have gone wrong with the database."))
+      })
   }
 }
 
