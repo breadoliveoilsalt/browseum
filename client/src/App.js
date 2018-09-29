@@ -5,7 +5,6 @@ import LayoutParent from './containers/LayoutParent'
 
 class App extends Component {
 
-
   render() {
 
     return (

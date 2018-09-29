@@ -5,23 +5,29 @@ import { Header } from 'semantic-ui-react'
 
 // see if you can remove getFavorites now, including from mapPropsToDispatch
 import { getFavorites, postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
-import { removeError, loadCurrentArtObject, addToSessionHistory } from '../actions/basicActionCreators'
+import { removeError, loadCurrentArtObject, addToSessionHistory, changeCurrentArtObjectFavoriteStatus } from '../actions/basicActionCreators'
 
 import FavoritesList from '../components/FavoritesList'
 
 class FavoritesContainer extends Component {
-  //
-  // componentDidMount() {
-  //   if (!this.props.favorites.length) {
-  //     this.props.getFavorites()
-  //   }
-  // }
 
-  removeFromFavoritesClicked = (id, event) => {
-    Promise.resolve(this.props.postUpdate(id, {favorite: false}))
-      .then( () => this.props.updateSessionObjects(id, {favorite: false}))
-      .then( () => this.props.getFavorites())
+
+  removeFromFavoritesClicked = (object, event) => {
+    event.preventDefault()
+      // Need this otherwise entry for reducer not quite work for some reason:
+    const updatedObject = Object.assign({}, object)
+    updatedObject.favorite = false
+    this.props.loadCurrentArtObject(updatedObject)
+    this.props.removeFromStateFavorites(updatedObject.id)
+    this.props.updateSessionObjects(updatedObject.id, {favorite: false})
+    this.props.postUpdate(updatedObject.id, {favorite: false})
   }
+
+  // removeFromFavoritesClicked = (id, event) => {
+  //   Promise.resolve(this.props.postUpdate(id, {favorite: false}))
+  //     .then( () => this.props.updateSessionObjects(id, {favorite: false}))
+  //     .then( () => this.props.getFavorites())
+  // }
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
@@ -71,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data)),
+      changeCurrentArtObjectFavoriteStatus: (bool) => dispatch(changeCurrentArtObjectFavoriteStatus(bool)),
       // getFavorites: () => dispatch(getFavorites()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),

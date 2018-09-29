@@ -43,6 +43,12 @@ export function removeFromStateFavorites(id) {
   })
 }
 
+export function changeCurrentArtObjectFavoriteStatus(bool) {
+  return ({type: 'CHANGE_COA_FAVORITE_STATUS',
+  payload: bool
+  })
+}
+
 //// HISTORY HANDLING ////
 export function addToSessionHistory(record){
   return ({

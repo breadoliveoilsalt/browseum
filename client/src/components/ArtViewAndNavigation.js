@@ -19,7 +19,7 @@ const ArtViewAndNavigation = ( {currentArtObject, navigationButtonClicked, addTo
           <Grid.Column width={6}>
               <TitleAndFavoriteSegment
                 title={currentArtObject.title}
-                currentArtObject={currentArtObject}
+                id={currentArtObject.id}
                 favorited={currentArtObject.favorite}
                 addToFavoritesClicked={addToFavoritesClicked}
                 removeFromFavoritesClicked={removeFromFavoritesClicked}
