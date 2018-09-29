@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
+
+// TN NOTE: SHOULD BE DELETING GETFAVORITES BELOW
 import { postUpdate, updateSessionObjects, getFavorites } from '../actions/serverApiThunks'
+import { addToStateFavorites, loadCurrentArtObject } from '../actions/basicActionCreators'
 
 import ErrorMessage from '../components/ErrorMessage'
 import TopLevelButton from '../components/TopLevelButton'
@@ -17,11 +20,25 @@ class ArtContainer extends Component {
     }
   }
 
-  addToFavoritesClicked = (id, event) => {
-    Promise.resolve(this.props.postUpdate(id, {favorite: true}))
-      .then( () => this.props.updateSessionObjects(id, {favorite: true}))
-      .then( () => this.props.getFavorites())
+  addToFavoritesClicked = (object, event) => {
+    event.preventDefault()
+      // Need this otherwise entry for reducer not quite work for some reason:
+    const updatedObject = Object.assign({}, object)
+    updatedObject.favorite = true
+    this.props.loadCurrentArtObject(updatedObject)
+    this.props.addToStateFavorites(updatedObject)
+    this.props.updateSessionObjects(updatedObject.id, {favorite: true})
+    this.props.postUpdate(updatedObject.id, {favorite: true})
   }
+
+    // Promise.resolve(this.props.postUpdate(id, {favorite: true}))
+    //   .then( (res) => {
+    //     debugger
+    //     this.props.addToStateFavorites(res)})
+    //   .then( () => this.props.updateSessionObjects(id, {favorite: true}))
+
+      // .then( () => this.props.getFavorites())
+  // }
 
   removeFromFavoritesClicked = (id, event) => {
     Promise.resolve(this.props.postUpdate(id, {favorite: false}))
@@ -65,6 +82,8 @@ const mapDispatchToProps = (dispatch) => {
       getRandomArt: () => dispatch(getRandomArt()),
       navigationButtonClicked: (type, errorMessage) => dispatch(navigationButtonClicked(type, errorMessage)),
       getFavorites: () => dispatch(getFavorites()),
+      addToStateFavorites: (object) => dispatch(addToStateFavorites(object)),
+      loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data))
    }

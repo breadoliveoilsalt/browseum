@@ -29,6 +29,13 @@ export function reloadFavorites(data) {
   })
 }
 
+export function addToStateFavorites(record) {
+  return ({
+    type: 'ADD_TO_STATE_FAVORITES',
+    payload: record
+  })
+}
+
 //// HISTORY HANDLING ////
 export function addToSessionHistory(record){
   return ({
