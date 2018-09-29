@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 
 import { Header } from 'semantic-ui-react'
 
-// see if you can remove getFavorites now, including from mapPropsToDispatch
-import { getFavorites, postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
+import { postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
 import { removeError, loadCurrentArtObject, addToSessionHistory, removeFromStateFavorites } from '../actions/basicActionCreators'
 
 import FavoritesList from '../components/FavoritesList'
@@ -17,27 +16,6 @@ class FavoritesContainer extends Component {
     this.props.updateSessionObjects(id, {favorite: false})
     this.props.postUpdate(id, {favorite: false})
   }
-
-  //
-  // removeFromFavoritesClickedFavoritesPage = (object, event) => {
-  //
-  //
-  //
-  //   event.preventDefault()
-  //     // Need this otherwise entry for reducer not quite work for some reason:
-  //   const updatedObject = Object.assign({}, object)
-  //   updatedObject.favorite = false
-  //   this.props.loadCurrentArtObject(updatedObject)
-  //   this.props.removeFromStateFavorites(updatedObject.id)
-  //   this.props.updateSessionObjects(updatedObject.id, {favorite: false})
-  //   this.props.postUpdate(updatedObject.id, {favorite: false})
-  // }
-
-  // removeFromFavoritesClicked = (id, event) => {
-  //   Promise.resolve(this.props.postUpdate(id, {favorite: false}))
-  //     .then( () => this.props.updateSessionObjects(id, {favorite: false}))
-  //     .then( () => this.props.getFavorites())
-  // }
 
   historyLinkClicked = (object, event) => {
     event.preventDefault()
@@ -88,7 +66,6 @@ const mapDispatchToProps = (dispatch) => {
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data)),
       removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
-      // getFavorites: () => dispatch(getFavorites()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       removeError: () => dispatch(removeError()),
