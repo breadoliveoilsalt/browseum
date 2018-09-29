@@ -55,8 +55,13 @@ export function postUpdate(id, data) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
         })
-    .then(res => res)
-      // TN: NOTE ERROR HANDLING DRAFTED BELOW.
+    .then( (res) => {
+      if (res.status !== 200) {
+        throw Error
+      } else {
+        return res
+      }
+    }) 
     .catch(error => {
         dispatch(loadError("Sorry, something seems to have gone wrong with the database."))
       })
