@@ -36,6 +36,13 @@ export function addToStateFavorites(record) {
   })
 }
 
+export function removeFromStateFavorites(id) {
+  return ({
+    type: 'REMOVE_FROM_STATE_FAVORITES',
+    id: id
+  })
+}
+
 //// HISTORY HANDLING ////
 export function addToSessionHistory(record){
   return ({

@@ -16,6 +16,7 @@ const TitleAndFavoriteSegment = ( {currentArtObject, title, favorited, addToFavo
           action={favorited ? removeFromFavoritesClicked : addToFavoritesClicked}
           currentArtObject={currentArtObject}
         />
+        
       </Segment>
 
     </div>
