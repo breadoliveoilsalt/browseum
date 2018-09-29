@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 
 import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
 
-// TN NOTE: SHOULD BE DELETING GETFAVORITES BELOW
-import { postUpdate, updateSessionObjects, getFavorites } from '../actions/serverApiThunks'
+import { postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
 import { addToStateFavorites, removeFromStateFavorites, loadCurrentArtObject } from '../actions/basicActionCreators'
 
 import ErrorMessage from '../components/ErrorMessage'
@@ -77,7 +76,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
       getRandomArt: () => dispatch(getRandomArt()),
       navigationButtonClicked: (type, errorMessage) => dispatch(navigationButtonClicked(type, errorMessage)),
-      getFavorites: () => dispatch(getFavorites()),
       addToStateFavorites: (object) => dispatch(addToStateFavorites(object)),
       removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
