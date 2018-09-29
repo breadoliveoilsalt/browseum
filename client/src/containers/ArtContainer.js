@@ -23,9 +23,6 @@ class ArtContainer extends Component {
     event.preventDefault()
       // Need this otherwise entry for reducer not quite work for some reason:
     this.props.changeCurrentArtObjectFavoriteStatus(true)
-    // const updatedObject = Object.assign({}, object)
-    // updatedObject.favorite = true
-    // this.props.loadCurrentArtObject(updatedObject)
     this.props.addToStateFavorites(this.props.currentArtObject)
     this.props.updateSessionObjects(id, {favorite: true})
     this.props.postUpdate(id, {favorite: true})
@@ -43,15 +40,12 @@ class ArtContainer extends Component {
   //   this.props.postUpdate(updatedObject.id, {favorite: true})
   // }
 
-  removeFromFavoritesClicked = (object, event) => {
+  removeFromFavoritesClickedArtPage = (id, event) => {
     event.preventDefault()
-      // Need this otherwise entry for reducer not quite work for some reason:
-    const updatedObject = Object.assign({}, object)
-    updatedObject.favorite = false
-    this.props.loadCurrentArtObject(updatedObject)
-    this.props.removeFromStateFavorites(updatedObject.id)
-    this.props.updateSessionObjects(updatedObject.id, {favorite: false})
-    this.props.postUpdate(updatedObject.id, {favorite: false})
+    this.props.changeCurrentArtObjectFavoriteStatus(false)
+    this.props.removeFromStateFavorites(id)
+    this.props.updateSessionObjects(id, {favorite: false})
+    this.props.postUpdate(id, {favorite: false})
   }
 
   render() {
@@ -70,7 +64,7 @@ class ArtContainer extends Component {
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
             addToFavoritesClicked={this.addToFavoritesClicked}
-            removeFromFavoritesClicked={this.removeFromFavoritesClicked}
+            removeFromFavoritesClicked={this.removeFromFavoritesClickedArtPage}
         />
 
       </div>
