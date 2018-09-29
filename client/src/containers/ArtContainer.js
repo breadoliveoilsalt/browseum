@@ -21,9 +21,11 @@ class ArtContainer extends Component {
 
   addToFavoritesClicked = (id, event) => {
     event.preventDefault()
-      // Need this otherwise entry for reducer not quite work for some reason:
     this.props.changeCurrentArtObjectFavoriteStatus(true)
-    this.props.addToStateFavorites(this.props.currentArtObject)
+      // Can't just do addToStateFavorites(currentArtObject). Need the two lines below, otherwise,
+      // the object loaded into the Redux favorites state has a favorites property of false!
+    const updatedCOA = Object.assign({}, this.props.currentArtObject, {favorite: true})
+    this.props.addToStateFavorites(updatedCOA)
     this.props.updateSessionObjects(id, {favorite: true})
     this.props.postUpdate(id, {favorite: true})
   }

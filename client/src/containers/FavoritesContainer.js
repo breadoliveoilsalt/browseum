@@ -5,23 +5,33 @@ import { Header } from 'semantic-ui-react'
 
 // see if you can remove getFavorites now, including from mapPropsToDispatch
 import { getFavorites, postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
-import { removeError, loadCurrentArtObject, addToSessionHistory, changeCurrentArtObjectFavoriteStatus } from '../actions/basicActionCreators'
+import { removeError, loadCurrentArtObject, addToSessionHistory, removeFromStateFavorites } from '../actions/basicActionCreators'
 
 import FavoritesList from '../components/FavoritesList'
 
 class FavoritesContainer extends Component {
 
-
-  removeFromFavoritesClicked = (object, event) => {
+  removeFromFavoritesClickedFavoritesPage = (id, event) => {
     event.preventDefault()
-      // Need this otherwise entry for reducer not quite work for some reason:
-    const updatedObject = Object.assign({}, object)
-    updatedObject.favorite = false
-    this.props.loadCurrentArtObject(updatedObject)
-    this.props.removeFromStateFavorites(updatedObject.id)
-    this.props.updateSessionObjects(updatedObject.id, {favorite: false})
-    this.props.postUpdate(updatedObject.id, {favorite: false})
+    this.props.removeFromStateFavorites(id)
+    this.props.updateSessionObjects(id, {favorite: false})
+    this.props.postUpdate(id, {favorite: false})
   }
+
+  //
+  // removeFromFavoritesClickedFavoritesPage = (object, event) => {
+  //
+  //
+  //
+  //   event.preventDefault()
+  //     // Need this otherwise entry for reducer not quite work for some reason:
+  //   const updatedObject = Object.assign({}, object)
+  //   updatedObject.favorite = false
+  //   this.props.loadCurrentArtObject(updatedObject)
+  //   this.props.removeFromStateFavorites(updatedObject.id)
+  //   this.props.updateSessionObjects(updatedObject.id, {favorite: false})
+  //   this.props.postUpdate(updatedObject.id, {favorite: false})
+  // }
 
   // removeFromFavoritesClicked = (id, event) => {
   //   Promise.resolve(this.props.postUpdate(id, {favorite: false}))
@@ -58,7 +68,7 @@ class FavoritesContainer extends Component {
         <FavoritesList
           source={this.props.favorites}
           historyLinkClicked={this.historyLinkClicked}
-          removeFromFavoritesClicked={this.removeFromFavoritesClicked}
+          removeFromFavoritesClicked={this.removeFromFavoritesClickedFavoritesPage}
         />
 
       </div>
@@ -77,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data)),
-      changeCurrentArtObjectFavoriteStatus: (bool) => dispatch(changeCurrentArtObjectFavoriteStatus(bool)),
+      removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
       // getFavorites: () => dispatch(getFavorites()),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
