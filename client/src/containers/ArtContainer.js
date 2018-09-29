@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
 
 import { postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
-import { addToStateFavorites, removeFromStateFavorites, loadCurrentArtObject, changeCurrentArtObjectFavoriteStatus } from '../actions/basicActionCreators'
+import { addToStateFavorites, removeFromStateFavorites, changeCurrentArtObjectFavoriteStatus } from '../actions/basicActionCreators'
 
 import ErrorMessage from '../components/ErrorMessage'
 import TopLevelButton from '../components/TopLevelButton'
@@ -29,18 +29,6 @@ class ArtContainer extends Component {
     this.props.updateSessionObjects(id, {favorite: true})
     this.props.postUpdate(id, {favorite: true})
   }
-
-    // This depends on passing currentArtObject down the line to the function
-  // addToFavoritesClicked = (object, event) => {
-  //   event.preventDefault()
-  //     // Need this otherwise entry for reducer not quite work for some reason:
-  //   const updatedObject = Object.assign({}, object)
-  //   updatedObject.favorite = true
-  //   this.props.loadCurrentArtObject(updatedObject)
-  //   this.props.addToStateFavorites(updatedObject)
-  //   this.props.updateSessionObjects(updatedObject.id, {favorite: true})
-  //   this.props.postUpdate(updatedObject.id, {favorite: true})
-  // }
 
   removeFromFavoritesClickedArtPage = (id, event) => {
     event.preventDefault()
@@ -88,7 +76,6 @@ const mapDispatchToProps = (dispatch) => {
       changeCurrentArtObjectFavoriteStatus: (bool) => dispatch(changeCurrentArtObjectFavoriteStatus(bool)),
       addToStateFavorites: (object) => dispatch(addToStateFavorites(object)),
       removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
-      loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
       updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data))
    }
