@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import { Header } from 'semantic-ui-react'
 
-import { postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
-import { removeError, loadCurrentArtObject, addToSessionHistory, removeFromStateFavorites } from '../actions/basicActionCreators'
+import { postUpdate, postFavoriteUpdate } from '../actions/serverApiThunks'
+import { removeError, loadCurrentArtObject, addToSessionHistory } from '../actions/basicActionCreators'
 
 import FavoritesList from '../components/FavoritesList'
 
@@ -12,9 +12,7 @@ class FavoritesContainer extends Component {
 
   removeFromFavoritesClickedFavoritesPage = (id, event) => {
     event.preventDefault()
-    this.props.removeFromStateFavorites(id)
-    this.props.updateSessionObjects(id, {favorite: false})
-    this.props.postUpdate(id, {favorite: false})
+    this.props.postFavoriteUpdate(id, {favorite: false})
   }
 
   historyLinkClicked = (object, event) => {
@@ -64,8 +62,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       postUpdate: (id, data) => dispatch(postUpdate(id, data)),
-      updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data)),
-      removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
+      postFavoriteUpdate: (id, data) => dispatch(postFavoriteUpdate(id, data)),
       loadCurrentArtObject: (object) => dispatch(loadCurrentArtObject(object)),
       addToSessionHistory: (object) => dispatch(addToSessionHistory(object)),
       removeError: () => dispatch(removeError()),
