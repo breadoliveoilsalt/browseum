@@ -19,7 +19,8 @@ class ArtObjectsController < ApplicationController
   def update
     art_object = ArtObject.find_by(id: params[:id])
     if art_object.update(art_object_params)
-      head :ok, content_type: "text/html"
+      # head :ok, content_type: "text/html"
+      render json: art_object
     else
       render json: {errors: art_object.errors.full_messages }
     end

@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { loadCurrentArtObject, reloadFavorites, loadExtendedHistory, reloadSessionHistory, loadError } from './basicActionCreators'
+import { loadCurrentArtObject, reloadFavorites, loadExtendedHistory, reloadSessionHistory, loadError, addToStateFavorites, removeFromStateFavorites } from './basicActionCreators'
 
 //// SEND RECORD TO RAILS API DB FOR ID ////
 //// RETURNS FULL RECORD FOR THUNKS IN harvardApiThunks TO LOAD INTO STORE/STATE ////
@@ -61,7 +61,37 @@ export function postUpdate(id, data) {
       } else {
         return res
       }
-    }) 
+    })
+    .catch(error => {
+        dispatch(loadError("Sorry, something seems to have gone wrong with the database."))
+      })
+  }
+}
+
+export function postFavoriteUpdateArtPage(id, data) {
+  return function(dispatch, getState){
+    return fetch(`/api/artobjects/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+        })
+    .then( res => res.json())
+    .then( res => {
+
+        // If user clicked "Add to Favorites" while viewing the Art, update the Art (currentArtObject)
+      if (getState().currentArtObject.id === res.id) {
+        dispatch(loadCurrentArtObject(res))
+      }
+
+        // Update all instances when the ArtObject was viewed in sessionHistory
+      dispatch(updateSessionObjects(res.id, {favorite: res.favorite}))
+
+        // Add or remove from state Favorites
+      if (res.favorite) {
+        dispatch(addToStateFavorites(res))
+      } else {
+        dispatch(removeFromStateFavorites(res.id))
+      }})
     .catch(error => {
         dispatch(loadError("Sorry, something seems to have gone wrong with the database."))
       })

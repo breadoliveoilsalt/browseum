@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 
 import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
 
-import { postUpdate, updateSessionObjects } from '../actions/serverApiThunks'
+// delete unused stuff
+import { postUpdate, updateSessionObjects, postFavoriteUpdateArtPage } from '../actions/serverApiThunks'
 import { addToStateFavorites, removeFromStateFavorites, changeCurrentArtObjectFavoriteStatus } from '../actions/basicActionCreators'
 
 import ErrorMessage from '../components/ErrorMessage'
@@ -19,23 +20,14 @@ class ArtContainer extends Component {
     }
   }
 
-  addToFavoritesClicked = (id, event) => {
+  addToFavoritesClickedArtPage = (id, event) => {
     event.preventDefault()
-    this.props.changeCurrentArtObjectFavoriteStatus(true)
-      // Can't just do addToStateFavorites(currentArtObject). Need the two lines below, otherwise,
-      // the object loaded into the Redux favorites state has a favorites property of false!
-    const updatedCOA = Object.assign({}, this.props.currentArtObject, {favorite: true})
-    this.props.addToStateFavorites(updatedCOA)
-    this.props.updateSessionObjects(id, {favorite: true})
-    this.props.postUpdate(id, {favorite: true})
+    this.props.postFavoriteUpdateArtPage(id, {favorite: true})
   }
 
   removeFromFavoritesClickedArtPage = (id, event) => {
     event.preventDefault()
-    this.props.changeCurrentArtObjectFavoriteStatus(false)
-    this.props.removeFromStateFavorites(id)
-    this.props.updateSessionObjects(id, {favorite: false})
-    this.props.postUpdate(id, {favorite: false})
+    this.props.postFavoriteUpdateArtPage(id, {favorite: false})
   }
 
   render() {
@@ -53,7 +45,7 @@ class ArtContainer extends Component {
         <ArtViewAndNavigation
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
-            addToFavoritesClicked={this.addToFavoritesClicked}
+            addToFavoritesClicked={this.addToFavoritesClickedArtPage}
             removeFromFavoritesClicked={this.removeFromFavoritesClickedArtPage}
         />
 
@@ -73,11 +65,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
       getRandomArt: () => dispatch(getRandomArt()),
       navigationButtonClicked: (type, errorMessage) => dispatch(navigationButtonClicked(type, errorMessage)),
-      changeCurrentArtObjectFavoriteStatus: (bool) => dispatch(changeCurrentArtObjectFavoriteStatus(bool)),
-      addToStateFavorites: (object) => dispatch(addToStateFavorites(object)),
-      removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
-      postUpdate: (id, data) => dispatch(postUpdate(id, data)),
-      updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data))
+      postFavoriteUpdateArtPage: (id, data) => dispatch(postFavoriteUpdateArtPage(id, data)),
+      // changeCurrentArtObjectFavoriteStatus: (bool) => dispatch(changeCurrentArtObjectFavoriteStatus(bool)),
+      // addToStateFavorites: (object) => dispatch(addToStateFavorites(object)),
+      // removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),
+      // postUpdate: (id, data) => dispatch(postUpdate(id, data)),
+      // updateSessionObjects: (id, data) => dispatch(updateSessionObjects(id, data))
    }
 }
 
