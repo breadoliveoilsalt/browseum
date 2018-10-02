@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { getRandomArt, navigationButtonClicked } from '../actions/harvardApiThunks'
 
 // delete unused stuff
-import { postUpdate, updateSessionObjects, postFavoriteUpdateArtPage } from '../actions/serverApiThunks'
+import { postUpdate, updateSessionObjects, postFavoriteUpdate } from '../actions/serverApiThunks'
 import { addToStateFavorites, removeFromStateFavorites, changeCurrentArtObjectFavoriteStatus } from '../actions/basicActionCreators'
 
 import ErrorMessage from '../components/ErrorMessage'
@@ -20,14 +20,14 @@ class ArtContainer extends Component {
     }
   }
 
-  addToFavoritesClickedArtPage = (id, event) => {
+  addToFavoritesClicked = (id, event) => {
     event.preventDefault()
-    this.props.postFavoriteUpdateArtPage(id, {favorite: true})
+    this.props.postFavoriteUpdate(id, {favorite: true})
   }
 
-  removeFromFavoritesClickedArtPage = (id, event) => {
+  removeFromFavoritesClicked = (id, event) => {
     event.preventDefault()
-    this.props.postFavoriteUpdateArtPage(id, {favorite: false})
+    this.props.postFavoriteUpdate(id, {favorite: false})
   }
 
   render() {
@@ -45,8 +45,8 @@ class ArtContainer extends Component {
         <ArtViewAndNavigation
             currentArtObject={this.props.currentArtObject}
             navigationButtonClicked={this.props.navigationButtonClicked}
-            addToFavoritesClicked={this.addToFavoritesClickedArtPage}
-            removeFromFavoritesClicked={this.removeFromFavoritesClickedArtPage}
+            addToFavoritesClicked={this.addToFavoritesClicked}
+            removeFromFavoritesClicked={this.removeFromFavoritesClicked}
         />
 
       </div>
@@ -65,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       getRandomArt: () => dispatch(getRandomArt()),
       navigationButtonClicked: (type, errorMessage) => dispatch(navigationButtonClicked(type, errorMessage)),
-      postFavoriteUpdateArtPage: (id, data) => dispatch(postFavoriteUpdateArtPage(id, data)),
+      postFavoriteUpdate: (id, data) => dispatch(postFavoriteUpdate(id, data)),
       // changeCurrentArtObjectFavoriteStatus: (bool) => dispatch(changeCurrentArtObjectFavoriteStatus(bool)),
       // addToStateFavorites: (object) => dispatch(addToStateFavorites(object)),
       // removeFromStateFavorites: (id) => dispatch(removeFromStateFavorites(id)),

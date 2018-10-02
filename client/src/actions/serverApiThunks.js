@@ -68,7 +68,7 @@ export function postUpdate(id, data) {
   }
 }
 
-export function postFavoriteUpdateArtPage(id, data) {
+export function postFavoriteUpdate(id, data) {
   return function(dispatch, getState){
     return fetch(`/api/artobjects/${id}`, {
         method: "PUT",
