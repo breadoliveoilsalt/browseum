@@ -8,7 +8,7 @@ import { postUpdate, get30DayHistory } from '../actions/serverApiThunks'
 
 import TopLevelButton from '../components/TopLevelButton'
 import HistoryList from '../components/HistoryList'
-
+//
 class HistoryContainer extends Component {
 
     // The goal with the constructor below is to ensure that if the user navigates to /history,
