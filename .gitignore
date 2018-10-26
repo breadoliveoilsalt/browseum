@@ -31,3 +31,7 @@
 
 scraps*
 .env
+
+# Ignore public, as it is built on deploy
+# Place files for /public in /client/public
+/public
