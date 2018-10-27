@@ -1,5 +1,13 @@
 {
-  "name": "final-project",
-  "private": true,
-  "dependencies": {}
+  "name": "browseum",
+  "license": "MIT",
+  "engines": {
+    "node": "10.5.0",
+    "yarn": "1.7.0"
+  },
+  "scripts": {
+    "build": "yarn --cwd client install && yarn --cwd client build",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
+  }
 }
