@@ -2,9 +2,6 @@ class ArtObjectsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  # def home
-  # end
-
   def create
     art_object = ArtObject.find_and_update_lastViewed(params[:objectApiId]) || ArtObject.custom_new(art_object_params)
     if art_object.save
