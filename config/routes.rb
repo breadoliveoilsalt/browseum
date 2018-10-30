@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   put "/api/artobjects/:id", to: "art_objects#update"
   get "/api/artobjects/favorites", to: "art_objects#favorites"
 
+  # Per here, toward bottom: https://blog.heroku.com/a-rock-solid-modern-web-stack
+  # This tells Rails to pass anything it doesn’t match over to your client/index.html so that React Router can take over.
+  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
+
 end
