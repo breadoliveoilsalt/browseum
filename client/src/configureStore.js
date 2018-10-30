@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 
 import monitorReducersEnhancer from './enhancers/monitorReducer'
 import loggerMiddleware from './middleware/logger'
