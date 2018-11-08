@@ -49,7 +49,7 @@ function fetchBasicData(dispatch, getState) {
         fetchBasicData(dispatch, getState)
       } else {
         // Sometimes the Harvard API seems just wonky and returns an error message.  This handles that case:
-        dispatch(loadError("Sorry, something seems to have gone wrong. Please click Get New Art again."))
+        dispatch(loadError("Sorry, something seems to have gone wrong communicating with the Harvard Museum's database. Please click Get New Art again."))
       }
     })
 }
